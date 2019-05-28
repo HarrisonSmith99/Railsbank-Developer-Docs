@@ -8,11 +8,11 @@
   - This can easily be done by contacting [support](mailto:support@railsbank.com).
 
 ## Onboard a Card-holding Enduser
+
   > Note the change of the base url from playlive to live.
 
   ```shell
-  curl
-    --request POST https://live.railsbank.com/v1/customer/endusers
+  curl --request POST https://live.railsbank.com/v1/customer/endusers
     --header 'Content-Type: application/json'
     --header 'Accept: application/json'
     --header 'Authorization: API-Key <<yourliveapikey>>'
@@ -34,3 +34,30 @@
   - So, to onboard a **card-holding** enduser, assuming you have purchased the **Railsbank-Direct-Debit-1** product, you need to paste the following into your terminal or testing tool, making sure to replace the example values for your own.
 
   - You can Fetch enduser to retrieve all the information about the enduser - including their card details, once they've been created!
+
+## Issue a Card
+
+> Once you've got the `ledger_id` simply paste it into the following payload, paste the payload into your terminal or testing tool and let us do the rest.
+
+```shell
+curl --request POST https://live.railsbank.com/v1/customer/cards
+	--header 'Content-Type: application/json'
+	--header 'Accept: application/json'
+	--header 'Authorization: API-Key <<yourliveapikey>>'
+```
+```JSON
+{
+"ledger_id": "{{ledger_id}}",
+"partner_product": "Railsbank-Debit-Card-1",
+"card_program": "Railsbank Card Program"
+}
+```
+> The API will respond with the `card_id`, which will look something like this:
+
+```JSON
+{
+  "card_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
+}
+```
+  - Once you've created your **card-holding** enduser, carefully go through our #docTextSection:bsbkPCZM69Akzjebo tutorial - it'll only take a minute or so - to create your **SEPA Step 2** connected bank account to which your card is going to be attched.
+  - When issuing the ledger, make sure to do so in the **Live** environment with your **Live API Key** and the `enduser_id` of the **card-holding** enduser you've created.
