@@ -7,7 +7,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 includes:
   - welcome
-  - what_we_do
   - environments
   - platform_actors
   - capabilities
