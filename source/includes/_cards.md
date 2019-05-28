@@ -9,20 +9,17 @@
 
 ## Onboard a Card-holding Enduser
 
-  - While you can see our Onboard an Enduser tutorial to learn how to onboard a basic enduser, in this one we're going to briefly and explicitly understand the small changes that need to take place for the enduser to be able to hold a **Railsbank Debit Card**.
-  - So, to onboard a **card-holding** enduser, assuming you have purchased the **Railsbank-Direct-Debit-1** product, you need to paste the following into your terminal or testing tool, making sure to replace the example values for your own.
-
   > (Note the change of the base url from playlive to live).
 
   ```shell
   curl
     --request POST https://live.railsbank.com/v1/customer/endusers
     --header 'Content-Type: application/json'
-  	--header 'Accept: application/json'
-  	--header 'Authorization: API-Key <<yourliveapikey>>'
+    --header 'Accept: application/json'
+    --header 'Authorization: API-Key <<yourliveapikey>>'
 
   {
-  	"person": {
+    "person": {
          "name": "John Smith",
          }
   }
@@ -34,4 +31,7 @@
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
   ```
+  - While you can see our Onboard an Enduser tutorial to learn how to onboard a basic enduser, in this one we're going to briefly and explicitly understand the small changes that need to take place for the enduser to be able to hold a **Railsbank Debit Card**.
+  - So, to onboard a **card-holding** enduser, assuming you have purchased the **Railsbank-Direct-Debit-1** product, you need to paste the following into your terminal or testing tool, making sure to replace the example values for your own.
+
   - You can Fetch enduser to retrieve all the information about the enduser - including their card details, once they've been created!
