@@ -23,7 +23,7 @@ We consistently use [standardized HTTPD Status](https://tools.ietf.org/html/rfc7
 
 ## Error Messages
 > shell
-```json
+```shell 
 {"errors":[{"message":"Sorry, that page does not exist","code":34}]}
 ```
 
