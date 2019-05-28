@@ -22,13 +22,9 @@ We consistently use [standardized HTTPD Status](https://tools.ietf.org/html/rfc7
 
 
 ## Error Messages
-> shell
-```shell 
-{"errors":[{"message":"Sorry, that page does not exist","code":34}]}
-```
 
 When the Railsbank API returns error messages, it does so in JSON format. For example, an error might look like this:
-
+``{"errors":[{"message":"Sorry, that page does not exist","code":34}]}``
 
 ## Status codes for various parts of Railsbank
 
