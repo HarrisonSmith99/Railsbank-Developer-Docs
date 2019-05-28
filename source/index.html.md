@@ -11,8 +11,14 @@ toc_footers:
 
 includes:
   - what_we_do
+  - environments
+  - platform_actors
+  - capabilities
+  - the_compliance_firewall
   - authentication
-  - errors
+  - idempotency
+  - responsecodes_statuses
+  - faqs
 
 search: true
 ---
