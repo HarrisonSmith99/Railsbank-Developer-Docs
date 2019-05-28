@@ -5,10 +5,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 
-toc_footers:
-  - <a href='#'>Sign Up for an API-Key</a>
-  - <a href='https://railsbank.com'></a>
-
 includes:
   - what_we_do
   - environments
@@ -19,6 +15,10 @@ includes:
   - idempotency
   - responsecodes_statuses
   - faqs
+
+toc_footers:
+  - <a href='#'>Sign Up for an API-Key</a>
+  - <a href='https://railsbank.com'></a>
 
 search: true
 ---
