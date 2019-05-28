@@ -1,3 +1,4 @@
+# Welcome
 # What We Do
 
 Railsbank is an open Banking and Compliance platform that enables **Customers** to create their own products that need banking capabilities or integrate banking capabilities into their systems, apps and workflows.
@@ -10,12 +11,12 @@ These guides are designed to help anyone and everyone - from CEOs to developers 
 
 # Environments
 
-ur **environments** allow you to go from risk-free testing to complete global banking with only a few tiny changes in your code.
+Your **environments** allow you to go from risk-free testing to complete global banking with only a few tiny changes in your code.
 
 There are three environments within Railsbank: **Play,** **PlayLive,** and **Live**.
 
 **Play**
-
+-
 - The Base URL for Play is: `https://play.railsbank.com`
 - Our preliminary Sandbox, through which you can test the API with complete freedom.
 - **Is not** connected to the ouside world; it is a simulation. Therefore, it **costs nothing**, and there is no limit to the number of calls, transactions, or volumes.  
