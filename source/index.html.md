@@ -44,7 +44,7 @@ Railsbank expects the API key to be included in all API requests to the server i
 `Authorization: API-Key <<your_API_key>>`
 
 <aside class="notice">
-Make sure to replace `<<your_API_Key>>` with your API key and include the `API-Key` string followed by a space.
+Make sure to replace ```<<your_API_Key>>```` with your API key and include the `API-Key` string followed by a space.
 </aside>
 
 # Kittens
