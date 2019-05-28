@@ -20,12 +20,11 @@ We consistently use [standardized HTTPD Status](https://tools.ietf.org/html/rfc7
 | 503 |	Service Unavailable |	The Railsbank servers are up, but overloaded with requests. Try again later. |
 | 504 |	Gateway timeout |	The Railsbank servers are up, but the request couldn’t be serviced due to some failure within our stack. Try again later. |
 
-> ```json
-{"errors":[{"message":"Sorry, that page does not exist","code":34}]}
-```
 
 ## Error Messages
-
+> ```json
+{"errors":[{"message":"Sorry, that page does not exist","code":34}]}
+``` 
 When the Railsbank API returns error messages, it does so in JSON format. For example, an error might look like this:
 
 
