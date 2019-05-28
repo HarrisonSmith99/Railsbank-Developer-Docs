@@ -3,11 +3,13 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-
+  - ruby
+  - python
+  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for an API-Key</a>
-  - <a href='https://railsbank.com</a>
+  - <a href='https://railsbank.com'></a>
 
 includes:
   - errors
