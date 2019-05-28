@@ -1,3 +1,5 @@
+# Response Codes and Statuses
+
 ## HTTPD Status Codes
 
 We consistently use [standardized HTTPD Status](https://tools.ietf.org/html/rfc7231#section-6) codes.

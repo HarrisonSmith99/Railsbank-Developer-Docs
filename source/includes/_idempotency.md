@@ -1,3 +1,4 @@
+# Idempotency
 Transient errors can happen, particulary where networking issues may be involved.
 
 The current best-practice on this is to use idempotency keys. As an introduction to these, we recommend reading Stripe's [idempotency blog post](https://stripe.com/blog/idempotency). It's well worth the seven minutes read.

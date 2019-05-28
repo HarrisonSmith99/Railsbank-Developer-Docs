@@ -1,4 +1,6 @@
-Our **environments** allow you to go from risk-free testing to complete global banking with only a few tiny changes in your code.
+# Environments
+
+ur **environments** allow you to go from risk-free testing to complete global banking with only a few tiny changes in your code.
 
 There are three environments within Railsbank: **Play,** **PlayLive,** and **Live**.
 

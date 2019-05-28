@@ -1,3 +1,5 @@
+# The Compliance Firewall
+
 - The Railsbank API is built on the belief that **Compliance** should come first. It should be simple and easy to adhere to regulation, and due to the nature of Railsbank, it is.
 
 - Because Railsbank is essentially middleware between our **Partners** and **Customers**, information in the form of requests - be they POSTs, GETs, or PUTs - passes through the API from both sides all the time.

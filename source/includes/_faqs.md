@@ -1,4 +1,4 @@
-## FAQs
+# FAQs
 
 1. How long does it take to be onboarded to Railsbank and get **Live** API Keys?
 - At the moment, about 2 weeks, so over 10 times faster than if you tried to open  accounts with a traditional bank.
