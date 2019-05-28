@@ -9,13 +9,13 @@ The platform is purely an API, built to be easily and rapidly integrated into yo
 
 These guides are designed to help anyone and everyone - from CEOs to developers - understand how easy it is to operate the API. However, if you want a more detailed, development-focused documents after going through them, head to the [API Docs](https://docs.railsbank.com/).
 
-# Environments
+## Environments
 
 Your **environments** allow you to go from risk-free testing to complete global banking with only a few tiny changes in your code.
 
 There are three environments within Railsbank: **Play,** **PlayLive,** and **Live**.
 
-**Play**
+### **Play**
 -
 - The Base URL for Play is: `https://play.railsbank.com`
 - Our preliminary Sandbox, through which you can test the API with complete freedom.
@@ -25,7 +25,7 @@ There are three environments within Railsbank: **Play,** **PlayLive,** and **Liv
 - Allows your developers to integrate into the API with ease.
 
 
-**PlayLive**
+### **PlayLive**
 -
 - The Base URL for PlayLive is: `https://playlive.railsbank.com`
 - Our second Sandbox, through which you can test the API with real money.
@@ -39,7 +39,7 @@ There are three environments within Railsbank: **Play,** **PlayLive,** and **Liv
   - Maximum value of a transaction: £5 or €5
   - Maximum value of aggregated transactions: £20 or €20.
 
-**Live**
+### **Live**
 -
 - The Base URL for Live is: `https://live.railsbank.com`
 - Complete access to global banking.
