@@ -15,6 +15,7 @@ includes:
   - idempotency
   - responsecodes_statuses
   - faqs
+  - cards
 
 toc_footers:
   - <a href='#'>Sign Up for an API-Key</a>
