@@ -15,7 +15,7 @@ There are three environments within Railsbank: **Play,** **PlayLive,** and **Liv
 
 
 ## **PlayLive**
--
+
   > The Base URL for PlayLive is: `https://playlive.railsbank.com`
 
   - Our second Sandbox, through which you can test the API with real money.
