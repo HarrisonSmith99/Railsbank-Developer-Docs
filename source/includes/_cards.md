@@ -6,6 +6,8 @@
   - Due to the limits of **playLive** and the beauty of the innovation, this cabalility is only available for customers with a **Live API Key**.
   - Customers with a **Live API Key** must have also purchased the `Railsbank-Debit-Card-1`  partner product.
   - This can easily be done by contacting [support](mailto:support@railsbank.com).
+
+## Onboard a Card-holding Enduser
   > (Note the change of the base url from playlive to live).
 
   ```shell
@@ -28,8 +30,6 @@
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
   ```
-## Onboard a Card-holding Enduser
-
   - While you can see our Onboard an Enduser tutorial to learn how to onboard a basic enduser, in this one we're going to briefly and explicitly understand the small changes that need to take place for the enduser to be able to hold a **Railsbank Debit Card**.
   - So, to onboard a **card-holding** enduser, assuming you have purchased the **Railsbank-Direct-Debit-1** product, you need to paste the following into your terminal or testing tool, making sure to replace the example values for your own.
 
