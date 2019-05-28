@@ -4,11 +4,11 @@
   - Cards can be both virtual and physical, and - quite uniquely - a virtual card can be transformed into a physical card while retaining it's **card number (PAN)**.
   - The card design can also be customised to your taste.
   - Due to the limits of **playLive** and the beauty of the innovation, this cabalility is only available for customers with a **Live API Key**.
-  - Customers with a **Live API Key** must have also purchased the `Railsbank-Debit-Card-1`  partner product.
+  - Customers with a **Live API Key** must have also purchased the `Railsbank-Debit-Card-1` partner product.
   - This can easily be done by contacting [support](mailto:support@railsbank.com).
 
 ## Onboard a Card-holding Enduser
-  > (Note the change of the base url from playlive to live).
+  > Note the change of the base url from playlive to live.
 
   ```shell
   curl
@@ -25,7 +25,7 @@
   ```
   > To which the API will respond with an `enduser_id` like this:
 
-  ```JSON
+  ```javascript
   {
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
