@@ -34,7 +34,6 @@
   ```
   - While you can see our Onboard an Enduser tutorial to learn how to onboard a basic enduser, in this one we're going to briefly and explicitly understand the small changes that need to take place for the enduser to be able to hold a **Railsbank Debit Card**.
   - So, to onboard a **card-holding** enduser, assuming you have purchased the **Railsbank-Direct-Debit-1** product, you need to paste the following into your terminal or testing tool, making sure to replace the example values for your own.
-
   - You can Fetch enduser to retrieve all the information about the enduser - including their card details, once they've been created!
 
 ## Issue a Card
@@ -64,3 +63,30 @@ https://live.railsbank.com/v1/customer/cards
 ```
   - Once you've created your **card-holding** enduser, carefully go through our #docTextSection:bsbkPCZM69Akzjebo tutorial - it'll only take a minute or so - to create your **SEPA Step 2** connected bank account to which your card is going to be attched.
   - When issuing the ledger, make sure to do so in the **Live** environment with your **Live API Key** and the `enduser_id` of the **card-holding** enduser you've created.
+
+## Fetch a Card
+
+> Simply paste the following into your terminal or testing tool, making sure to substitute your enduser's `card_id` in.
+
+```shell
+curl
+	--header 'Content-Type: application/json'
+	--header 'Accept: application/json'
+	--header 'Authorization: API-Key <<yourliveapikey>>'
+  --request GET https://live.railsbank.com/v1/customer/cards/{{card_id}}
+```
+> The API will respond with a payload smilar to the example below. The possible statuses of a card are: `active`, `created`, and `disabled`.
+
+```json
+{
+  "card_id": "8763b5df-a61c-4f77-9724-41ca9cde3654",
+  "card_status": "card-status-created",
+  "card_program": "Railsbank Card Program"
+  "customer_id": "c91b339e-57d7-41ea-a805-8966ce8fe4ed",
+  "partner_product": "Railsbank-Debit-Card-1",
+  "ledger_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d",
+  "temp_card_image_url": "237564rh43ht43"
+}
+```
+  - Fetching a card is much like 'fetching' anything else with the API.
+  - In this case, all you need to know is the `card_id`. 
