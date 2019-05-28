@@ -17,14 +17,15 @@ includes:
 search: true
 ---
 
-# Introduction
+# What We Do
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Railsbank is an open Banking and Compliance platform that enables **Customers** to create their own products that need banking capabilities or integrate banking capabilities into their systems, apps and workflows.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+**Customers** connect to the platform via the **Customer API** and access financial products through what we call **Product Rails** - a full list of the cabilities available via the Railsbank **Product Rails** can be seen below or on our [main website](https://www.railsbank.com/).
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+ The platform is purely an API, built to be easily and rapidly integrated into your business. Railsbank is all about making your life super simple to integrate a complete set of financial services capabilities into your business, app, or product.
 
+These guides are designed to help anyone and everyone - from CEOs to developers - understand how easy it is to operate the API. However, if you want a more detailed, deveoplment-focused documents after going through them, head to the [API Docs](https://docs.railsbank.com/).
 # Authentication
 
 > To authorize, use this code:
@@ -236,4 +237,3 @@ This endpoint deletes a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
-
