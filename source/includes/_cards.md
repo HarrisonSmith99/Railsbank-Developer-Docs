@@ -44,12 +44,11 @@ curl --request POST https://live.railsbank.com/v1/customer/cards
 	--header 'Content-Type: application/json'
 	--header 'Accept: application/json'
 	--header 'Authorization: API-Key <<yourliveapikey>>'
-```
-```JSON
+  --data
 {
-"ledger_id": "{{ledger_id}}",
-"partner_product": "Railsbank-Debit-Card-1",
-"card_program": "Railsbank Card Program"
+  "ledger_id": "{{ledger_id}}",
+  "partner_product": "Railsbank-Debit-Card-1",
+  "card_program": "Railsbank Card Program"
 }
 ```
 > The API will respond with the `card_id`, which will look something like this:
