@@ -10,8 +10,8 @@ toc_footers:
   - <a href='https://railsbank.com'></a>
 
 includes:
-  - errors
   - authentication
+  - errors
 
 search: true
 ---
