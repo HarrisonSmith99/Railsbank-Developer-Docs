@@ -16,16 +16,18 @@
     --header 'Content-Type: application/json'
     --header 'Accept: application/json'
     --header 'Authorization: API-Key <<yourliveapikey>>'
-
+    --request POST
+    --data
   {
     "person": {
          "name": "John Smith",
          }
   }
+  https://live.railsbank.com/v1/customer/endusers
   ```
   > To which the API will respond with an `enduser_id` like this:
 
-  ```javascript
+  ```JSON
   {
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
@@ -40,16 +42,18 @@
 > Once you've got the `ledger_id` simply paste it into the following payload, paste the payload into your terminal or testing tool and let us do the rest.
 
 ```shell
-curl --request POST https://live.railsbank.com/v1/customer/cards
+curl
 	--header 'Content-Type: application/json'
 	--header 'Accept: application/json'
 	--header 'Authorization: API-Key <<yourliveapikey>>'
+  --request POST
   --data
 {
   "ledger_id": "{{ledger_id}}",
   "partner_product": "Railsbank-Debit-Card-1",
   "card_program": "Railsbank Card Program"
 }
+https://live.railsbank.com/v1/customer/cards
 ```
 > The API will respond with the `card_id`, which will look something like this:
 
