@@ -9,8 +9,9 @@ toc_footers:
   - <a href='#'>Sign Up for an API-Key</a>
   - <a href='https://railsbank.com'></a>
 
-##includes:
+includes:
   - errors
+  - authentication
 
 search: true
 ---
@@ -24,23 +25,6 @@ Railsbank is an open Banking and Compliance platform that enables **Customers** 
  The platform is purely an API, built to be easily and rapidly integrated into your business. Railsbank is all about making your life super simple to integrate a complete set of financial services capabilities into your business, app, or product.
 
 These guides are designed to help anyone and everyone - from CEOs to developers - understand how easy it is to operate the API. However, if you want a more detailed, deveoplment-focused documents after going through them, head to the [API Docs](https://docs.railsbank.com/).
-
-# Authentication
-
-> To authorize, use this code:
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: API-Key <<your_API_Key>>"
-```
-
-Railsbank uses API keys to allow access to the API. You can register for an API key on our [website](http://railsbank.com).
-
-Railsbank expects the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: API-Key <<your_API_key>>`
-
 
 # Kittens
 
