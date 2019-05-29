@@ -218,8 +218,9 @@ curl
 
 ## Update an Enduser
   > Now, to update the enduser we simply use the following call and include the keys that we want to add or change in the request body. In this case:
-    > add `trading_address`
-    > change `post_code`
+
+  > add `trading_address`
+  > change `post_code`
 
   ```shell
   curl
