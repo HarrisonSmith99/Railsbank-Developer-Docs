@@ -42,7 +42,8 @@ body {
   pre, code {
     @extend %code-font;
     @extend %break-words;
-    border: 1px solid $print-color;
+    border: 1px;
+    color: #B6BDC6;
     border-radius: 5px;
     font-size: 0.8em;
   }
