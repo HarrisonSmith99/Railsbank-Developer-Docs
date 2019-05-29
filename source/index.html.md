@@ -15,6 +15,7 @@ includes:
   - idempotency
   - responsecodes_statuses
   - faqs
+  - endusers
   - cards
 
 toc_footers:
