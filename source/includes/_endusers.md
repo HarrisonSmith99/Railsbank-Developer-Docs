@@ -218,8 +218,8 @@ curl
 
 ## Update an Enduser
   > Now, to update the enduser we simply use the following call and include the keys that we want to add or change in the request body. In this case:
-    - add `trading_address`
-    - change `post_code`
+    > add `trading_address`
+    > change `post_code`
 
   ```shell
   curl
@@ -260,11 +260,11 @@ curl
 
   Let us imagine the following hypothetical but practical scenarios:
 
-  ### Scenario 1 - Adding a new key of information
+### Scenario 1 - Adding a new key of information
 
   - Imagine an existing company enduser you onboarded now has a different **trading address** from the address that they registered from (also called the **registration address**)
   - From a compliance perspective, you will need to provide both the `trading_adresses` and `registration_address` information. However, when you onboarded that enduser, you only included the latter
 
-  ### Scenario 2 - Editing an existing key of information
+### Scenario 2 - Editing an existing key of information
 
   - The same existing company enduser incorrectly provided their post-code and it needs to be changed.
