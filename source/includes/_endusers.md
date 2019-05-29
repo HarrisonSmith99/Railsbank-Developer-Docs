@@ -92,14 +92,16 @@ curl
   }
   ```
   - In the following examples, we will be using the **PlayLive** environment. To use these examples in a **Play** or **Live** environment, simply change the Authorization `API-Key` to the correct Key and change the base URL to `https://play.railsbank.com` or `https://live.railsbank.com` respectively.
-  
+
+## Onboard a Company
+
   > Once again, just copy-and-paste, changing the details to your test company as you go.
 
   ```shell
   curl   
     --header 'Content-Type: application/json'
-    --header 'Accept: application/json'
-    --header 'Authorization: API-Key <<yourapikey>>'
+  	--header 'Accept: application/json'
+  	--header 'Authorization: API-Key <<yourapikey>>'
     --request POST
     --data
     {
@@ -150,8 +152,6 @@ curl
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
   ```
-
-## Onboard a Company
 
   - If the `trading_address` is different from `registered_address`, you need both (otherwise, just include registration address)
   - If there is a director who holds 10% or more of the stakes, then you must include the `director` details
