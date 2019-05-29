@@ -1,7 +1,7 @@
 # Capabilities
 
 ## Issue Ledgers
--
+
 - Digital bank accounts held by our partners.
 - Currently we provide GBP and EUR ledgers, with USD coming later this year.
 - One ledger can hold a single asset only. For example, if an enduser wants to hold GBP and EUR, then the enduser needs at least two ledgers: one for GBP, and one for EUR
