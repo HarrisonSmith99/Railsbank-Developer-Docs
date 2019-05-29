@@ -12,7 +12,7 @@
   > Note the change of the base url from playlive to live.
 
   ```shell
-  curl --request POST https://live.railsbank.com/v1/customer/endusers
+  curl  
     --header 'Content-Type: application/json'
     --header 'Accept: application/json'
     --header 'Authorization: API-Key <<yourliveapikey>>'
