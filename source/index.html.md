@@ -18,8 +18,8 @@ includes:
   - cards
 
 toc_footers:
-  - <a href='#'>Sign Up for an API-Key</a>
-  - <a href='https://railsbank.com'></a>
+  - <a href='https://railsbank.com'>Sign Up for an API-Key</a>
+  - ##<a href='https://railsbank.com'></a>
 
 search: true
 ---
