@@ -1,4 +1,4 @@
-# Endusers
+# Onboarding Endusers
 
   - **Endusers** are the private individuals or companies that use Railsbank's capabilities; they are the customers of our customers.
 
