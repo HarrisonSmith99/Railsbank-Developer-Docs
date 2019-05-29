@@ -44,8 +44,8 @@ $search-notice-bg: #c97a7e !default;
 // TEXT COLORS
 ////////////////////
 $main-text: #333 !default; // main content text color
-$nav-text: #333 !default;
-$nav-active-text: #333 !default;
+$nav-text: #748594 !default;
+$nav-active-text: #748594 !default;
 $nav-active-parent-text: #333 !default; // parent links of the current section
 $lang-select-text: #fff !default; // color of unselected language tab text
 $lang-select-active-text: #fff !default; // color of selected language tab text
@@ -76,7 +76,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 %header-font {
   @extend %default-font;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 %code-font {
