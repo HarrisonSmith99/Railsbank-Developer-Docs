@@ -4,7 +4,7 @@ Your **environments** allow you to go from risk-free testing to complete global 
 
 There are three environments within Railsbank: **Play,** **PlayLive,** and **Live**.
 
-## **Play**
+## Play
 
   > The Base URL for Play is: `https://play.railsbank.com`
 
@@ -15,7 +15,7 @@ There are three environments within Railsbank: **Play,** **PlayLive,** and **Liv
   - Allows your developers to integrate into the API with ease.
 
 
-## **PlayLive**
+## PlayLive
 
   > The Base URL for PlayLive is: `https://playlive.railsbank.com`
 
@@ -30,7 +30,7 @@ There are three environments within Railsbank: **Play,** **PlayLive,** and **Liv
     - Maximum value of a transaction: £5 or €5
     - Maximum value of aggregated transactions: £20 or €20.
 
-## **Live**
+## Live
 
   > The Base URL for Live is: `https://live.railsbank.com`
 

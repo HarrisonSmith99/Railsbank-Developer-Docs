@@ -1,6 +1,6 @@
 # Capabilities
 
-**Issue Ledgers**
+## Issue Ledgers
 -
 - Digital bank accounts held by our partners.
 - Currently we provide GBP and EUR ledgers, with USD coming later this year.
