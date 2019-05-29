@@ -76,7 +76,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 %header-font {
   @extend %default-font;
-  //font-weight: bold;
+  font-weight: bold;
 }
 
 %code-font {
