@@ -25,7 +25,7 @@ under the License.
 ////////////////////
 $nav-bg: #F8F8F8 !default;
 $examples-bg: #2E3336 !default;
-$code-bg: #1E2224 !default;
+$code-bg: #F6FAFC !default;
 $code-annotation-bg: #F6FAFC !default;
 $nav-subitem-bg: #F8F8F8 !default;
 $nav-active-bg: #F8F8F8 !default;
@@ -81,7 +81,6 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 %code-font {
   font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  color: #B6BDC6;
   font-size: 12px;
   line-height: 1.5;
 }
