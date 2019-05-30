@@ -36,50 +36,49 @@
 > **When copy-and-pasting, make sure to change the data to that of your own test enduser.**
 
 ```shell
-curl
-  --request POST "https://playlive.railsbank.com/v1/customer/endusers"
-  --header "Content-Type: application/json"
-	--header "Accept: application/json"
-	--header "Authorization: API-Key <<yourapikey>>"
-  --data
-  "{
-  	"person": {
-         "name": "John Smith",
-         "email": "johnsmith@gmail.com",
-         "date_of_birth": "1970-11-05",
-         "telephone": "+44 22 626 2626",
-         "address": {  
-           "address_refinement": "Apartment 42",
-           "address_number": "29",
-           "address_street": "Acacia Road",
-           "address_city": "London",
-           "address_postal_code": "FX20 7XS",
-           "address_iso_country": "GBR"
-         },
-         "address_history": [
-           {
-             "address_refinement": "Apartment 77",
-             "address_number": "42",
-             "address_street": "Kirschbaumstraße",
-             "address_city": "Berlin",
-             "address_postal_code": "12059",
-             "address_iso_country": "DE",
-             "address_start_date": "2000-09-02",
-             "address_end_date": "2002-12-20"
-           }
-         ],
-         "nationality": [
-           "British"
-         ],
-         "country_of_residence": [
-           "GBR"
-         ],
-         "date_onboarded": "2015-11-21"
-       },
-        "enduser_meta": {
-         "foo": "baa",
-        "our_salesforce_reference": "http://na1.salesforce.com/5003000000D8cuI"
-    }
+curl\
+  --request POST "https://playlive.railsbank.com/v1/customer/endusers"\
+  --header "Content-Type: application/json"\
+	--header "Accept: application/json"\
+	--header "Authorization: API-Key y6jsxhvf507460eobh03bjjyi68termc#de3vkuuw7ao9u35lrivhs4cpp3ijum5jodrya7xg2nq5k0a9c9drbobz6bsm4che"\
+  --data\
+  "{ "person": {\
+         "name": "John Smith",\
+         "email": "johnsmith@gmail.com",\
+         "date_of_birth": "1970-11-05",\
+         "telephone": "+44 22 626 2626",\
+         "address": {\
+           "address_refinement": "Apartment 42",\
+           "address_number": "29",\
+           "address_street": "Acacia Road",\
+           "address_city": "London",\
+           "address_postal_code": "FX20 7XS",\
+           "address_iso_country": "GBR"\
+         },\
+         "address_history": [\
+           {\
+             "address_refinement": "Apartment 77",\
+             "address_number": "42",\
+             "address_street": "Kirschbaumstraße",\
+             "address_city": "Berlin",\
+             "address_postal_code": "12059",\
+             "address_iso_country": "DE",\
+             "address_start_date": "2000-09-02",\
+             "address_end_date": "2002-12-20"\
+           }\
+         ],\
+         "nationality": [\
+           "British"\
+         ],\
+         "country_of_residence": [\
+           "GBR"\
+         ],\
+         "date_onboarded": "2015-11-21"\
+       },\
+        "enduser_meta": {\
+         "foo": "baa",\
+        "our_salesforce_reference": "http://na1.salesforce.com/5003000000D8cuI"\
+    }\
   }"
   ```
 
@@ -96,14 +95,12 @@ curl
 
   > **Once again, just copy-and-paste, changing the details to your test company as you go.**
 
-  ```shell
-  curl   
+  ```typescript
     --request POST "https://playlive.railsbank.com/v1/customer/endusers"
     --header "Content-Type: application/json"
   	--header "Accept: application/json"
   	--header "Authorization: API-Key <<yourapikey>>"
-    --data
-    "{
+    {
       "company": {
       "name": "Example Company",
       "trading_name": "Example Company Ltd.",  //SEE NOTES
@@ -141,11 +138,11 @@ curl
         }
       ]
     }
-  }"
+  }
   ```
   > **The response will return an `enduser_id` like this:**
 
-  ```JSON
+  ```typescript
   {
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }

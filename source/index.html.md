@@ -3,7 +3,7 @@ title: Railsbank API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - terminal
-  - ruby
+  - typescript
 
 
 includes:
