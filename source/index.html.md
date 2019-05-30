@@ -17,6 +17,7 @@ includes:
   - idempotency
   - responsecodes_statuses
   - faqs
+  - guides
   - onboarding_endusers
   - cards
 
