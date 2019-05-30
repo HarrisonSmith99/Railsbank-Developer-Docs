@@ -1,8 +1,9 @@
-# Send Money to a Beneficiary
-## Onboard an Enduser
+# Guides
+## Send Money to a Beneficiary
+### Onboard an Enduser
 
-## Give the Enduser a Ledger
+### Give the Enduser a Ledger
 
-## Add a new Beneficiary
+### Add a new Beneficiary
 
-## Send money to the Beneficiary
+### Send money to the Beneficiary
