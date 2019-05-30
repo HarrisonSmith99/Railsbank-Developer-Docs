@@ -213,7 +213,7 @@
   ```
   > **And API will respond with the PIN:**
 
-  ```json
+  ```python
   {
     "pin": "2477"
   }
@@ -222,7 +222,7 @@
 
   > **So, if you request for PINs before this time, you will receive the error:**
 
-  ```json
+  ```JSON
   {
     "error": "card-pin-not-set"
   }
