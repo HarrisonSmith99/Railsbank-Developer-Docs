@@ -222,7 +222,7 @@
 
   > **So, if you request for PINs before this time, you will receive the error:**
 
-  ```JSON
+  ```json
   {
     "error": "card-pin-not-set"
   }
