@@ -95,7 +95,7 @@ curl\
 
   > **Once again, just copy-and-paste, changing the details to your test company as you go.**
 
-  ```json-doc
+  ```json
     --request POST "https://playlive.railsbank.com/v1/customer/endusers"
     --header "Content-Type: application/json"
   	--header "Accept: application/json"
