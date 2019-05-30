@@ -245,7 +245,7 @@
 
   ```JSON
   {
-    "temp_card_image_url": "string"
+    "temp_card_image_url": "http://40.127.00.174:8002/Paymentology/585256_F347DBA257102343AB5132840D231AB3.png"
   }
   ```
   - The endpoint provides a URL which can be used to view the card image.
