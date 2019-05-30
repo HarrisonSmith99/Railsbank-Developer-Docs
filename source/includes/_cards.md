@@ -204,7 +204,7 @@
 ## Fetching Card PINs
   > **Providing your Customer API-Key, use the following endpoint:**
 
-  ```bash
+  ```shell
   curl
     --request GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}/pin"
     --header "Content-Type: application/json"
@@ -213,7 +213,7 @@
   ```
   > **And API will respond with the PIN:**
 
-  ```JSON
+  ```json
   {
     "pin": "2477"
   }
