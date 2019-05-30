@@ -33,7 +33,7 @@
 
 ## Onboard a Private Individual
 
-> When copy-and-pasting, make sure to change the data to that of your own test enduser.
+> **When copy-and-pasting, make sure to change the data to that of your own test enduser.**
 
 ```shell
 curl
@@ -83,7 +83,7 @@ curl
   }"
   ```
 
-  > The response will return an `enduser_id` like this:
+  > **The response will return an `enduser_id` like this:**
 
   ```JSON
   {
@@ -94,7 +94,7 @@ curl
 
 ## Onboard a Company
 
-  > Once again, just copy-and-paste, changing the details to your test company as you go.
+  > **Once again, just copy-and-paste, changing the details to your test company as you go.**
 
   ```shell
   curl   
@@ -143,7 +143,7 @@ curl
     }
   }"
   ```
-  > The response will return an `enduser_id` like this:
+  > **The response will return an `enduser_id` like this:**
 
   ```JSON
   {
@@ -157,7 +157,7 @@ curl
 
 ## Fetch an Enduser
 
-  > Paste the following into your terminal or testing tool, the API will respond with something like the payload below, making sure to change `{{enduser_id}}` to the id of the enduser you wish to fetch.
+  > **Paste the following into your terminal or testing tool, the API will respond with something like the payload below, making sure to change `{{enduser_id}}` to the id of the enduser you wish to fetch.**
 
   ```shell
   curl   
@@ -215,7 +215,7 @@ curl
   - This simple API call will return all the information about an enduser: the ledgers they hold, their beneficiaries, their status (they could be in quarantine) and their details.
 
 ## Update an Enduser
-  > Now, to update the enduser we simply use the following call and include the keys that we want to add or change in the request body. In this case:
+  > **Now, to update the enduser we simply use the following call and include the keys that we want to add or change in the request body. In this case:**
 
   > **add** `trading_address`
 
@@ -243,10 +243,10 @@ curl
     	}
     }"
   ```
-  > If the key is a nested, you should include the parent in the request body field
+  > **If the key is a nested, you should include the parent in the request body field**
 
-  > If done successfully, you will be given the your existing `enduser_id`.
-  
+  > **If done successfully, you will be given the your existing `enduser_id`.**
+
   ```JSON
   {
       "enduser_id": "5c54418e-8bbf-4a66-b54a-XXXXXXXXXXXX"
