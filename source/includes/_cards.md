@@ -13,17 +13,24 @@
 
   ```shell
   curl  
-    --header 'Content-Type: application/json'
-    --header 'Accept: application/json'
-    --header 'Authorization: API-Key <<yourliveapikey>>'
-    --request POST
+    --request POST "https://playlive.railsbank.com/v1/customer/endusers"
+    --header "Content-Type: application/json"
+  	--header "Accept: application/json"
+  	--header "Authorization: API-Key <<yourapikey>>"
     --data
-  {
-    "person": {
-         "name": "John Smith",
-         }
-  }
-  https://live.railsbank.com/v1/customer/endusers
+        "{
+            "person": {
+                 "name": "John Smith",
+                },
+            "address": {  
+                  "address_refinement": "Apartment 42",
+                  "address_number": "29",
+                  "address_street": "Acacia Road",
+                  "address_city": "London",
+                  "address_postal_code": "FX20 7XS",
+                  "address_iso_country": "GBR"
+                }
+          }"
   ```
   > To which the API will respond with an `enduser_id` like this:
 
@@ -34,7 +41,10 @@
   ```
   - While you can see our Onboard an Enduser tutorial to learn how to onboard a basic enduser, in this one we're going to briefly and explicitly understand the small changes that need to take place for the enduser to be able to hold a **Railsbank Debit Card**.
   - So, to onboard a **card-holding** enduser, assuming you have purchased the **Railsbank-Direct-Debit-1** product, you need to paste the following into your terminal or testing tool, making sure to replace the example values for your own.
-  - You can Fetch enduser to retrieve all the information about the enduser - including their card details, once they've been created!
+  - You can Fetch enduser to retrieve all the information about the enduser, including their card details, once they've been created!
+
+### Note
+  - You can only create endusers of the type associated to your card programme: so if your card programme only allows individual people, only endusers of type "person" will be able to hold cards.
 
 ## Issue a Card
 
@@ -42,17 +52,17 @@
 
   ```shell
   curl
-  	--header 'Content-Type: application/json'
-  	--header 'Accept: application/json'
-  	--header 'Authorization: API-Key <<yourliveapikey>>'
-    --request POST
+    --request POST "https://live.railsbank.com/v1/customer/cards"
+    --header "Content-Type: application/json"
+    --header "Accept: application/json"
+    --header "Authorization: API-Key <<yourapikey>>"
     --data
-  {
-    "ledger_id": "{{ledger_id}}",
-    "partner_product": "Railsbank-Debit-Card-1",
-    "card_program": "Railsbank Card Program"
-  }
-  https://live.railsbank.com/v1/customer/cards
+      "{
+        "ledger_id": "{{ledger_id}}",
+        "partner_product": "Railsbank-Debit-Card-1",
+        "card_program": "Railsbank Card Program"
+      }"
+
   ```
   > The API will respond with the `card_id`, which will look something like this:
 
@@ -61,7 +71,7 @@
     "card_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
   }
   ```
-  - Once you've created your **card-holding** enduser, carefully go through our #docTextSection:bsbkPCZM69Akzjebo tutorial - it'll only take a minute or so - to create your **SEPA Step 2** connected bank account to which your card is going to be attched.
+  - Once you've created your **card-holding** enduser, carefully go through our Issue a ledger tutorial - it'll only take a minute or so - to create the bank account to which your card is going to be attched.
   - When issuing the ledger, make sure to do so in the **Live** environment with your **Live API Key** and the `enduser_id` of the **card-holding** enduser you've created.
 
 ## Fetch a Card
@@ -70,14 +80,14 @@
 
   ```shell
   curl
-  	--header 'Content-Type: application/json'
-  	--header 'Accept: application/json'
-  	--header 'Authorization: API-Key <<yourliveapikey>>'
-    --request GET https://live.railsbank.com/v1/customer/cards/{{card_id}}
+    --request GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}"
+  	--header "Content-Type: application/json"
+  	--header "Accept: application/json"
+  	--header "Authorization: API-Key <<yourliveapikey>>"
   ```
   > The API will respond with a payload smilar to the example below. The possible statuses of a card are: `active`, `created`, and `disabled`.
 
-  ```json
+  ```JSON
   {
     "card_id": "8763b5df-a61c-4f77-9724-41ca9cde3654",
     "card_status": "card-status-created",
@@ -96,10 +106,11 @@
   > Simply paste the following into your terminal or testing tool, making sure to substitute your enduser's `card_token` in.
 
   ```shell
-    --header 'Content-Type: application/json'
-    --header 'Accept: application/json'
-    --header 'Authorization: API-Key <<yourliveapikey>>'
-    --request GET https://live.railsbank.com/v1/customer/cards/by-token/{{card_token}}
+  curl
+    --request GET "https://live.railsbank.com/v1/customer/cards/{{card_token}}"
+    --header "Content-Type: application/json"
+    --header "Accept: application/json"
+    --header "Authorization: API-Key <<yourliveapikey>>"
   ```
 
   > The API will respond with a payload smilar to the example below. The possible statuses of a card are: `active`, `created`, and `disabled`.
@@ -120,20 +131,18 @@
   ```
   - A few seconds after a card is created, a token is assigned to it.
   - This token can also be used to fetch the card.
-  - To do this you will need to use the following endpoint:
-
-  `v1/customer/cards/by-token/{{card_token}}`
-  - If you are fetching the card using this endpoint after generation you will need to wait a few seconds before the token is added.
+  - If you are fetching the card using this endpoint after generation you will need to wait a few seconds before the token is added to the card, at which point you must fetch the card using the `card_id` in order to discover the token.
+  - The card token can be used to validate physical cards. It will be nine integers on the back of the card, so when your customer receives the card, before you activate it, you can check that they are using the correct card by checking the token number.
 
 ## Fetch all of your cards
   > Paste the following into your terminal or testing tool and relax.
 
   ```shell
   curl
-  	--header 'Content-Type: application/json'
-  	--header 'Accept: application/json'
-  	--header 'Authorization: API-Key <<yourliveapikey>>'
-    --request GET https://live.railsbank.com/v1/customer/cards
+    --request GET "https://live.railsbank.com/v1/customer/cards"
+    --header "Content-Type: application/json"
+    --header "Accept: application/json"
+    --header "Authorization: API-Key <<yourliveapikey>>"
   ```
   > The API will respond with list of cards and their details similar to the example below:
 
@@ -168,10 +177,10 @@
 
   ```shell
   curl
-    --header 'Content-Type: application/json'
-    --header 'Accept: application/json'
-    --header 'Authorization: API-Key <<yourliveapikey>>'
-    --request POST https://live.railsbank.com/v1/customer/cards/{{card_id}}/activate
+    --request POST "https://live.railsbank.com/v1/customer/cards/{{card_id}}/activate"
+    --header "Content-Type: application/json"
+    --header "Accept: application/json"
+    --header "Authorization: API-Key <<yourliveapikey>>"
   ```
   > To which the API will once again respond with the `card_id`, only this time that `card_id` will have `status-active`.
 
@@ -183,10 +192,10 @@
 
   ```shell
   curl
-    --header 'Content-Type: application/json'
-    --header 'Accept: application/json'
-    --header 'Authorization: API-Key <<yourliveapikey>>'
-    --request POST https://live.railsbank.com/v1/customer/cards/{{card_id}}/suspend
+    --request POST "https://live.railsbank.com/v1/customer/cards/{{card_id}}/suspend"
+    --header "Content-Type: application/json"
+    --header "Accept: application/json"
+    --header "Authorization: API-Key <<yourliveapikey>>"
   ```
   - The API will respond with your suspended `card_id`. Simple.
   - Naturally, there will come a time when you or your endusers need to `suspend` a card. This endpoint allows you to do so in one easy call.
@@ -197,12 +206,12 @@
 
   ```shell
   curl
-    --header 'Content-Type: application/json'
-    --header 'Accept: application/json'
-    --header 'Authorization: API-Key <<yourliveapikey>>'
-    --request GET https://v1/customer/cards/{card_id}/pin
+    --request GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}/pin"
+    --header "Content-Type: application/json"
+    --header "Accept: application/json"
+    --header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > And API wil respond with the PIN:
+  > And API will respond with the PIN:
 
   ```JSON
   {
@@ -221,3 +230,23 @@
 ### Note
   - Before you fetch you physical card PIN it is important to note:
   - PINs for new cards are generated at 05:05 each day, as part of generating the xml file for the manufacturer.
+
+## Get Card Image
+  > Providing your Customer API-Key, use the following endpoint:
+
+  ```shell
+  curl
+    --request GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}/image"
+    --header "Content-Type: application/json"
+    --header "Accept: application/json"
+    --header "Authorization: API-Key <<yourliveapikey>>"
+  ```
+  > And API will respond with the URL:
+
+  ```JSON
+  {
+    "temp_card_image_url": "string"
+  }
+  ```
+  - The endpoint provides a URL which can be used to view the card image.
+  - The URL is valid for ten minutes. 

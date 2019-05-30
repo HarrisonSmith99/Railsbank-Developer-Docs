@@ -37,12 +37,12 @@
 
 ```shell
 curl
-  --header 'Content-Type: application/json'
-	--header 'Accept: application/json'
-	--header 'Authorization: API-Key <<yourapikey>>'
-  --request POST
+  --request POST "https://playlive.railsbank.com/v1/customer/endusers"
+  --header "Content-Type: application/json"
+	--header "Accept: application/json"
+	--header "Authorization: API-Key <<yourapikey>>"
   --data
-  {
+  "{
   	"person": {
          "name": "John Smith",
          "email": "johnsmith@gmail.com",
@@ -80,8 +80,7 @@ curl
          "foo": "baa",
         "our_salesforce_reference": "http://na1.salesforce.com/5003000000D8cuI"
     }
-  }
-  https://playlive.railsbank.com/v1/customer/endusers
+  }"
   ```
 
   > The response will return an `enduser_id` like this:
@@ -99,12 +98,12 @@ curl
 
   ```shell
   curl   
-    --header 'Content-Type: application/json'
-  	--header 'Accept: application/json'
-  	--header 'Authorization: API-Key <<yourapikey>>'
-    --request POST
+    --request POST "https://playlive.railsbank.com/v1/customer/endusers"
+    --header "Content-Type: application/json"
+  	--header "Accept: application/json"
+  	--header "Authorization: API-Key <<yourapikey>>"
     --data
-    {
+    "{
       "company": {
       "name": "Example Company",
       "trading_name": "Example Company Ltd.",  //SEE NOTES
@@ -142,8 +141,7 @@ curl
         }
       ]
     }
-  }
-  https://playlive.railsbank.com/v1/customer/endusers
+  }"
   ```
   > The response will return an `enduser_id` like this:
 
@@ -163,10 +161,10 @@ curl
 
   ```shell
   curl   
-  --header 'Content-Type: application/json'
-  --header 'Accept: application/json'
-  --header 'Authorization: API-Key <<yourapikey>>'
-  --request GET https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}
+    --request GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"
+    --header "Content-Type: application/json"
+  	--header "Accept: application/json"
+  	--header "Authorization: API-Key <<yourapikey>>"
   ```
   ```JSON
   {
@@ -225,12 +223,12 @@ curl
 
   ```shell
   curl
-    --header 'Content-Type: application/json'
-  	--header 'Accept: application/json'
-  	--header 'Authorization: API-Key <<yourapikey>>'
-    --request PUT  
-    --data
-    {
+  --request PUT "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"
+  --header "Content-Type: application/json"
+	--header "Accept: application/json"
+	--header "Authorization: API-Key <<yourapikey>>"
+  --data
+    "{
     	"company": {
     		"web_site": "www.correct_company_website.com",
         	"trading_addresses": [{
@@ -243,12 +241,12 @@ curl
     		     "address_iso_country": "GB"        
           }]
     	}
-    }
-    https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}
+    }"
   ```
   > If the key is a nested, you should include the parent in the request body field
 
   > If done successfully, you will be given the your existing `enduser_id`.
+  
   ```JSON
   {
       "enduser_id": "5c54418e-8bbf-4a66-b54a-XXXXXXXXXXXX"
