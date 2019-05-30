@@ -85,7 +85,7 @@
 
   > **The response will return an `enduser_id` like this:**
 
-  ```JSON
+  ```plaintext
   {
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
