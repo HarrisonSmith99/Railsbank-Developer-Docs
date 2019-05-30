@@ -35,7 +35,7 @@
 
 > **When copy-and-pasting, make sure to change the data to that of your own test enduser.**
 
-```json
+```plaintext
   --request POST "https://playlive.railsbank.com/v1/customer/endusers"
   --header "Content-Type: application/json"
 	--header "Accept: application/json"
@@ -82,7 +82,7 @@
   ```
   > **The response will return an `enduser_id` like this:**
 
-  ```json
+  ```plaintext
   {
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
@@ -99,7 +99,7 @@
 
   > **Once again, just copy-and-paste, changing the details to your test company as you go.**
 
-  ```json
+  ```plaintext
     --request POST "https://playlive.railsbank.com/v1/customer/endusers"
     --header "Content-Type: application/json"
   	--header "Accept: application/json"
@@ -146,7 +146,7 @@
   ```
   > **The response will return an `enduser_id` like this:**
 
-  ```json
+  ```plaintext
   {
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
@@ -165,13 +165,13 @@
 
   > **Paste the following into your terminal or testing tool, the API will respond with something like the payload below, making sure to change `{{enduser_id}}` to the id of the enduser you wish to fetch.**
 
-  ```json
+  ```plaintext
     --request GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"
     --header "Content-Type: application/json"
   	--header "Accept: application/json"
   	--header "Authorization: API-Key <<yourapikey>>"
   ```
-  ```json
+  ```plaintext
   {
     "enduser_id": "5b068bd4-ba1c-4b56-a23c-78e0ad2509c9",
     "enduser_status": "enduser-status-ok",
@@ -232,7 +232,7 @@
 
   > **change** `post_code`
 
-  ```json
+  ```plaintext
   --request PUT "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"
   --header "Content-Type: application/json"
 	--header "Accept: application/json"
@@ -255,7 +255,7 @@
 
   > **If done successfully, you will be given the your existing `enduser_id`.**
 
-  ```JSON
+  ```plaintext
   {
       "enduser_id": "5c54418e-8bbf-4a66-b54a-XXXXXXXXXXXX"
   }
