@@ -213,7 +213,7 @@
   ```
   > **And API will respond with the PIN:**
 
-  ```python
+  ```JSON
   {
     "pin": "2477"
   }
