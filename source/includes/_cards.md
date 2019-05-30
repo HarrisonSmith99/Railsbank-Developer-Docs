@@ -9,7 +9,7 @@
 
 ## Onboard a Card-holding Enduser
 
-  > Note the change of the base url from playlive to live.
+  > **Note the change of the base url from playlive to live.**
 
   ```shell
   curl  
@@ -32,7 +32,7 @@
                 }
           }"
   ```
-  > To which the API will respond with an `enduser_id` like this:
+  > **To which the API will respond with an `enduser_id` like this:**
 
   ```JSON
   {
@@ -48,7 +48,7 @@
 
 ## Issue a Card
 
-  > Once you've got the `ledger_id` simply paste it into the following payload, paste the payload into your terminal or testing tool and let us do the rest.
+  > **Once you've got the `ledger_id` simply paste it into the following payload, paste the payload into your terminal or testing tool and let us do the rest.**
 
   ```shell
   curl
@@ -64,7 +64,7 @@
       }"
 
   ```
-  > The API will respond with the `card_id`, which will look something like this:
+  > **The API will respond with the `card_id`, which will look something like this:**
 
   ```JSON
   {
@@ -76,7 +76,7 @@
 
 ## Fetch a Card
 
-  > Simply paste the following into your terminal or testing tool, making sure to substitute your enduser's `card_id` in.
+  > **Simply paste the following into your terminal or testing tool, making sure to substitute your enduser's `card_id` in.**
 
   ```shell
   curl
@@ -85,7 +85,7 @@
   	--header "Accept: application/json"
   	--header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > The API will respond with a payload smilar to the example below. The possible statuses of a card are: `active`, `created`, and `disabled`.
+  > **The API will respond with a payload smilar to the example below. The possible statuses of a card are: `active`, `created`, and `disabled`.**
 
   ```JSON
   {
@@ -103,7 +103,7 @@
 
 ## Fetch a Card using its token
 
-  > Simply paste the following into your terminal or testing tool, making sure to substitute your enduser's `card_token` in.
+  > **Simply paste the following into your terminal or testing tool, making sure to substitute your enduser's `card_token` in.**
 
   ```shell
   curl
@@ -113,7 +113,7 @@
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
 
-  > The API will respond with a payload smilar to the example below. The possible statuses of a card are: `active`, `created`, and `disabled`.
+  > **The API will respond with a payload smilar to the example below. The possible statuses of a card are: `active`, `created`, and `disabled`.**
 
   ```JSON
   {
@@ -135,7 +135,7 @@
   - The card token can be used to validate physical cards. It will be nine integers on the back of the card, so when your customer receives the card, before you activate it, you can check that they are using the correct card by checking the token number.
 
 ## Fetch all of your cards
-  > Paste the following into your terminal or testing tool and relax.
+  > **Paste the following into your terminal or testing tool and relax.**
 
   ```shell
   curl
@@ -144,7 +144,7 @@
     --header "Accept: application/json"
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > The API will respond with list of cards and their details similar to the example below:
+  > **The API will respond with list of cards and their details similar to the example below:**
 
   ```JSON
     {
@@ -173,7 +173,7 @@
   - If you want to see the details of all the cards you have issued, then this powerful endpoint is for you.
 
 ## Activate a Card
-  > Paste the following - substituting your enduser's `card_id` - into your terminal or testing tool. It is that easy.
+  > **Paste the following - substituting your enduser's `card_id` - into your terminal or testing tool. It is that easy.**
 
   ```shell
   curl
@@ -182,13 +182,13 @@
     --header "Accept: application/json"
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > To which the API will once again respond with the `card_id`, only this time that `card_id` will have `status-active`.
+  > **To which the API will once again respond with the `card_id`, only this time that `card_id` will have `status-active`.**
 
   - A `created` card is cool, but an `activated` is awesome; it has access to global banking.
   - This simple endpoint will **activate** the card.
 
 ## Suspend a Card
-  > If you know the `card_id` of the card you want to suspend, paste it, along with the following, into your terminal or testing tool and let us do the rest.
+  > **If you know the `card_id` of the card you want to suspend, paste it, along with the following, into your terminal or testing tool and let us do the rest.**
 
   ```shell
   curl
@@ -202,7 +202,7 @@
   - Once you suspended a card, it can be reactivated at any time by using `activate` endpoint. However, if you don't reactivate it, it will remain suspended.
 
 ## Fetching Card PINs
-  > Providing your Customer API-Key, use the following endpoint:
+  > **Providing your Customer API-Key, use the following endpoint:**
 
   ```shell
   curl
@@ -211,7 +211,7 @@
     --header "Accept: application/json"
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > And API will respond with the PIN:
+  > **And API will respond with the PIN:**
 
   ```JSON
   {
@@ -220,7 +220,7 @@
   ```
   - You may want to fetch the PIN number for chip-and-PIN transactions. All you need is your `card_id` to obtain it.
 
-  > So, if you request for PINs before this time, you will receive the error:
+  > **So, if you request for PINs before this time, you will receive the error:**
 
   ```JSON
   {
@@ -232,7 +232,7 @@
   - PINs for new cards are generated at 05:05 each day, as part of generating the xml file for the manufacturer.
 
 ## Get Card Image
-  > Providing your Customer API-Key, use the following endpoint:
+  > **Providing your Customer API-Key, use the following endpoint:**
 
   ```shell
   curl
@@ -241,7 +241,7 @@
     --header "Accept: application/json"
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > And API will respond with the URL:
+  > **And API will respond with the URL:**
 
   ```JSON
   {
@@ -249,4 +249,4 @@
   }
   ```
   - The endpoint provides a URL which can be used to view the card image.
-  - The URL is valid for ten minutes. 
+  - The URL is valid for ten minutes.
