@@ -224,7 +224,7 @@
 
   > **change** `post_code`
 
-  ```json
+  ```python
   --request PUT "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"
   --header "Content-Type: application/json"
 	--header "Accept: application/json"
