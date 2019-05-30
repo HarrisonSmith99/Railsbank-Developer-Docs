@@ -35,7 +35,7 @@
 
 > **When copy-and-pasting, make sure to change the data to that of your own test enduser.**
 
-```json
+```plaintext
   --request POST "https://playlive.railsbank.com/v1/customer/endusers"
   --header "Content-Type: application/json"
 	--header "Accept: application/json"
@@ -223,7 +223,7 @@
   > **add** `trading_address`
 
   > **change** `post_code`
-  
+
   ```shell
     curl -X PUT "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \t\"company\": { \t\t\"web_site\": \"www.correct_company_website.com\", \t\"trading_addresses\": [{ \t \"address_refinement\": \"Apartment 5\", \t\t \"address_number\": \"21\", \t\t \"address_street\": \"Flower Road\", \t\t \"address_city\": \"London\", \t\t \"address_region\": \"Greater London\", \t\t \"address_postal_code\": \"WC1R 7XS\", \t\t \"address_iso_country\": \"GB\" }] \t} }"
   ```
