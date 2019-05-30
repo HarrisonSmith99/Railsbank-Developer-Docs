@@ -87,7 +87,7 @@
   }
   ```
 
-  ```shell
+  ```bash
     curl -X POST "https://playlive.railsbank.com/v1/customer/endusers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"person\": { \"name\": \"John Smith\", \"email\": \"johnsmith@gmail.com\", \"date_of_birth\": \"1970-11-05\", \"telephone\": \"+44 22 626 2626\", \"address\": { \"address_refinement\": \"Apartment 42\", \"address_number\": \"29\", \"address_street\": \"Acacia Road\", \"address_city\": \"London\", \"address_postal_code\": \"FX20 7XS\", \"address_iso_country\": \"GBR\" }, \"address_history\": [ { \"address_refinement\": \"Apartment 77\", \"address_number\": \"42\", \"address_street\": \"Kirschbaumstraße\", \"address_city\": \"Berlin\", \"address_postal_code\": \"12059\", \"address_iso_country\": \"DE\", \"address_start_date\": \"2000-09-02\", \"address_end_date\": \"2002-12-20\" } ], \"nationality\": [ \"British\" ], \"country_of_residence\": [ \"GBR\" ], \"date_onboarded\": \"2015-11-21\" }, \"enduser_meta\": { \"foo\": \"baa\", \"our_salesforce_reference\": \"http://na1.salesforce.com/5003000000D8cuI\" } }"
   ```
 
