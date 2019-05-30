@@ -1,9 +1,9 @@
 ---
-title: API Reference
+title: Railsbank API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - terminal
-  - json
+  - ruby
 
 
 includes:
