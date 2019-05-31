@@ -1,4 +1,4 @@
-# ----------- Guides -----------
+# ---------- Guides ----------
 ## Using these Guides
   - We want you to explore (and give feedback to) Railsbank. The following guides will take you on a step-by-step tour through the most important aspects of the API.
   - We aim to be simple and self-service; anyone can make their way through any of these guides.
