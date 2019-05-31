@@ -1,9 +1,9 @@
 # Guides
-# Send Money to a Beneficiary
+## Send Money to a Beneficiary
   - The fundamental feature of almost any financial services business is sending – and therefore also receiving money.
   - In this short guide we will demonstrate how easy it is with Railsbank.
 
-## What you will need
+### What you will need
   - Playlive API Keys
   - Access to a terminal or a testing tool like Postman.
 
