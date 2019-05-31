@@ -18,7 +18,6 @@ includes:
   - responsecodes_statuses
   - faqs
   - guides
-  ---
   - onboarding_endusers
   - cards
 
