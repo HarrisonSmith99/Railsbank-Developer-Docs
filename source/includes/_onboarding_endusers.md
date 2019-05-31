@@ -103,9 +103,9 @@
 
 ### The Individual Enduser Object
 
-  | Attribute | Child Attribute | Grandchild Attribute | Type | Required |
-  | ---- | ---- | ---- | ---- | ---- |
-  | person  | | | object|required for individuals |
+   Attribute | Child Attribute | Grandchild Attribute | Type | Required |
+   ---- | ---- | ---- | ---- | ---- |
+   person  | | | object | required for individuals |
 
   Description | Validations |
   ---- | ---- |
