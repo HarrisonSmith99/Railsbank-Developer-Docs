@@ -106,8 +106,7 @@
    Attribute | Child Attribute | Grandchild Attribute | Type | Required | Description | Validations
    ---- | ---- | ---- | ---- | ---- | ---- | ----
    person | | | object | required for individuals | Hashes containing basic information about individual
-
-   | name | | string | required | Full Name | Limited to 70 chars
+  | name | | string | required | Full Name | Limited to 70 chars
   |country_of_residence||string|required|Country code|ISO 8601 format
   |date_of_birth||string|optional|Date of birth|YYYY-MM-DD
   |nationality||string|optional|Nationality|
