@@ -103,9 +103,14 @@
 
 ### The Individual Enduser Object
 
-  | Attribute | Child Attribute | Grandchild Attribute | Type | Required | Description | Validations |
-  | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-  | person  | | | object|required for individuals | Hashes containing basic information about individual ||
+  | Attribute | Child Attribute | Grandchild Attribute | Type | Required |
+  | ---- | ---- | ---- | ---- | ---- |
+  | person  | | | object|required for individuals |
+
+  Description | Validations |
+  ---- | ---- |
+  Hashes containing basic information about individual ||
+
   | | name | | string | required | Full Name | Limited to 70 chars |
   ||country_of_residence||string|required|Country code|ISO 8601 format |
   ||date_of_birth||string|optional|Date of birth|YYYY-MM-DD|
@@ -133,7 +138,6 @@
   |||address_refinement|string|required|Extra detail, e.g. house name||
   |||address_region|string|required|Region in country||
   |||address_street|string|required|Street the enduser lives on||
-
 
 ## Onboard a Company
 
