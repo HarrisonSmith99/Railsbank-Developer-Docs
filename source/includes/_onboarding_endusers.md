@@ -105,7 +105,6 @@
 
 **| Attribute | Child Attribute | Grandchild Attribute | Type | Required | Description | Validations |**
   | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-  ||||||||
   |person|||object|required for individuals|Hashes containing basic information about individual||
   ||name||string|required|Full Name|Limited to 70 chars|
   ||country_of_residence||string|required|Country code|ISO 8601 format |
