@@ -110,7 +110,7 @@
   |country_of_residence||string|required|Country code|ISO 8601 format|
   |date_of_birth||string|optional|Date of birth|YYYY-MM-DD|
   |nationality||string|optional|Nationality||
-  |pep||boolean|optional|Politically Exposed Person|Does not need to be inside ""|
+  |pep||boolean|required if applicable|Politically Exposed Person|Does not need to be inside ""|
   |pep_type||string|optional|Extent of exposure|Allowed Values: direct, close-associate, former-pep, family-member|
   |pep_notes||string|optional|Extra detail||
   |address|object|required|current address information||
