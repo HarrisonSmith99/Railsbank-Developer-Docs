@@ -2,9 +2,11 @@
 # Send Money to a Beneficiary
   - The fundamental feature of almost any financial services business is sending – and therefore also receiving money.
   - In this short guide we will demonstrate how easy it is with Railsbank.
+
 ## What you will need
   - Playlive API Keys
   - Access to a terminal or a testing tool like Postman.
+
 ## Onboard an Enduser
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key into the code.**
 
@@ -34,11 +36,13 @@
              ]
         }
       }
-      ```
+    ```
     > **Here is the example curl that you can paste directly into your terminal, once again substituting your API-Key in.**
 
     ```plaintext
+
     curl -X POST "https://playlive.railsbank.com/v1/customer/endusers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"person\": { \"name\": \"John Smith\", \"email\": \"johnsmith@gmail.com\", \"date_of_birth\": \"1970-11-05\", \"address\": { \"address_refinement\": \"Apartment 42\", \"address_number\": \"29\", \"address_street\": \"Acacia Road\", \"address_city\": \"London\", \"address_postal_code\": \"FX20 7XS\", \"address_iso_country\": \"GBR\" }, \"nationality\": [ \"British\" ], \"country_of_residence\": [ \"GBR\" ]} }"
+
     ```
     > **The API will respond with an `enduser_id`, which you need to save as a variable because we're going to use it to create a ledger and a beneficiary.**
 
