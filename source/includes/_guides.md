@@ -1,5 +1,4 @@
 # Guides
---------------------------------------------------------------------------------
 # Send Money to a Beneficiary
   - The fundamental feature of almost any financial services business is sending – and therefore also receiving money.
   - In this short guide we will demonstrate how easy it is with Railsbank.
@@ -8,7 +7,7 @@
   - Playlive API Keys
   - Access to a terminal or a testing tool like Postman.
 
-## Onboard an Enduser
+### Onboard an Enduser
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key into the code.**
 
   ```plaintext
