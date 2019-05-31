@@ -1,5 +1,13 @@
 # Onboarding Endusers
 
+  > **Endpoints**
+
+  ```shell
+  POST /v1/customer/endusers
+  GET /v1/customer/endusers/{{ENDUSER_ID}}
+  PUT /v1/customer/endusers/{{ENDUSER_ID}}
+  ```
+
   - **Endusers** are the private individuals or companies that use Railsbank's capabilities; they are the customers of our customers.
 
   - In the following example we shall onboard two endusers:

@@ -27,7 +27,7 @@ When the Railsbank API returns error messages, it does so in JSON format. For ex
 
 ``{"errors":[{"message":"Sorry, that page does not exist","code":34}]}``
 
-## Status codes for various parts of Railsbank
+## Status Codes
 
 The statuses for the various parts of Railsbank will normally follow a standardized pattern where `foo-status-ok` or `foo-status-accepted` are good. Other states are not there yet and may be worthy of investigation (depending on your desired outcome).
 
