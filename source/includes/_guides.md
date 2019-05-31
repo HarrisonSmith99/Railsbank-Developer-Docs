@@ -1,4 +1,5 @@
 # Guides
+--------------------------------------------------------------------------------
 # Send Money to a Beneficiary
   - The fundamental feature of almost any financial services business is sending – and therefore also receiving money.
   - In this short guide we will demonstrate how easy it is with Railsbank.
