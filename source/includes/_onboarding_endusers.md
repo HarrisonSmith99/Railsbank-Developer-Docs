@@ -43,7 +43,7 @@
 
 > **When copy-and-pasting, make sure to change the data to that of your own test enduser.**
 
-```shell
+```plaintext
   --request POST "https://playlive.railsbank.com/v1/customer/endusers"
   --header "Content-Type: application/json"
 	--header "Accept: application/json"
