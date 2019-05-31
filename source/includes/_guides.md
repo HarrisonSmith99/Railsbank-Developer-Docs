@@ -7,7 +7,7 @@
   - Playlive API Keys
   - Access to a terminal or a testing tool like Postman.
 
-### Onboard an Enduser
+## Onboard an Enduser
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key into the code.**
 
   ```plaintext
