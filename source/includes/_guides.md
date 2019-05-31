@@ -1,11 +1,14 @@
 # ----------- Guides -----------
+## Using these Guides
+  - We want you to explore (and give feedback to) Railsbank. The following guides will take you on a step-by-step tour through the most important aspects of the API.
+  - We aim to be simple and self-service; anyone can make their way through any of these guides.
+## What you will need
+  - Playlive API Keys
+  - Access to a terminal or a testing tool like Postman.
+
 # Send Money to a Beneficiary
   - The fundamental feature of almost any financial services business is sending – and therefore also receiving money.
   - In this short guide we will demonstrate how easy it is with Railsbank.
-
-### What you will need
-  - Playlive API Keys
-  - Access to a terminal or a testing tool like Postman.
 
 ## Onboard an Enduser
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key into the code.**
