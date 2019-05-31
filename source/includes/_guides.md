@@ -7,7 +7,7 @@
   - Playlive API Keys
   - Access to a terminal or a testing tool like Postman.
 
-## Onboard an Enduser
+### Onboard an Enduser
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key into the code.**
 
   ```plaintext
@@ -56,7 +56,7 @@
   - In this case the enduser will be a person – John Smith – who will 'hold' the ledger that we will send money from, and the beneficiary that we will send money too (meaning the beneficiary is essentially in their list of recipients).
   - This is the **minimum data** required to create an enduser that can hold a ledger and a beneficiary.
 
-## Give the Enduser a Ledger
+### Give the Enduser a Ledger
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key and `enduser_id` into the code.**
 
   ```plaintext
@@ -91,7 +91,7 @@
   - In this example we will create a GBP ledger, which is connected to UK Faster Payments, meaning when we fund it the money will be received within minutes.
   - Playlive has strict compliance limits. Most importantly, the maximum amount for transactions is £5 and the maximum cumulative amount for transactions is £20 – it is designed for this sort of simple, early testing of the API. Real testing of your integration with Railsbank can be done in the Play environment with virtual money.  
 
-## Fetch the ledger
+### Fetch the ledger
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key and `ledger_id`.**
 
   ```plaintext
@@ -151,7 +151,7 @@
   - Once you have the account details, simply send any amount less than £5 to the ledger from your bank account.
   - Once you have sent the money, keep fetching the ledger (if you want to use a webhook see the webhook endpoints below) until the `amount` field changes to the amount you sent.
 
-## Add a new Beneficiary
+### Add a new Beneficiary
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key and `uk_account_number` and `uk_sort_code` in.**
 
   ```plaintext
@@ -203,7 +203,7 @@
   - In the example to the right we are using the minimum required data for creating a beneficiary.
   - In this case, use whatever GBP account you like for the beneficiary account Why not just send your money back to your account?
 
-## Send money to the Beneficiary
+### Send money to the Beneficiary
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key and `ledger_id` and `beneficiary_id` in.**
 
   ```plaintext
