@@ -64,7 +64,7 @@ These lists detail the states and an outline of the order things pass through th
 - **transaction-status-accepted**
 - transaction-status-declined
 
-## Endusers
+### Endusers
 
 - enduser-status-missing-data
 - enduser-status-pending
@@ -73,14 +73,14 @@ These lists detail the states and an outline of the order things pass through th
 - enduser-status-declined
 
 
-## Beneficiaries
+### Beneficiaries
 - beneficiary-status-missing-data
 - beneficiary-status-pending
 - beneficiary-status-quarantine
 - **beneficiary-status-ok**
 - beneficiary-status-declined
 
-## Ledgers
+### Ledgers
 - ledger-status-pending
 - ledger-status-error
 - ledger-status-missing-data
