@@ -103,7 +103,7 @@
 
 ### The Individual Enduser Object
 
-**| Attribute | Child Attribute | Grandchild Attribute | Type | Required | Description | Validations |**
+  | Attribute | Child Attribute | Grandchild Attribute | Type | Required | Description | Validations |
   | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
   |person|||object|required for individuals|Hashes containing basic information about individual||
   ||name||string|required|Full Name|Limited to 70 chars|
