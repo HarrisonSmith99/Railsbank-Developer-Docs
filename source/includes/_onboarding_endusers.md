@@ -35,8 +35,6 @@
     - Ultimate beneficial owner information
     - If the trading address is different from the registered address, you will need both
 
-  - Meanwhile, all possible fields can be found in the [Dev Docs](https://docs.railsbank.com/).
-
   - Please note that the `name` (or `trading name` in the case of a company) of your enduser has a 50 character maximum limit.
 
 ## Onboard a Private Individual
@@ -48,6 +46,8 @@
   --header "Content-Type: application/json"
 	--header "Accept: application/json"
 	--header "Authorization: API-Key <<yourAPI-Key>>"
+```
+```plaintext
   {
     "person": {
          "name": "John Smith",
@@ -101,7 +101,40 @@
     curl -X POST "https://playlive.railsbank.com/v1/customer/endusers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"person\": { \"name\": \"John Smith\", \"email\": \"johnsmith@gmail.com\", \"date_of_birth\": \"1970-11-05\", \"telephone\": \"+44 22 626 2626\", \"address\": { \"address_refinement\": \"Apartment 42\", \"address_number\": \"29\", \"address_street\": \"Acacia Road\", \"address_city\": \"London\", \"address_postal_code\": \"FX20 7XS\", \"address_iso_country\": \"GBR\" }, \"address_history\": [ { \"address_refinement\": \"Apartment 77\", \"address_number\": \"42\", \"address_street\": \"Kirschbaumstraße\", \"address_city\": \"Berlin\", \"address_postal_code\": \"12059\", \"address_iso_country\": \"DE\", \"address_start_date\": \"2000-09-02\", \"address_end_date\": \"2002-12-20\" } ], \"nationality\": [ \"British\" ], \"country_of_residence\": [ \"GBR\" ], \"date_onboarded\": \"2015-11-21\" }, \"enduser_meta\": { \"foo\": \"baa\", \"our_salesforce_reference\": \"http://na1.salesforce.com/5003000000D8cuI\" } }"
   ```
 
-  - In the following examples, we will be using the **PlayLive** environment. To use these examples in a **Play** or **Live** environment, simply change the Authorization `API-Key` to the correct Key and change the base URL to `https://play.railsbank.com` or `https://live.railsbank.com` respectively.
+### The Individual Enduser Object
+
+**| Attribute | Child Attribute | Grandchild Attribute | Type | Required | Description | Validations |**
+  | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+  ||||||||
+  |person|||object|required for individuals|Hashes containing basic information about individual||
+  ||name||string|required|Full Name|Limited to 70 chars|
+  ||country_of_residence||string|required|Country code|ISO 8601 format |
+  ||date_of_birth||string|optional|Date of birth|YYYY-MM-DD|
+  ||nationality||string|optional|Nationality||
+  ||pep||boolean|optional|Politically Exposed Person|Does not need to be inside ""|
+  ||pep_type||string|optional|Extent of exposure|Allowed Values: direct, close-associate, former-pep, family-member|
+  ||pep_notes||string|optional|Extra detail||
+  ||address|object|required|current address information||
+  ||social_security_number||string|optional|SSN||
+  ||telephone||string|optional|Phone number||
+  ||tin||string|optional|Tax Identification Number||
+  ||tin_type||string|optional|Type of Tax Identification Number||
+  |||address_city|string|required|City that enduser lives in||
+  |||address_iso_country|string|optional|Country code|ISO 8601 format ||
+  |||address_number|string|required|House or building number on street||
+  |||address_postal_code|string|required|Postal or zip code||
+  |||address_refinement|string|optional|Extra detail, e.g. house name||
+  |||address_region|optional|required|Region in country||
+  |||address_street|string|required|Street the enduser lives on||
+  ||address_history|object|required|previous address information||
+  |||address_city|string|required|City that enduser lives in||
+  |||address_iso_country|string|required|Country code|ISO 8601 format|
+  |||address_number|string|required|House or building number on street||
+  |||address_postal_code|string|required|Postal or zip code||
+  |||address_refinement|string|required|Extra detail, e.g. house name||
+  |||address_region|string|required|Region in country||
+  |||address_street|string|required|Street the enduser lives on||
+
 
 ## Onboard a Company
 
@@ -225,7 +258,7 @@
     "screening_monitored_search": false
   }
   ```
-     > **Here is the above code in a format that can be pasted directly into your terminal. Once again, make sure to add in your own API-Key.**
+  > **Here is the above code in a format that can be pasted directly into your terminal. Once again, make sure to add in your own API-Key.**
 
   ```shell
       curl -X GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>"
