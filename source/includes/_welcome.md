@@ -1,4 +1,4 @@
-# ----------- Welcome -----------
+#   ----------- Welcome -----------
 ## What We Do
 Railsbank is an open Banking and Compliance platform that enables **Customers** to create their own products that need banking capabilities or integrate banking capabilities into their systems, apps and workflows.
 
