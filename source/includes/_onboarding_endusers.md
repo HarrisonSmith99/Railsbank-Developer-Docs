@@ -103,36 +103,36 @@
 
 ### The Individual Enduser Object
 
-  | Attribute | Child Attribute | Grandchild Attribute | Type | Required | Description | Validations |
-  | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-  | person | | | object | required for individuals | Hashes containing basic information about individual |
-  || name | | string | required | Full Name | Limited to 70 chars |
-  ||country_of_residence||string|required|Country code|ISO 8601 format|
-  ||date_of_birth||string|optional|Date of birth|YYYY-MM-DD|
-  ||nationality||string|optional|Nationality||
-  ||pep||boolean|optional|Politically Exposed Person|Does not need to be inside ""|
-  ||pep_type||string|optional|Extent of exposure|Allowed Values: direct, close-associate, former-pep, family-member|
-  ||pep_notes||string|optional|Extra detail||
-  ||address|object|required|current address information||
-  ||social_security_number||string|optional|SSN||
-  ||telephone||string|optional|Phone number||
-  ||tin||string|optional|Tax Identification Number||
-  ||tin_type||string|optional|Type of Tax Identification Number||
-  |||address_city|string|required|City that enduser lives in||
-  |||address_iso_country|string|optional|Country code|ISO 8601 format ||
-  |||address_number|string|required|House or building number on street||
-  |||address_postal_code|string|required|Postal or zip code||
-  |||address_refinement|string|optional|Extra detail, e.g. house name||
-  |||address_region|optional|required|Region in country||
-  |||address_street|string|required|Street the enduser lives on||
-  ||address_history|object|required|previous address information||
-  |||address_city|string|required|City that enduser lives in||
-  |||address_iso_country|string|required|Country code|ISO 8601 format|
-  |||address_number|string|required|House or building number on street||
-  |||address_postal_code|string|required|Postal or zip code||
-  |||address_refinement|string|required|Extra detail, e.g. house name||
-  |||address_region|string|required|Region in country||
-  |||address_street|string|required|Street the enduser lives on||
+   Attribute | Child Attribute | Grandchild Attribute | Type | Required | Description | Validations |
+   ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+   person | | | object | required for individuals | Hashes containing basic information about individual |
+  | name | | string | required | Full Name | Limited to 70 chars |
+  |country_of_residence||string|required|Country code|ISO 8601 format|
+  |date_of_birth||string|optional|Date of birth|YYYY-MM-DD|
+  |nationality||string|optional|Nationality||
+  |pep||boolean|optional|Politically Exposed Person|Does not need to be inside ""|
+  |pep_type||string|optional|Extent of exposure|Allowed Values: direct, close-associate, former-pep, family-member|
+  |pep_notes||string|optional|Extra detail||
+  |address|object|required|current address information||
+  |social_security_number||string|optional|SSN||
+  |telephone||string|optional|Phone number||
+  |tin||string|optional|Tax Identification Number||
+  |tin_type||string|optional|Type of Tax Identification Number||
+  ||address_city|string|required|City that enduser lives in||
+  ||address_iso_country|string|optional|Country code|ISO 8601 format ||
+  ||address_number|string|required|House or building number on street||
+  ||address_postal_code|string|required|Postal or zip code||
+  ||address_refinement|string|optional|Extra detail, e.g. house name||
+  ||address_region|optional|required|Region in country||
+  ||address_street|string|required|Street the enduser lives on||
+  |address_history|object|required|previous address information||
+  ||address_city|string|required|City that enduser lives in||
+  ||address_iso_country|string|required|Country code|ISO 8601 format|
+  ||address_number|string|required|House or building number on street||
+  ||address_postal_code|string|required|Postal or zip code||
+  ||address_refinement|string|required|Extra detail, e.g. house name||
+  ||address_region|string|required|Region in country||
+  ||address_street|string|required|Street the enduser lives on||
 
 ## Onboard a Company
 
