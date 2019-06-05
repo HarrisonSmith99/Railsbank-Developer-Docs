@@ -7,44 +7,6 @@
   - Customers with a **Live API Key** must have also purchased the `Railsbank-Debit-Card-1` partner product.
   - This can easily be done by contacting [support](mailto:support@railsbank.com).
 
-## Onboard a Card-holding Enduser
-
-  > **Note the change of the base url from playlive to live.**
-
-  ```shell
-  curl  
-    --request POST "https://playlive.railsbank.com/v1/customer/endusers"
-    --header "Content-Type: application/json"
-  	--header "Accept: application/json"
-  	--header "Authorization: API-Key <<yourapikey>>"
-    --data
-        "{
-            "person": {
-                 "name": "John Smith",
-                },
-            "address": {  
-                  "address_refinement": "Apartment 42",
-                  "address_number": "29",
-                  "address_street": "Acacia Road",
-                  "address_city": "London",
-                  "address_postal_code": "FX20 7XS",
-                  "address_iso_country": "GBR"
-                }
-          }"
-  ```
-  > **To which the API will respond with an `enduser_id` like this:**
-
-  ```JSON
-  {
-      "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
-  }
-  ```
-  - While you can see our Onboard an Enduser tutorial to learn how to onboard a basic enduser, in this one we're going to briefly and explicitly understand the small changes that need to take place for the enduser to be able to hold a **Railsbank Debit Card**.
-  - So, to onboard a **card-holding** enduser, assuming you have purchased the **Railsbank-Direct-Debit-1** product, you need to paste the following into your terminal or testing tool, making sure to replace the example values for your own.
-  - You can Fetch enduser to retrieve all the information about the enduser, including their card details, once they've been created!
-
-### Note
-  - You can only create endusers of the type associated to your card programme: so if your card programme only allows individual people, only endusers of type "person" will be able to hold cards.
 
 ## Issue a Card
 
@@ -73,6 +35,10 @@
   ```
   - Once you've created your **card-holding** enduser, carefully go through our Issue a ledger tutorial - it'll only take a minute or so - to create the bank account to which your card is going to be attched.
   - When issuing the ledger, make sure to do so in the **Live** environment with your **Live API Key** and the `enduser_id` of the **card-holding** enduser you've created.
+
+  | Attribute                               | Description |
+  |:----------------------------------------|:------|
+  |ledger_id <br> _string (UUID)_, required | The ledger that the card will be attached to |
 
 ## Fetch a Card
 
