@@ -1,5 +1,5 @@
 # Cards
-> Endpoints
+> **Endpoints**
 
 ```plaintext
   POST /v1/customer/cards
@@ -24,8 +24,7 @@
 
   > **Once you've got the `ledger_id` simply paste it into the following payload, paste the payload into your testing tool and let us do the rest.**
 
-  ```shell
-  curl
+  ```plaintext
     --request POST "https://live.railsbank.com/v1/customer/cards"
     --header "Content-Type: application/json"
     --header "Accept: application/json"
@@ -41,14 +40,14 @@
   ```
   > **The API will respond with the `card_id`, which will look something like this:**
 
-  ```JSON
+  ```plaintext
   {
     "card_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
   }
   ```
   >  **Example curl that you can paste directly into your terminal. Just make sure to substitute your own values in.**
 
-  ```plaintext
+  ```shell
     curl -X POST "https://beta-playlive.railsbank.com/v1/customer/cards" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"ledger_id\": \"{{enduser_GBPledger_id}}\", \"card_type\": \"virtual\", \"card_design\": \"design one\", \"card_programme\": \"{{GBPcard_programme}}\"}"
   ```
 
@@ -57,14 +56,14 @@
   - For customers with a **Live API Key**, the **Railsbank-Debit-Card** capability is available for testing in the **Play** environment. Please [email our Business Development Team](mailto:support@railsbank.com) if you want Live Keys.
   - The type of enduser holding the ledger must be the same that defined in the card programme. That is, if the holder of the ledger is an individual, the card programme needs to be for individuals, and if the holder is a corporate, the card programme needs to be for corporates.
 
-  | Attribute                               | Description |
-  |:----------------------------------------|:------|
-  |`ledger_id` <br> _string (UUID)_, required | The ledger that the card will be attached to |
-  |`card_type` <br> _string_, required | The type of card, in this instance: `virtual`|
-  |`card_design` <br> _string_, required | The custom card design you have chosen |
-  | `card_programme` <br> _string_, required | The name of the card programme you want your card to be associated with |
-  | `card_rules` <br> _array of UUIDs_, optional | Customizable rules associated with the card |
 
+| Attribute                                    | Description                   |
+|:---------------------------------------------|:------------------------------|
+| `ledger_id` <br> _string(UUID)_, required    | The ledger that the card will be attached to |
+| `card_type` <br> _string_, required          | The type of card, in this instance: `virtual` |
+| `card_design` <br> _string_, required        | The custom card design you have chosen |
+| `card_programme` <br> _string_, required     | The name of the card programme you want your card to be associated with |
+| `card_rules` <br> _array of UUIDs_, optional | Customizable rules associated with the card |
 
 ## Fetch a Card
 
