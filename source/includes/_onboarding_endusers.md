@@ -105,7 +105,7 @@
 
 | Attribute                                  | Type    | Required                 | Description                                          | Validations |
 |:-------------------------------------------|:--------|:-------------------------|:-----------------------------------------------------|:--|
-| person                                     | object  | required for individuals | Hashes containing basic information about individual |   |
+| `person` <br> _object_                     | object  | required for individuals | Hashes containing basic information about individual |   |
 | person.name                                | string  | required                 | Full Name                                            | Limited to 70 chars |
 | person.country_of_residence                | string  | required                 | Country code                                         | ISO 8601 format |
 | person.date_of_birth                       | string  | optional                 | Date of birth                                        | YYYY-MM-DD |
