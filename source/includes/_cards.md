@@ -5,11 +5,18 @@
   POST /v1/customer/cards
   POST /v1/customer/cards/{{CARD_ID}}/activate
   POST /v1/customer/cards/{{CARD_ID}}/suspend
+  POST /v1/customer/cards/rules
+  POST /v1/customer/cards/rules/{{CARD_RULE_ID}}/disable
   GET /v1/customer/cards/{{CARD_ID}}
   GET /v1/customer/cards/{{CARD_TOKEN}}
   GET /v1/customer/cards
   GET /v1/customer/cards/{{CARD_ID}}/image
   GET /v1/customer/cards/{{CARD_ID}}/pin
+  GET /v1/customer/cards/rules
+  GET /v1/customer/cards/rules/{{CARD_RULE_ID}}
+  PUT /v1/customer/cards/rules/{{CARD_RULE_ID}}
+  PUT /v1/customer/cards/rules/{{CARD_RULE_ID}}
+
 ```
 
   - The **Railsbank Debit Card** solution allows our customers to issue **Mastercard Debit Cards** against Railsbank ledgers with just a few easy API calls, exercising the **Issue Cards** cabability.
@@ -51,7 +58,7 @@
     curl -X POST "https://beta-playlive.railsbank.com/v1/customer/cards" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"ledger_id\": \"{{enduser_GBPledger_id}}\", \"card_type\": \"virtual\", \"card_design\": \"design one\", \"card_programme\": \"{{GBPcard_programme}}\"}"
   ```
 
-  - Once you've created your **card-holding** enduser, carefully go through our Issue a ledger tutorial - it'll only take a minute or so - to create the bank account to which your card is going to be attched.
+  - Once you've created your **card-holding** enduser, carefully go through our Issue a ledger tutorial - it'll only take a minute or so - to create the bank account to which your card is going to be attached.
   - When issuing the ledger, make sure to do so in the **Live** environment with your **Live API Key** and the `enduser_id` of the **card-holding** enduser you've created.
   - For customers with a **Live API Key**, the **Railsbank-Debit-Card** capability is available for testing in the **Play** environment. Please [email our Business Development Team](mailto:support@railsbank.com) if you want Live Keys.
   - The type of enduser holding the ledger must be the same that defined in the card programme. That is, if the holder of the ledger is an individual, the card programme needs to be for individuals, and if the holder is a corporate, the card programme needs to be for corporates.
@@ -65,6 +72,74 @@
 | `card_programme` <br> _string_, required     | The name of the card programme you want your card to be associated with |
 | `card_rules` <br> _array of UUIDs_, optional | Customizable rules associated with the card |
 
+## Issue a Physical Card
+> **Once you've got the `ledger_id` simply paste it into the following payload, paste the payload into your testing tool and let us do the rest.**
+
+```plaintext
+  --request POST "https://live.railsbank.com/v1/customer/cards"
+  --header "Content-Type: application/json"
+  --header "Accept: application/json"
+  --header "Authorization: API-Key <<yourapikey>>"
+  --data
+  "{
+    "ledger_id": "{{enduser_GBPledger_id}}",
+    "card_carrier_type": "standard",
+    "card_delivery_name": "John Smith",
+    "card_type": "physical",
+    "card_delivery_method": "dhl",
+    "card_design": "{{design_one}}",
+    "card_delivery_address": {
+      "address_region": "England",
+      "address_iso_country": "GBR",
+      "address_number": "35",
+      "address_postal_code": "W1 4AQ",
+      "address_refinement": "First Floor",
+      "address_street": "John Street",
+      "address_city": "London"
+    },
+    "card_programme": "{{GBPcard_programme}}"
+  }"
+
+```
+> **The API will respond with the `card_id`, which will look something like this:**
+
+```plaintext
+{
+  "card_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
+}
+```
+>  **Example curl that you can paste directly into your terminal. Just make sure to substitute your own values in.**
+
+```shell
+  curl -X POST "https://beta-playlive.railsbank.com/v1/customer/cards" -H "accept: application/json" -H "Authorization: API-Key wotzuvu60fr9y7z1o94heszi2geu8np8#kmkd4uvdmrg864ce9n4zlyygvf86opbwqddgmsdrobgqp4dlzf3thynck6qm7gso" -H "Content-Type: application/json" -d "{\"ledger_id\": \"{{enduser_GBPledger_id}}\", \"card_carrier_type\": \"standard\", \"card_delivery_name\": \"John Smith\", \"card_type\": \"physical\", \"card_delivery_method\": \"dhl\", \"card_design\": \"{{design_one}}\", \"card_delivery_address\": { \"address_region\": \"England\", \"address_iso_country\": \"GBR\", \"address_number\": \"35\", \"address_postal_code\": \"W1 4AQ\", \"address_refinement\": \"First Floor\", \"address_street\": \"John Street\", \"address_city\": \"London\" }, \"card_programme\": \"{{GBPcard_programme}}\" }"
+```
+  - Physical cards require a little more data than virtual cards.
+  - Once you've created your **card-holding** enduser, carefully go through our Issue a ledger tutorial - it'll only take a minute or so - to create the bank account to which your card is going to be attached.
+  - When issuing the ledger, make sure to do so in the **Live** environment with your **Live API Key** and the `enduser_id` of the **card-holding** enduser you've created.
+  - For customers with a **Live API Key**, the **Railsbank-Debit-Card** capability is available for testing in the **Play** environment. Please [email our Business Development Team](mailto:support@railsbank.com) if you want Live Keys.
+  - The type of enduser holding the ledger must be the same that defined in the card programme. That is, if the holder of the ledger is an individual, the card programme needs to be for individuals, and if the holder is a corporate, the card programme needs to be for corporates.
+
+| Attribute                                                           | Description |
+|:--------------------------------------------------------------------|:-------|
+| `ledger_id` <br> _string(UUID)_, required                           | The ledger that the card will be attached to |
+| `card_type` <br> _string_, required                                 | The type of card, in this instance: `physical` |
+| `card_design` <br> _string_, required                               | The custom card design you have chosen |
+| `card_programme` <br> _string_, required                            | The name of the card programme you want your card to be associated with |
+| `card_rules` <br> _array of UUIDs_, optional                        | Customizable rules associated with the card |
+| `qr_code_content` <br> _string_, optional                           | The string to be encoded in the auto-generated QR code on a physical card. For example, a URL, SMS message, in app action etc. |
+| `name_on_card` <br> _string_, required                              | The card holder's name (to be printed onto the card) <br> _ISO basic Latin Alphabet; up to 21 characters including spaces_ |
+| `card_delivery_name` <br> _string_, required                        | The name of the entity that the card will be addressed to when delivered |
+| `card_delivery_method` <br> _string_, required                      | The shipping method used to deliver the card, if delivery address is outside the UK, it must be `international-mail` <br> _Allowed Values: `dhl`, `standard-first--class`, `international-mail`_ |
+| `card_carrier_type` <br> _string_, required                         | The carrier type to be used for the card when delivered <br> _Allowed Values: `standard`, `renewal`, `replacement` |
+| `card_delivery_address` <br> _object_, required                     | The address to which the card will be delivered to |
+| `card_delivery_address.address_city` <br> _string_, required        | City that enduser lives in |
+| `card_delivery_address.address_iso_country`<br> _string_, required  | Country code <br>  _ISO 8601 format_ |
+| `card_delivery_address.address_number` <br> _string_, required      | House or building number on street |
+| `card_delivery_address.address_postal_code` <br> _string_, required | Postal or zip code |
+| `card_delivery_address.address_refinement` <br> _string_, optional  | Extra detail, e.g. house name |
+| `card_delivery_address.address_region` <br> _string_, required      | Region in country |
+| `card_delivery_address.address_street` <br> _string_, required      | Street the enduser lives on |
+
 ## Fetch a Card
 
   > **Simply paste the following into your terminal or testing tool, making sure to substitute your enduser's `card_id` in.**
@@ -76,7 +151,7 @@
   	--header "Accept: application/json"
   	--header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > **The API will respond with a payload smilar to the example below. The possible statuses of a card are: `active`, `created`, and `disabled`.**
+  > **The API will respond with a payload similar to the example below. The possible statuses of a card are: `active`, `created`, and `disabled`.**
 
   ```JSON
   {
