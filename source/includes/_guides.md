@@ -11,8 +11,8 @@
   - The fundamental feature of almost any financial services business is sending – and therefore also receiving money.
   - In this short guide we will demonstrate how easy it is with Railsbank.
   - There are five steps:
-  
-    - [ ] Onboard an Enduser
+
+    - [x] Onboard an Enduser
     - [ ] Give the Enduser a Ledger
     - [ ] Fetch the Ledger (in order to fund the ledger)
     - [ ] Add a new Beneficiary
