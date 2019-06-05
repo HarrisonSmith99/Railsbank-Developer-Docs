@@ -103,38 +103,36 @@
 
 ### The Individual Enduser Object
 
-   Attribute | Child Attribute | Grandchild Attribute | Type | Required | Description | Validations |
-   ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----
-   person | | | object | required for individuals | Hashes containing basic information about individual |
-   ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----
-  | name | | string | required | Full Name | Limited to 70 chars |
-  ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----
-  |country_of_residence||string|required|Country code|ISO 8601 format|
-  |date_of_birth||string|optional|Date of birth|YYYY-MM-DD|
-  |nationality||string|optional|Nationality||
-  |pep||boolean|required if applicable|Politically Exposed Person|Does not need to be inside ""|
-  |pep_type||string|optional|Extent of exposure|Allowed Values: direct, close-associate, former-pep, family-member|
-  |pep_notes||string|optional|Extra detail||
-  |address|object|required|current address information||
-  |social_security_number||string|optional|SSN||
-  |telephone||string|optional|Phone number||
-  |tin||string|optional|Tax Identification Number||
-  |tin_type||string|optional|Type of Tax Identification Number||
-  ||address_city|string|required|City that enduser lives in||
-  ||address_iso_country|string|optional|Country code|ISO 8601 format ||
-  ||address_number|string|required|House or building number on street||
-  ||address_postal_code|string|required|Postal or zip code||
-  ||address_refinement|string|optional|Extra detail, e.g. house name||
-  ||address_region|optional|required|Region in country||
-  ||address_street|string|required|Street the enduser lives on||
-  |address_history|object|required|previous address information||
-  ||address_city|string|required|City that enduser lives in||
-  ||address_iso_country|string|required|Country code|ISO 8601 format|
-  ||address_number|string|required|House or building number on street||
-  ||address_postal_code|string|required|Postal or zip code||
-  ||address_refinement|string|required|Extra detail, e.g. house name||
-  ||address_region|string|required|Region in country||
-  ||address_street|string|required|Street the enduser lives on||
+   Attribute | Type | Required | Description | Validations |
+   ---- | ---- | ---- | ---- | ---- | 
+  person | | | object | required for individuals | Hashes containing basic information about individual |
+  person.name | | string | required | Full Name | Limited to 70 chars |
+  person.country_of_residence||string|required|Country code|ISO 8601 format|
+  person.date_of_birth||string|optional|Date of birth|YYYY-MM-DD|
+  person.nationality||string|optional|Nationality||
+  person.pep||boolean|required if applicable|Politically Exposed Person|Does not need to be inside ""|
+  person.pep_type||string|optional|Extent of exposure|Allowed Values: direct, close-associate, former-pep, family-member|
+  person.pep_notes||string|optional|Extra detail||
+  person.social_security_number||string|optional|SSN||
+  person.telephone||string|optional|Phone number||
+  person.tin||string|optional|Tax Identification Number||
+  person.tin_type||string|optional|Type of Tax Identification Number||
+  person.address|object|required|current address information||
+  person.address.address_city|string|required|City that enduser lives in||
+  person.address.address_iso_country|string|optional|Country code|ISO 8601 format ||
+  person.address.address_number|string|required|House or building number on street||
+  person.address.address_postal_code|string|required|Postal or zip code||
+  person.address.address_refinement|string|optional|Extra detail, e.g. house name||
+  person.address.address_region|optional|required|Region in country||
+  person.address.address_street|string|required|Street the enduser lives on||
+  person.address_history|object|required|previous address information||
+  person.address_history.address_city|string|required|City that enduser lives in||
+  person.address_history.address_iso_country|string|required|Country code|ISO 8601 format|
+  person.address_history.address_number|string|required|House or building number on street||
+  person.address_history.address_postal_code|string|required|Postal or zip code||
+  person.address_history.address_refinement|string|required|Extra detail, e.g. house name||
+  person.address_history.address_region|string|required|Region in country||
+  person.address_history.address_street|string|required|Street the enduser lives on||
 
 ## Onboard a Company
 
@@ -194,7 +192,7 @@
   ```
    > **Here is the above code in a format that can be pasted directly into your terminal. Once again, make sure to add in your own API-Key.**
 
-   ```shell
+   ```plaintext
        curl -X POST "https://playlive.railsbank.com/v1/customer/endusers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"company\": { \"name\": \"Example Company\", \"trading_name\": \"Example Company Ltd.\", \"web_site\": \"www.website.com\", \"industry\": \"Financial Services\", \"listed_on_stock_exchange\": false, \"registration_address\": { \"address_refinement\": \"Floor 15\", \"address_number\": \"20\", \"address_street\": \"The Strand\", \"address_city\": \"London\", \"address_postal_code\": \"SS8 9JH\", \"address_iso_country\": \"GBR\" }, \"directors\": [ { \"date_appointed\": \"1990-01-01\", \"job_title\": \"CEO\", \"is_also_ubo\": false, \"person\": { \"country_of_residence\": [ \"USA\" ], \"pep\": false, \"email\": \"johnsmith@gmail.com\", \"name\": \"John Smith\", \"social_security_number\": \"090606\", \"telephone\": \"+44 98 765 4321\", \"date_of_birth\": \"1981-02-03\", \"nationality\": [ \"American\" ] } } ] } }"
    ```
 
@@ -260,7 +258,7 @@
   ```
   > **Here is the above code in a format that can be pasted directly into your terminal. Once again, make sure to add in your own API-Key.**
 
-  ```shell
+  ```plaintext
       curl -X GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>"
   ```
 
@@ -303,7 +301,7 @@
   ```
   > **Here is the above code in a format that can be pasted directly into your terminal. Once again, make sure to add in your own API-Key.**
 
-  ```shell
+  ```plaintext
     curl -X PUT "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \t\"company\": { \t\t\"web_site\": \"www.correct_company_website.com\", \t\"trading_addresses\": [{ \t \"address_refinement\": \"Apartment 5\", \t\t \"address_number\": \"21\", \t\t \"address_street\": \"Flower Road\", \t\t \"address_city\": \"London\", \t\t \"address_region\": \"Greater London\", \t\t \"address_postal_code\": \"WC1R 7XS\", \t\t \"address_iso_country\": \"GB\" }] \t} }"
   ```
 
