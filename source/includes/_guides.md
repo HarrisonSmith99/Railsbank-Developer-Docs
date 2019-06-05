@@ -12,11 +12,11 @@
   - In this short guide we will demonstrate how easy it is with Railsbank.
   - There are five steps:
 
-    - [x] Onboard an Enduser
-    - [ ] Give the Enduser a Ledger
-    - [ ] Fetch the Ledger (in order to fund the ledger)
-    - [ ] Add a new Beneficiary
-    - [ ] Send Money to the Beneficiary
+  – [x] Onboard an Enduser
+  – [ ] Give the Enduser a Ledger
+  – [ ] Fetch the Ledger (in order to fund the ledger)
+  – [ ] Add a new Beneficiary
+  – [ ] Send Money to the Beneficiary
 
 
 ## Onboard an Enduser
