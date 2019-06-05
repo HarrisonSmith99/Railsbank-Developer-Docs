@@ -103,36 +103,36 @@
 
 ### The Individual Enduser Object
 
-| Attribute                                  | Type    | Required                 | Description                                          | Validations |
-|:-------------------------------------------|:--------|:-------------------------|:-----------------------------------------------------|:--|
-| `person` <br> _object_                     | object  | required for individuals | Hashes containing basic information about individual |   |
-| person.name                                | string  | required                 | Full Name                                            | Limited to 70 chars |
-| person.country_of_residence                | string  | required                 | Country code                                         | ISO 8601 format |
-| person.date_of_birth                       | string  | optional                 | Date of birth                                        | YYYY-MM-DD |
-| person.nationality                         | string  | optional                 | Nationality                                          |   |
-| person.pep                                 | boolean | required if applicable   | Politically Exposed Person                           | Does not need to be inside "" |
-| person.pep_type                            | string  | optional                 | Extent of exposure                                   | Allowed Values: direct, close-associate, former-pep, family-member |
-| person.pep_notes                           | string  | optional                 | Extra detail                                         |   |
-| person.social_security_number              | string  | optional                 | SSN                                                  |   |
-| person.telephone                           | string  | optional                 | Phone number                                         |   |
-| person.tin                                 | string  | optional                 | Tax Identification Number                            |   |
-| person.tin_type                            | string  | optional                 | Type of Tax Identification Number                    |   |
-| person.address                             | object  | required                 | current address information                          |   |
-| person.address.address_city                | string  | required                 | City that enduser lives in                           |   |
-| person.address.address_iso_country         | string  | optional                 | Country code                                         | ISO 8601 format | |
-| person.address.address_number              | string  | required                 | House or building number on street                   |   |
-| person.address.address_postal_code         | string  | required                 | Postal or zip code                                   |   |
-| person.address.address_refinement          | string  | optional                 | Extra detail, e.g. house name                        |   |
-| person.address.address_region              | string  | required                 | Region in country                                    |   |
-| person.address.address_street              | string  | required                 | Street the enduser lives on                          |   |
-| person.address_history                     | object  | required                 | previous address information                         |   |
-| person.address_history.address_city        | string  | required                 | City that enduser lives in                           |   |
-| person.address_history.address_iso_country | string  | required                 | Country code                                         | ISO 8601 format |
-| person.address_history.address_number      | string  | required                 | House or building number on street                   |   |
-| person.address_history.address_postal_code | string  | required                 | Postal or zip code                                   |   |
-| person.address_history.address_refinement  | string  | required                 | Extra detail, e.g. house name                        |   |
-| person.address_history.address_region      | string  | required                 | Region in country                                    |   |
-| person.address_history.address_street      | string  | required                 | Street the enduser lives on                          |   |
+| Attribute                                                            | Description                        | Validations |
+|:---------------------------------------------------------------------|:-----------------------------------|:--|
+| `person` <br> _object_, required (for individuals)                   | Information about individual       |   |
+| `person.name` <br> _string_, required                                | Full Name                          | Limited to 70 chars |
+| `person.country_of_residence` <br> _string_, required                | Country code                       | ISO 8601 format |
+| `person.date_of_birth` <br> _string_, optional                       | Date of birth                      | YYYY-MM-DD |
+| `person.nationality` <br> _string_, optional                         | Nationality                        |   |
+| `person.pep` <br> _boolean_, required (if applicable)                | Politically Exposed Person         | Does not need to be inside "" |
+| `person.pep_type` <br> _string_, optional                            | Extent of exposure                 | Allowed Values: direct, close-associate, former-pep, family-member |
+| `person.pep_notes` <br> _string_, optional                           | Extra detail                       |   |
+| `person.social_security_number` <br> _string_, optional              | SSN                                |   |
+| `person.telephone` <br> _string_, optional                           | Phone number                       |   |
+| `person.tin` <br> _string_, optional                                 | Tax Identification Number          |   |
+| `person.tin_type` <br> _string_, optional                            | Type of Tax Identification Number  |   |
+| `person.address` <br> _object_, required                             | current address information        |   |
+| `person.address.address_city` <br> _string_, required                | City that enduser lives in         |   |
+| `person.address.address_iso_country`<br> _string_, required          | Country code                       | ISO 8601 format | |
+| `person.address.address_number` <br> _string_, required              | House or building number on street |   |
+| `person.address.address_postal_code` <br> _string_, required         | Postal or zip code                 |   |
+| `person.address.address_refinement` <br> _string_, optional          | Extra detail, e.g. house name      |   |
+| `person.address.address_region` <br> _string_, required              | Region in country                  |   |
+| `person.address.address_street` <br> _string_, required              | Street the enduser lives on        |   |
+| `person.address_history` <br> _object_, optional                     | Previous address information       |   |
+| `person.address_history.address_city` <br> _string_, optional        | City that enduser lives in         |   |
+| `person.address_history.address_iso_country` <br> _string_, optional | Country code                       | ISO 8601 format |
+| `person.address_history.address_number` <br> _string_, optional      | House or building number on street |   |
+| `person.address_history.address_postal_code` <br> _string_, optional | Postal or zip code                 |   |
+| `person.address_history.address_refinement` <br> _string_, optional  | Extra detail, e.g. house name      |   |
+| `person.address_history.address_region` <br> _string_, optional      | Region in country                  |   |
+| `person.address_history.address_street` <br> _string_, optional      | Street the enduser lives on        |   |
 
 ## Onboard a Company
 
