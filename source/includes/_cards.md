@@ -29,7 +29,7 @@
 
 ## Issue a Virtual Card
 
-  > **Once you've got the `ledger_id` simply paste it into the following payload, paste the payload into your testing tool and let us do the rest.**
+> **Example Request**
 
   ```plaintext
     --request POST "https://live.railsbank.com/v1/customer/cards"
@@ -45,14 +45,14 @@
       }"
 
   ```
-  > **The API will respond with the `card_id`, which will look something like this:**
+  > **Example Response**
 
   ```plaintext
   {
     "card_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
   }
   ```
-  >  **Example curl that you can paste directly into your terminal. Just make sure to substitute your own values in.**
+  >  **Example Curl Request**
 
   ```shell
     curl -X POST "https://beta-playlive.railsbank.com/v1/customer/cards" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"ledger_id\": \"{{enduser_GBPledger_id}}\", \"card_type\": \"virtual\", \"card_design\": \"design one\", \"card_programme\": \"{{GBPcard_programme}}\"}"
@@ -73,7 +73,7 @@
 | `card_rules` <br> _array of UUIDs_, optional | Customizable rules associated with the card |
 
 ## Issue a Physical Card
-> **Once you've got the `ledger_id` simply paste it into the following payload, paste the payload into your testing tool and let us do the rest.**
+> **Example Request**
 
 ```plaintext
   --request POST "https://live.railsbank.com/v1/customer/cards"
@@ -101,14 +101,14 @@
   }"
 
 ```
-> **The API will respond with the `card_id`, which will look something like this:**
+  > **Example Response**
 
 ```plaintext
 {
   "card_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
 }
 ```
->  **Example curl that you can paste directly into your terminal. Just make sure to substitute your own values in.**
+>  **Example Curl Request**
 
 ```shell
   curl -X POST "https://beta-playlive.railsbank.com/v1/customer/cards" -H "accept: application/json" -H "Authorization: API-Key wotzuvu60fr9y7z1o94heszi2geu8np8#kmkd4uvdmrg864ce9n4zlyygvf86opbwqddgmsdrobgqp4dlzf3thynck6qm7gso" -H "Content-Type: application/json" -d "{\"ledger_id\": \"{{enduser_GBPledger_id}}\", \"card_carrier_type\": \"standard\", \"card_delivery_name\": \"John Smith\", \"card_type\": \"physical\", \"card_delivery_method\": \"dhl\", \"card_design\": \"{{design_one}}\", \"card_delivery_address\": { \"address_region\": \"England\", \"address_iso_country\": \"GBR\", \"address_number\": \"35\", \"address_postal_code\": \"W1 4AQ\", \"address_refinement\": \"First Floor\", \"address_street\": \"John Street\", \"address_city\": \"London\" }, \"card_programme\": \"{{GBPcard_programme}}\" }"
@@ -142,18 +142,18 @@
 
 ## Fetch a Card
 
-  > **Simply paste the following into your terminal or testing tool, making sure to substitute your enduser's `card_id` in.**
+  > **Example Request**
 
-  ```shell
+  ```plaintext
   curl
     --request GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}"
   	--header "Content-Type: application/json"
   	--header "Accept: application/json"
   	--header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > **The API will respond with a payload similar to the example below. The possible statuses of a card are: `active`, `created`, and `disabled`.**
+  > **Example Response**
 
-  ```JSON
+  ```plaintext
   {
     "card_id": "8763b5df-a61c-4f77-9724-41ca9cde3654",
     "card_status": "card-status-created",
@@ -166,10 +166,29 @@
   ```
     - Fetching a card is much like 'fetching' anything else with the API.
     - In this case, all you need to know is the `card_id`.
+    - The possible statuses of the card can be seen below.
+
+### Card Statuses
+| Message                           | Description                              |
+|:----------------------------------|:-----------------------------------------|
+| `card-status-created`             | The card has been successfully created.  |
+| `card-status-suspending`          | The card is in the process of being suspended. Use the `/wait` parameter to wait until it is in a REST state (in this case, suspended). |
+| `card-status-suspended`           | The card has been suspended by the enduser. You will receive a `type: card-suspended` webhook. |
+| `card-status-awaiting-activation` | The card has been created but not activated. You will receive a `type: card-awaiting-activation` webhook. |
+| `card-status-activating`          | The card is being activated. Use the `/wait` parameter to wait until it is in a REST state (in this case, activated). |
+| `card-status-active`              | The card is active and ready to be used. You will receive a `type: card-activated` webhook. |
+| `card-status-failed`              | The card has failed to create for one of the reasons below. You will receive a `type: card-failed` webhook. |
+| Possible failure reasons:         |                                          |
+| `card-not-active`                 | Set when card status is not equal to active. |
+| `contact-support`                 | Set when we get recommendation to decline from paymentology. |
+| `fx-issue`                        | Returned in one of these cases: contributed-price-not-set, contributed-price-suspended or contributed-price-expired. |
+| `card-rules-breached`             | Added if any of the card rules are breached. |
+| `partner-error`                   | When an error occurs on the partner side. |
+| `insufficient-funds`              | When we have insufficient funds in customer card ledger. |
 
 ## Fetch a Card using its token
 
-  > **Simply paste the following into your terminal or testing tool, making sure to substitute your enduser's `card_token` in.**
+> **Example Request**
 
   ```shell
   curl
@@ -179,7 +198,7 @@
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
 
-  > **The API will respond with a payload smilar to the example below. The possible statuses of a card are: `active`, `created`, and `disabled`.**
+  > **Example Response**
 
   ```JSON
   {
@@ -201,7 +220,7 @@
   - The card token can be used to validate physical cards. It will be nine integers on the back of the card, so when your customer receives the card, before you activate it, you can check that they are using the correct card by checking the token number.
 
 ## Fetch all of your cards
-  > **Paste the following into your terminal or testing tool and relax.**
+ > **Example Request**
 
   ```shell
   curl
@@ -210,7 +229,8 @@
     --header "Accept: application/json"
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > **The API will respond with list of cards and their details similar to the example below:**
+> **Example Response**
+**
 
   ```JSON
     {
@@ -239,7 +259,7 @@
   - If you want to see the details of all the cards you have issued, then this powerful endpoint is for you.
 
 ## Activate a Card
-  > **Paste the following - substituting your enduser's `card_id` - into your terminal or testing tool. It is that easy.**
+  > **Example Request**
 
   ```shell
   curl
@@ -248,13 +268,29 @@
     --header "Accept: application/json"
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > **To which the API will once again respond with the `card_id`, only this time that `card_id` will have `status-active`.**
+  > **Example Response. Note: `status-active`.**
+
+  ```JSON
+  {
+      "ledger_id": "5cda9171-f2e3-4442-82f1-884c877df9e5",
+      "card_token": "473894665",
+      "card_id": "5cdab638-ad74-47c3-a918-15e1876dcfcf",
+      "card_type": "virtual",
+      "card_rules": [],
+      "created_at": "2019-05-14T12:36:08.493Z",
+      "partner_product": "Railsbank-Debit-Card-1",
+      "card_design": "design one",
+      "card_status": "card-status-active",
+      "card_programme": "rbbe-313-gbp-person"
+  }
+  ```
 
   - A `created` card is cool, but an `activated` is awesome; it has access to global banking.
   - This simple endpoint will **activate** the card.
 
 ## Suspend a Card
-  > **If you know the `card_id` of the card you want to suspend, paste it, along with the following, into your terminal or testing tool and let us do the rest.**
+
+  > **Example Request**
 
   ```shell
   curl
@@ -268,7 +304,7 @@
   - Once you suspended a card, it can be reactivated at any time by using `activate` endpoint. However, if you don't reactivate it, it will remain suspended.
 
 ## Fetching Card PINs
-  > **Providing your Customer API-Key, use the following endpoint:**
+  > **Example Request**
 
   ```shell
   curl
@@ -277,7 +313,7 @@
     --header "Accept: application/json"
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > **And API will respond with the PIN:**
+  > **Example Response**
 
   ```JSON
   {
@@ -285,31 +321,23 @@
   }
   ```
   - You may want to fetch the PIN number for chip-and-PIN transactions. All you need is your `card_id` to obtain it.
-
-  > **So, if you request for PINs before this time, you will receive the error:**
-
-  ```JSON
-  {
-    "error": "card-pin-not-set"
-  }
-  ```
-### Note
   - Before you fetch you physical card PIN it is important to note:
   - PINs for new cards are generated at 05:05 each day, as part of generating the xml file for the manufacturer.
+  - If the PIN is not set you will receive `"error": "card-pin-not-set"`
+
 
 ## Get Card Image
-  > **Providing your Customer API-Key, use the following endpoint:**
+  > **Example Request**
 
-  ```shell
-  curl
+  ```json
     --request GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}/image"
     --header "Content-Type: application/json"
     --header "Accept: application/json"
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  > **And API will respond with the URL:**
+  > **Example Response**
 
-  ```JSON
+  ```json
   {
     "temp_card_image_url": "http://40.127.00.174:8002/Paymentology/585256_F347DBA257102343AB5132840D231AB3.png"
   }
