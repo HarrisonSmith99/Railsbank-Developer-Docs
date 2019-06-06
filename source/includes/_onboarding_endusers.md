@@ -124,13 +124,14 @@
 | `person.address.address_region` <br> _string_, required              | Region in country |
 | `person.address.address_street` <br> _string_, required              | Street the enduser lives on |
 | `person.address_history` <br> _object_, optional                     | Previous address information |
-| `person.address_history.address_city` <br> _string_, optional        | City that enduser lives in |
+| `person.address_history.address_city` <br> _string_, optional        | City that enduser lived in |
 | `person.address_history.address_iso_country` <br> _string_, optional | Country code <br>  _ISO 8601 format_ |
 | `person.address_history.address_number` <br> _string_, optional      | House or building number on street |
 | `person.address_history.address_postal_code` <br> _string_, optional | Postal or zip code |
 | `person.address_history.address_refinement` <br> _string_, optional  | Extra detail, e.g. house name |
 | `person.address_history.address_region` <br> _string_, optional      | Region in country |
-| `person.address_history.address_street` <br> _string_, optional      | Street the enduser lives on |
+| `person.address_history.address_street` <br> _string_, optional      | Street the enduser lived on |
+| `enduser_meta` <br> _object_, optional                               | Any extra, custom fields that you want to include about the enduser |
 
 ## Onboard a Company
 
@@ -193,10 +194,80 @@
    ```plaintext
        curl -X POST "https://playlive.railsbank.com/v1/customer/endusers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"company\": { \"name\": \"Example Company\", \"trading_name\": \"Example Company Ltd.\", \"web_site\": \"www.website.com\", \"industry\": \"Financial Services\", \"listed_on_stock_exchange\": false, \"registration_address\": { \"address_refinement\": \"Floor 15\", \"address_number\": \"20\", \"address_street\": \"The Strand\", \"address_city\": \"London\", \"address_postal_code\": \"SS8 9JH\", \"address_iso_country\": \"GBR\" }, \"directors\": [ { \"date_appointed\": \"1990-01-01\", \"job_title\": \"CEO\", \"is_also_ubo\": false, \"person\": { \"country_of_residence\": [ \"USA\" ], \"pep\": false, \"email\": \"johnsmith@gmail.com\", \"name\": \"John Smith\", \"social_security_number\": \"090606\", \"telephone\": \"+44 98 765 4321\", \"date_of_birth\": \"1981-02-03\", \"nationality\": [ \"American\" ] } } ] } }"
    ```
-
+  - These endusers are businesses that are also your customers if you are a B2B business.
   - If the `trading_address` is different from `registered_address`, you need both (otherwise, just include registration address)
   - If there is a director who holds 10% or more of the stakes, then you must include the `director` details
   - If `pep` details are applicable you must include them
+
+| Attribute                                                                                 | Description |
+|:------------------------------------------------------------------------------------------|:--|
+| `company` <br> _object_, required (for companies)                                         | Information about the company |
+| `company.name` <br> _string_,  required                                                   | The name of the company |
+| `company.trading_name` <br> _string_,  required                                           | The full trading name of the company |
+| `company.corporate_entity_type` <br> _string_,  optional                                  | The type of company, for instance, a non-profit |
+| `company.date_onboarded` <br> _string_, optional                                          | The date the you onboarded the company ad your customer <br> _YYYY-MM-DD_ |
+| `company.eu_vat` <br> _string_, optional                                                  | The Value Added Tax number for a European company |
+| `company.vat` <br> _string_, optional                                                     | The Value Added Tax number for a British company |
+| `company.incorporation_locality` <br> _string_, optional                                  | The country in which the company is incorporated <br>  _ISO 8601 format_ |
+| `company.industry` <br> _string_, optional                                                | The industry the company works within |
+| `company.legal_entry_number` <br> _string_, optional                                      | The legal entity number of the company <br> To be changed to `legal_entity_number` |
+| `company.regulated_financial_service_firm` <br> _boolean_, optional                       | Is the company regulated? <br> _Allowed Values:_ true, false |
+| `company.web_site` <br> _string_, optional                                                | The website URL of the company |
+| `company.type` <br> _string_, optional                                                    | The type of company |
+| `company.type_other` <br> _string_, optional                                              | We have a long list of valid company types. If you receive an error when generating a company due to the `type` being invalid, use this field instead. |
+| `company.tin` <br> _string_, optional                                                     | The Tax Identification Number of the company |
+| `company.registration_number` <br> _string_, optional                                     | The registration number of the company |
+| `company.registration_address` <br> _array of objects_, required                          | The registration address(es) of the company: we use an array incase there are multiple |
+| `company.registration_address.address_city` <br> _string_, required                       | City that enduser is registered in |
+| `company.registration_address.address_iso_country`<br> _string_, required                 | Country code <br>  _ISO 8601 format_ |
+| `company.registration_address.address_number` <br> _string_, required                     | House or building number on street |
+| `company.registration_address.address_postal_code` <br> _string_, required                | Postal or zip code |
+| `company.registration_address.address_refinement` <br> _string_, optional                 | Extra detail, e.g. house name |
+| `company.registration_address.address_region` <br> _string_, required                     | Region in country |
+| `company.registration_address.address_street` <br> _string_, required                     | Street the enduser is registered on |
+| `company.registration_address_history` <br> _array of objects_, optional                  | Previous registration address(es) of the company: we use an array incase there are multiple| |
+| `company.registration_address_history.address_city` <br> _string_, optional               | City that enduser was registered in |
+| `company.registration_address_history.address_iso_country` <br> _string_, optional        | Country code <br>  _ISO 8601 format_ |
+| `company.registration_address_history.address_number` <br> _string_, optional             | House or building number on street |
+| `company.registration_address_history.address_postal_code` <br> _string_, optional        | Postal or zip code |
+| `company.registration_address_history.address_refinement` <br> _string_, optional         | Extra detail, e.g. house name |
+| `company.registration_address_history.address_region` <br> _string_, optional             | Region in country |
+| `company.registration_address_history.address_street` <br> _string_, optional             | Street the enduser was registered on |
+| `company.regulatory_licenses` <br> _array of objects_, optional                           | The regulatory licenses the company holds |
+| `company.regulatory_licenses.regulatory_license_body` <br> _string_, optional             | The issuer of the regulatory license the company holds |
+| `company.regulatory_licenses.regulatory_license_reference_number` <br> _string_, optional | The reference number of the regulatory license the company holds |
+| `company.regulatory_licenses.regulatory_license_type` <br> _string_, optional             | The type of regulatory license the company holds <br> _Allowed Values:_ GB-EMI, GB-API, Other |
+| `company.listed_on_stock_exchange` <br> _boolean_, optional                               | Is the company listed on an exchange? |
+| `company.stock_exchanges` <br> _array of objects_, optional                               | The stock_exchange(s) the company is listed on |
+| `company.stock_exchanges.stock_exchange_name` <br> _string_, optional                     | The name of the stock_exchange |
+| `company.stock_exchanges.stock_exchange_ticker` <br> _string_, optional                   | The ticker of the company on the stock_exchange: an abbreviation used to uniquely identify publicly traded shares of a particular stock on a particular stock market |
+| `company.trading_address` <br> _array of objects_, required                               | The trading address(es) of the company: we use an array incase there are multiple |
+| `company.trading_address.address_city` <br> _string_, required                            | City that enduser trades in |
+| `company.trading_address.address_iso_country`<br> _string_, required                      | Country code <br>  _ISO 8601 format_ |
+| `company.trading_address.address_number` <br> _string_, required                          | House or building number on street |
+| `company.trading_address.address_postal_code` <br> _string_, required                     | Postal or zip code |
+| `company.trading_address.address_refinement` <br> _string_, optional                      | Extra detail, e.g. house name |
+| `company.trading_address.address_region` <br> _string_, required                          | Region in country |
+| `company.trading_address.address_street` <br> _string_, required                          | Street the enduser trades on |
+| `company.trading_address_history` <br> _array of objects_, optional                       | Previous registration address(es) of the company: we use an array incase there are multiple| |
+| `company.trading_address_history.address_city` <br> _string_, optional                    | City that enduser was trading in |
+| `company.trading_address_history.address_iso_country` <br> _string_, optional             | Country code <br>  _ISO 8601 format_ |
+| `company.trading_address_history.address_number` <br> _string_, optional                  | House or building number on street |
+| `company.trading_address_history.address_postal_code` <br> _string_, optional             | Postal or zip code |
+| `company.trading_address_history.address_refinement` <br> _string_, optional              | Extra detail, e.g. house name |
+| `company.trading_address_history.address_region` <br> _string_, optional                  | Region in country |
+| `company.trading_address_history.address_street` <br> _string_, optional                  | Street the enduser was trading on |
+| `company.directors` <br> _array of objects_, required if director exists                  | Information regarding the directors of the company |
+| `company.directors.company` <br> _object_, required if director is a company              | Information about a different company who is a director of the enduser (company) <br> The fields are the same as for a corporate enduser |
+| `company.directors.person` <br> _object_, required if director is a person                | Information about a person who is a director of the company <br> The fields are the same as for an individual enduser (detailed above) |
+| `company.directors.date_appointed` <br> _string_, required                                | Date the director was appointed <br> _YYYY-MM-DD_ |
+| `company.directors.is_also_ubo` <br> _boolean_, required                                  | Is the director an Ultimate Beneficiary Owner <br> _Allowed Values:_ true, false |
+| `company.directors.job_title` <br> _string_, optional                                     | The job title of the director |
+| `company.ultimate_beneficial_owners` <br> _array of objects_, optional                    | Information regarding the UBOs of the company |
+| `company.ultimate_beneficial_owners.company` <br> _object_, optional                      | Information about a different company who is a UBO of the enduser (company) <br> The fields are the same as for a corporate enduser |
+| `company.ultimate_beneficial_owners.person` <br> _object_, optional                       | Information about a person who is a UBO of the company <br> The fields are the same as for an individual enduser (detailed above) |
+| `company.ultimate_beneficial_owners.percentage_holding` <br> _number_, optional           | The percentage of the company that the UBO owns |
+| `enduser_meta` <br> _object_, optional                                                    | Any extra, custom fields that you want to include about the enduser |
 
 ## Fetch an Enduser
 

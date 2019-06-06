@@ -129,7 +129,7 @@
 | `qr_code_content` <br> _string_, optional                           | The string to be encoded in the auto-generated QR code on a physical card. For example, a URL, SMS message, in app action etc. |
 | `name_on_card` <br> _string_, required                              | The card holder's name (to be printed onto the card) <br> _ISO basic Latin Alphabet; up to 21 characters including spaces_ |
 | `card_delivery_name` <br> _string_, required                        | The name of the entity that the card will be addressed to when delivered |
-| `card_delivery_method` <br> _string_, required                      | The shipping method used to deliver the card, if delivery address is outside the UK, it must be `international-mail` <br> _Allowed Values: `dhl`, `standard-first--class`, `international-mail`_ |
+| `card_delivery_method` <br> _string_, required                      | The shipping method used to deliver the card, if delivery address is outside the UK, it must be `international-mail` <br> _Allowed Values_: `dhl`, `standard-first--class`, `international-mail` |
 | `card_carrier_type` <br> _string_, required                         | The carrier type to be used for the card when delivered <br> _Allowed Values: `standard`, `renewal`, `replacement` |
 | `card_delivery_address` <br> _object_, required                     | The address to which the card will be delivered to |
 | `card_delivery_address.address_city` <br> _string_, required        | City that enduser lives in |
