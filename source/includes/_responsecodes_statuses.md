@@ -34,12 +34,14 @@ The statuses for the various parts of Railsbank will normally follow a standardi
 These lists detail the states and an outline of the order things pass through the Railsbank State Machine
 
 ### Sending money, Inter-Ledger, and Convert-and-Send (FX)
-- `transaction-status-missing-data` - Extra data required to complete the transaction. For instance, if the beneficiary does not have enough account information for the transaction to be completed.
-- `transaction-status-pending` - Transaction is being processed.
-- `transaction-status-quarantine` - The transaction has fallen into your customer quarantine queue. You will receive a `type: entity-fw-quarantine` webhook and a `type: transaction-firewall-finished` webhook. **We recommend setting your own firewall rules to prevent any of your transactions falling into the partner quarantine queue and therefore out of your control.**
-- `transaction-status-accepted` - The transaction has been accepted by the Railsbank platform and the funds have left the ledger. YOu will receive a `type: ledger-changed` webhook. Please note that this doesn't mean they have arrived at the beneficiary account: due to regulation, we cannot inform customers when a transaction lands in the partner quarantine queue, so if a transaction is `accepted`, it may be in the partner quarantine and it can be `declined`. If it is declined you will receive a `type: transaction-declined` webhook.
-- `transaction-status-declined` - Transaction has ben declined. When you fetch the transaction you will see the `failure_reasons`, for instance: `insufficient-funds`. You will receive a `type: transaction-declined` webhook.
-[//`transaction-status-approved`]
+| Message                           | Description                              |
+|:----------------------------------|:-----------------------------------------|
+| `transaction-status-missing-data` | Extra data required to complete the transaction. For instance, if the beneficiary does not have enough account information for the transaction to be completed. |
+| `transaction-status-pending`      | Transaction is being processed. We do not have a `/wait` parameter for transactions as they can be processed for a longer period of time. We advise using a webhook to notify you when processing has been completed. |
+| `transaction-status-quarantine`   | The transaction has fallen into your customer quarantine queue. You will receive a `type: entity-fw-quarantine` webhook and a `type: transaction-firewall-finished` webhook. **We recommend setting your own firewall rules to prevent any of your transactions falling into the partner quarantine queue and therefore out of your control.** |
+| `transaction-status-accepted`     | The transaction has been accepted by the Railsbank platform and the funds have left the ledger. YOu will receive a `type: ledger-changed` webhook. Please note that this doesn't mean they have arrived at the beneficiary account: due to regulation, we cannot inform customers when a transaction lands in the partner quarantine queue, so if a transaction is `accepted`, it may be in the partner quarantine and it can be `declined`. If it is declined you will receive a `type: transaction-declined` webhook. |
+| `transaction-status-declined`     | Transaction has ben declined. When you fetch the transaction you will see the `failure_reasons`, for instance: `insufficient-funds`. You will receive a `type: transaction-declined` webhook. |
+
 
 ### Receiving money
 - `transaction-status-error` - There has been an error receiving the transaction.
