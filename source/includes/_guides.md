@@ -1,4 +1,4 @@
-# Guides 
+# Guides
 ## Using these Guides
   - We want you to explore (and give feedback to) Railsbank. The following guides will take you on a step-by-step tour through the most important aspects of the API.
   - In the following examples, we will be using the **PlayLive** environment. To use these examples in a **Play** or **Live** environment, simply change the Authorization `API-Key` to the correct Key and change the base URL to `https://play.railsbank.com` or `https://live.railsbank.com` respectively.
@@ -25,7 +25,7 @@
 ## Onboard an Enduser
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key into the code.**
 
-  ```plaintext
+  ```shell
       --request POST "https://playlive.railsbank.com/v1/customer/endusers"
       --header "Content-Type: application/json"
     	--header "Accept: application/json"
@@ -54,14 +54,14 @@
   ```
   > **Here is the example curl that you can paste directly into your terminal, once again substituting your API-Key in.**
 
-  ```plaintext
+  ```shell
 
     curl -X POST "https://playlive.railsbank.com/v1/customer/endusers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"person\": { \"name\": \"John Smith\", \"email\": \"johnsmith@gmail.com\", \"date_of_birth\": \"1970-11-05\", \"address\": { \"address_refinement\": \"Apartment 42\", \"address_number\": \"29\", \"address_street\": \"Acacia Road\", \"address_city\": \"London\", \"address_postal_code\": \"FX20 7XS\", \"address_iso_country\": \"GBR\" }, \"nationality\": [ \"British\" ], \"country_of_residence\": [ \"GBR\" ]} }"
 
   ```
   > **The API will respond with an `enduser_id`, which you need to save as a variable because we're going to use it to create a ledger and a beneficiary.**
 
-  ```plaintext
+  ```shell
     {
       "enduser_id": "5cf0e7ed-439e-4781-b42c-8d0c0c15adf3"
     }
@@ -74,7 +74,7 @@
 ## Give the Enduser a Ledger
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key and `enduser_id` into the code.**
 
-  ```plaintext
+  ```shell
       --request POST "https://playlive.railsbank.com/v1/customer/ledgers"
       --header "Content-Type: application/json"
       --header "Accept: application/json"
@@ -92,12 +92,12 @@
   ```
   > **Here is the example curl that you can paste directly into your terminal, once again substituting your API-Key and `enduser_id` in.**
 
-  ```plaintext
+  ```shell
       curl -X POST "https://playlive.railsbank.com/v1/customer/ledgers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPi-Key>>" -H "Content-Type: application/json" -d "{ \"holder_id\": \"{{ENDUSER_ID}}\", \"partner_product\": \"PayrNet-GBP-1\", \"asset_class\": \"currency\", \"asset_type\": \"gbp\", \"ledger_type\": \"ledger-type-single-user\", \"ledger_who_owns_assets\": \"ledger-assets-owned-by-me\", \"ledger_primary_use_types\": [\"ledger-primary-use-types-payments\"], \"ledger_t_and_cs_country_of_jurisdiction\": \"GB\"}"
   ```
   > **The API will respond with a `ledger_id`, which you need to save as a variable because we're going to use it to fetch the ledger to get the account details.**
 
-  ```plaintext
+  ```shell
       {
         "ledger_id": "5cf0eb53-085e-4b1a-ab8d-ecd6c3b9bbd1"
       }
@@ -109,19 +109,19 @@
 ## Fetch the ledger
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key and `ledger_id`.**
 
-  ```plaintext
+  ```shell
     --request GET "https://playlive.railsbank.com/v1/customer/ledgers/{{LEDGER_ID}}"
     --header "Accept: application/json"
     --header "Authorization: API-Key <<yourAPI-Key>>"
   ```
   > **Here is the example curl that you can paste directly into your terminal, once again substituting your API-Key and `ledger_id` in.**
 
-  ```plaintext
+  ```shell
       curl -X GET "https://playlive.railsbank.com/v1/customer/ledgers/{{LEDGER_ID}}" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>"
   ```
   > **The API will respond with all the information about the ledger, like so. Note the `uk_account_number` and `uk_sort_code`.**
 
-  ```plaintext
+  ```shell
       {
         "iban": "GB26PAYR040052020323XX",
         "last_modified_at": "2019-05-31T08:52:35.114Z",
@@ -169,7 +169,7 @@
 ## Add a new Beneficiary
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key and `uk_account_number` and `uk_sort_code` in.**
 
-  ```plaintext
+  ```shell
      --request POST "https://playlive.railsbank.com/v1/customer/beneficiaries"
      --header "Content-Type: application/json"
      --header "Accept: application/json"
@@ -203,12 +203,12 @@
   ```
   > **Here is the example curl that you can paste directly into your terminal, once again substituting your API-Key and `uk_account_number` and `uk_sort_code` in.**
 
-  ```plaintext
+  ```shell
   curl -X POST "https://playlive.railsbank.com/v1/customer/beneficiaries" -H "accept: application/json" -H "Authorization: API-Key y6jsxhvf507460eobh03bjjyi68termc#de3vkuuw7ao9u35lrivhs4cpp3ijum5jodrya7xg2nq5k0a9c9drbobz6bsm4che" -H "Content-Type: application/json" -d "{ \"uk_account_number\": \"55631106\", \"uk_sort_code\": \"040004\", \"asset_class\": \"currency\", \"asset_type\": \"gbp\", \"holder_id\": \"5cf0e7ed-439e-4781-b42c-8d0c0c15adf3\", \"person\": { \"name\": \"John Smith\", \"email\": \"johnsmith@gmail.com\", \"date_of_birth\": \"1970-11-05\", \"address\": { \"address_refinement\": \"Apartment 42\", \"address_number\": \"29\", \"address_street\": \"Acacia Road\", \"address_city\": \"London\", \"address_postal_code\": \"FX20 7XS\", \"address_iso_country\": \"GBR\" }, \"nationality\": [ \"British\" ], \"country_of_residence\": [ \"GBR\" ] } }"
   ```
   > **The API will respond with a `beneficiary_id`, which you need to save as a variable because we're going to use it to send money to the beneficiary.**
 
-  ```plaintext
+  ```shell
     {
       "beneficiary_id": "bb8b2428-f94c-41df-8e82-a895ab4d6ac8"
     }
@@ -221,7 +221,7 @@
 ## Send money to the Beneficiary
   > **Here is the example JSON that you can paste into your testing tool. Make sure you substitute your API-Key and `ledger_id` and `beneficiary_id` in.**
 
-  ```plaintext
+  ```shell
     --request POST "https://playlive.railsbank.com/v1/customer/transactions"
     --header "Content-Type: application/json"
     --header "Accept: application/json"
@@ -236,12 +236,12 @@
   ```
   > **Here is the example curl that you can paste directly into your terminal, once again substituting your API-Key and `ledger_id` and `beneficiary_id` in.**
 
-  ```plaintext
+  ```shell
       curl -X POST "https://playlive.railsbank.com/v1/customer/transactions" -H "accept: application/json" -H "Authorization: API-Key y6jsxhvf507460eobh03bjjyi68termc#de3vkuuw7ao9u35lrivhs4cpp3ijum5jodrya7xg2nq5k0a9c9drbobz6bsm4che" -H "Content-Type: application/json" -d "{ \"payment_type\": \"payment-type-UK-FasterPayments\", \"reference\": \"this is a test payment\", \"amount\": \"1\", \"ledger_from_id\": \"{{LEDGER_ID}}\", \"beneficiary_id\": \"{{BENEFICIARY_ID}}\",}"
   ```
   > **The API will respond with a `transactions_id` and the beneficiary should receive the money.**
 
-  ```plaintext
+  ```shell
     {
       "transaction_id": "bb8b2428-f94c-41df-8e82-a895ab4d782"
     }
