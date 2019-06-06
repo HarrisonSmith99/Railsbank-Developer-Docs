@@ -1,4 +1,4 @@
-# ----------- Guides -----------
+# Guides 
 ## Using these Guides
   - We want you to explore (and give feedback to) Railsbank. The following guides will take you on a step-by-step tour through the most important aspects of the API.
   - In the following examples, we will be using the **PlayLive** environment. To use these examples in a **Play** or **Live** environment, simply change the Authorization `API-Key` to the correct Key and change the base URL to `https://play.railsbank.com` or `https://live.railsbank.com` respectively.

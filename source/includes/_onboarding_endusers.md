@@ -383,7 +383,7 @@
   ```
 
   > **Example Response**
-
+  
   ```shell
   {
       "enduser_id": "5c54418e-8bbf-4a66-b54a-XXXXXXXXXXXX"
