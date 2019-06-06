@@ -41,13 +41,13 @@
 
 > **Example Request**
 
-```plaintext
+```shell
   --request POST "https://playlive.railsbank.com/v1/customer/endusers"
   --header "Content-Type: application/json"
 	--header "Accept: application/json"
 	--header "Authorization: API-Key <<yourAPI-Key>>"
 ```
-```plaintext
+```shell
   {
     "person": {
          "name": "John Smith",
@@ -90,7 +90,7 @@
   ```
   > **Example Response**
 
-  ```plaintext
+  ```shell
   {
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
@@ -141,7 +141,7 @@
 
   > **Example Request**
 
-  ```plaintext
+  ```shell
     --request POST "https://playlive.railsbank.com/v1/customer/endusers"
     --header "Content-Type: application/json"
   	--header "Accept: application/json"
@@ -188,14 +188,14 @@
   ```
   > **Example Response**
 
-  ```plaintext
+  ```shell
   {
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
   ```
    > **Example Curl Request**
 
-   ```plaintext
+   ```shell
        curl -X POST "https://playlive.railsbank.com/v1/customer/endusers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"company\": { \"name\": \"Example Company\", \"trading_name\": \"Example Company Ltd.\", \"web_site\": \"www.website.com\", \"industry\": \"Financial Services\", \"listed_on_stock_exchange\": false, \"registration_address\": { \"address_refinement\": \"Floor 15\", \"address_number\": \"20\", \"address_street\": \"The Strand\", \"address_city\": \"London\", \"address_postal_code\": \"SS8 9JH\", \"address_iso_country\": \"GBR\" }, \"directors\": [ { \"date_appointed\": \"1990-01-01\", \"job_title\": \"CEO\", \"is_also_ubo\": false, \"person\": { \"country_of_residence\": [ \"USA\" ], \"pep\": false, \"email\": \"johnsmith@gmail.com\", \"name\": \"John Smith\", \"social_security_number\": \"090606\", \"telephone\": \"+44 98 765 4321\", \"date_of_birth\": \"1981-02-03\", \"nationality\": [ \"American\" ] } } ] } }"
    ```
   - This endpoint allows you to onboard an enduser (your customer) who is a company.
@@ -280,7 +280,7 @@
 
   > **Example Request**
 
-  ```plaintext
+  ```shell
     --request GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"
     --header "Content-Type: application/json"
   	--header "Accept: application/json"
@@ -288,7 +288,7 @@
   ```
   > **Example Response**
 
-  ```plaintext
+  ```shell
   {
     "enduser_id": "5b068bd4-ba1c-4b56-a23c-78e0ad2509c9",
     "enduser_status": "enduser-status-ok",
@@ -336,7 +336,7 @@
   ```
   > **Example Curl Request**
 
-  ```plaintext
+  ```shell
       curl -X GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>"
   ```
 
@@ -361,7 +361,7 @@
 
   > **change** `post_code`
 
-  ```plaintext
+  ```shell
   --request PUT "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"
   --header "Content-Type: application/json"
 	--header "Accept: application/json"
@@ -384,14 +384,14 @@
 
   > **Example Response**
 
-  ```plaintext
+  ```shell
   {
       "enduser_id": "5c54418e-8bbf-4a66-b54a-XXXXXXXXXXXX"
   }
   ```
   > **Example Curl Request**
 
-  ```plaintext
+  ```shell
     curl -X PUT "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \t\"company\": { \t\t\"web_site\": \"www.correct_company_website.com\", \t\"trading_addresses\": [{ \t \"address_refinement\": \"Apartment 5\", \t\t \"address_number\": \"21\", \t\t \"address_street\": \"Flower Road\", \t\t \"address_city\": \"London\", \t\t \"address_region\": \"Greater London\", \t\t \"address_postal_code\": \"WC1R 7XS\", \t\t \"address_iso_country\": \"GB\" }] \t} }"
   ```
 

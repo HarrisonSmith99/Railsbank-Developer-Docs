@@ -1,7 +1,7 @@
 # Cards
 > **Endpoints**
 
-```plaintext
+```shell
   POST /v1/customer/cards
   POST /v1/customer/cards/{{CARD_ID}}/activate
   POST /v1/customer/cards/{{CARD_ID}}/suspend
@@ -22,7 +22,7 @@
   - The **Railsbank Debit Card** solution allows our customers to issue **Mastercard Debit Cards** against Railsbank ledgers with just a few easy API calls, exercising the **Issue Cards** cabability.
   - Cards can be both virtual and physical, and - quite uniquely - a virtual card can be transformed into a physical card while retaining it's **card number (PAN)**.
   - The card design can also be customised to your taste.
-  - Due to the limits of **playLive** and the beauty of the innovation, this cabalility is only available for customers with a **Live API Key**.
+  - Due to the limits of **PlayLive** and the beauty of the innovation, this cabalility is only available for customers with a **Live API Key**.
   - Customers with a **Live API Key** must have also purchased the `Railsbank-Debit-Card-1` partner product.
   - This can easily be done by contacting [support](mailto:support@railsbank.com).
 
@@ -31,7 +31,7 @@
 
 > **Example Request**
 
-  ```plaintext
+  ```shell
     --request POST "https://live.railsbank.com/v1/customer/cards"
     --header "Content-Type: application/json"
     --header "Accept: application/json"
@@ -47,7 +47,7 @@
   ```
   > **Example Response**
 
-  ```plaintext
+  ```shell
   {
     "card_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
   }
@@ -75,7 +75,7 @@
 ## Issue a Physical Card
 > **Example Request**
 
-```plaintext
+```shell
   --request POST "https://live.railsbank.com/v1/customer/cards"
   --header "Content-Type: application/json"
   --header "Accept: application/json"
@@ -103,7 +103,7 @@
 ```
   > **Example Response**
 
-```plaintext
+```shell
 {
   "card_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
 }
@@ -144,8 +144,7 @@
 
   > **Example Request**
 
-  ```plaintext
-  curl
+  ```shell
     --request GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}"
   	--header "Content-Type: application/json"
   	--header "Accept: application/json"
@@ -153,7 +152,7 @@
   ```
   > **Example Response**
 
-  ```plaintext
+  ```shell
   {
     "card_id": "8763b5df-a61c-4f77-9724-41ca9cde3654",
     "card_status": "card-status-created",
@@ -191,7 +190,6 @@
 > **Example Request**
 
   ```shell
-  curl
     --request GET "https://live.railsbank.com/v1/customer/cards/{{card_token}}"
     --header "Content-Type: application/json"
     --header "Accept: application/json"
@@ -200,7 +198,7 @@
 
   > **Example Response**
 
-  ```JSON
+  ```shell
   {
       "ledger_id": "5cda9171-f2e3-4442-82f1-884c877df9e5",
       "card_token": "473894665",
@@ -223,16 +221,14 @@
  > **Example Request**
 
   ```shell
-  curl
     --request GET "https://live.railsbank.com/v1/customer/cards"
     --header "Content-Type: application/json"
     --header "Accept: application/json"
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
 > **Example Response**
-**
 
-  ```JSON
+  ```shell
     {
       "card_id": "bb8b2428-f94c-41df-8e82-a895ab4d6ac8",
       "card_status": "card-status-created",
@@ -262,7 +258,6 @@
   > **Example Request**
 
   ```shell
-  curl
     --request POST "https://live.railsbank.com/v1/customer/cards/{{card_id}}/activate"
     --header "Content-Type: application/json"
     --header "Accept: application/json"
@@ -270,7 +265,7 @@
   ```
   > **Example Response. Note: `status-active`.**
 
-  ```JSON
+  ```shell
   {
       "ledger_id": "5cda9171-f2e3-4442-82f1-884c877df9e5",
       "card_token": "473894665",
@@ -293,7 +288,6 @@
   > **Example Request**
 
   ```shell
-  curl
     --request POST "https://live.railsbank.com/v1/customer/cards/{{card_id}}/suspend"
     --header "Content-Type: application/json"
     --header "Accept: application/json"
@@ -307,7 +301,6 @@
   > **Example Request**
 
   ```shell
-  curl
     --request GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}/pin"
     --header "Content-Type: application/json"
     --header "Accept: application/json"
@@ -315,7 +308,7 @@
   ```
   > **Example Response**
 
-  ```JSON
+  ```shell
   {
     "pin": "2477"
   }
@@ -329,7 +322,7 @@
 ## Get Card Image
   > **Example Request**
 
-  ```json
+  ```shell
     --request GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}/image"
     --header "Content-Type: application/json"
     --header "Accept: application/json"
@@ -337,7 +330,7 @@
   ```
   > **Example Response**
 
-  ```json
+  ```shell
   {
     "temp_card_image_url": "http://40.127.00.174:8002/Paymentology/585256_F347DBA257102343AB5132840D231AB3.png"
   }
