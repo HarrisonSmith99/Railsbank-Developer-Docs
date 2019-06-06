@@ -46,8 +46,7 @@
   --header "Content-Type: application/json"
 	--header "Accept: application/json"
 	--header "Authorization: API-Key <<yourAPI-Key>>"
-```
-```shell
+
   {
     "person": {
          "name": "John Smith",
@@ -88,6 +87,11 @@
     }
   }
   ```
+  > **Example Curl Request**
+
+   ```bash
+     curl -X POST "https://playlive.railsbank.com/v1/customer/endusers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"person\": { \"name\": \"John Smith\", \"email\": \"johnsmith@gmail.com\", \"date_of_birth\": \"1970-11-05\", \"telephone\": \"+44 22 626 2626\", \"address\": { \"address_refinement\": \"Apartment 42\", \"address_number\": \"29\", \"address_street\": \"Acacia Road\", \"address_city\": \"London\", \"address_postal_code\": \"FX20 7XS\", \"address_iso_country\": \"GBR\" }, \"address_history\": [ { \"address_refinement\": \"Apartment 77\", \"address_number\": \"42\", \"address_street\": \"Kirschbaumstraße\", \"address_city\": \"Berlin\", \"address_postal_code\": \"12059\", \"address_iso_country\": \"DE\", \"address_start_date\": \"2000-09-02\", \"address_end_date\": \"2002-12-20\" } ], \"nationality\": [ \"British\" ], \"country_of_residence\": [ \"GBR\" ], \"date_onboarded\": \"2015-11-21\" }, \"enduser_meta\": { \"foo\": \"baa\", \"our_salesforce_reference\": \"http://na1.salesforce.com/5003000000D8cuI\" } }"
+   ```
   > **Example Response**
 
   ```shell
@@ -95,11 +99,7 @@
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
   ```
- > **Example Curl Request**
 
-  ```bash
-    curl -X POST "https://playlive.railsbank.com/v1/customer/endusers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"person\": { \"name\": \"John Smith\", \"email\": \"johnsmith@gmail.com\", \"date_of_birth\": \"1970-11-05\", \"telephone\": \"+44 22 626 2626\", \"address\": { \"address_refinement\": \"Apartment 42\", \"address_number\": \"29\", \"address_street\": \"Acacia Road\", \"address_city\": \"London\", \"address_postal_code\": \"FX20 7XS\", \"address_iso_country\": \"GBR\" }, \"address_history\": [ { \"address_refinement\": \"Apartment 77\", \"address_number\": \"42\", \"address_street\": \"Kirschbaumstraße\", \"address_city\": \"Berlin\", \"address_postal_code\": \"12059\", \"address_iso_country\": \"DE\", \"address_start_date\": \"2000-09-02\", \"address_end_date\": \"2002-12-20\" } ], \"nationality\": [ \"British\" ], \"country_of_residence\": [ \"GBR\" ], \"date_onboarded\": \"2015-11-21\" }, \"enduser_meta\": { \"foo\": \"baa\", \"our_salesforce_reference\": \"http://na1.salesforce.com/5003000000D8cuI\" } }"
-  ```
   - This endpoint allows you to onboard an enduser (your customer) who is an individual.
   - Endpoint: `POST "https://playlive.railsbank.com/v1/customer/endusers"`
   - Make sure, at a minimum, to include the name and full address of the user to ensure they are not blocked by compliance.
@@ -186,6 +186,11 @@
     }
   }
   ```
+  > **Example Curl Request**
+
+  ```shell
+      curl -X POST "https://playlive.railsbank.com/v1/customer/endusers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"company\": { \"name\": \"Example Company\", \"trading_name\": \"Example Company Ltd.\", \"web_site\": \"www.website.com\", \"industry\": \"Financial Services\", \"listed_on_stock_exchange\": false, \"registration_address\": { \"address_refinement\": \"Floor 15\", \"address_number\": \"20\", \"address_street\": \"The Strand\", \"address_city\": \"London\", \"address_postal_code\": \"SS8 9JH\", \"address_iso_country\": \"GBR\" }, \"directors\": [ { \"date_appointed\": \"1990-01-01\", \"job_title\": \"CEO\", \"is_also_ubo\": false, \"person\": { \"country_of_residence\": [ \"USA\" ], \"pep\": false, \"email\": \"johnsmith@gmail.com\", \"name\": \"John Smith\", \"social_security_number\": \"090606\", \"telephone\": \"+44 98 765 4321\", \"date_of_birth\": \"1981-02-03\", \"nationality\": [ \"American\" ] } } ] } }"
+  ```
   > **Example Response**
 
   ```shell
@@ -193,11 +198,6 @@
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
   ```
-   > **Example Curl Request**
-
-   ```shell
-       curl -X POST "https://playlive.railsbank.com/v1/customer/endusers" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"company\": { \"name\": \"Example Company\", \"trading_name\": \"Example Company Ltd.\", \"web_site\": \"www.website.com\", \"industry\": \"Financial Services\", \"listed_on_stock_exchange\": false, \"registration_address\": { \"address_refinement\": \"Floor 15\", \"address_number\": \"20\", \"address_street\": \"The Strand\", \"address_city\": \"London\", \"address_postal_code\": \"SS8 9JH\", \"address_iso_country\": \"GBR\" }, \"directors\": [ { \"date_appointed\": \"1990-01-01\", \"job_title\": \"CEO\", \"is_also_ubo\": false, \"person\": { \"country_of_residence\": [ \"USA\" ], \"pep\": false, \"email\": \"johnsmith@gmail.com\", \"name\": \"John Smith\", \"social_security_number\": \"090606\", \"telephone\": \"+44 98 765 4321\", \"date_of_birth\": \"1981-02-03\", \"nationality\": [ \"American\" ] } } ] } }"
-   ```
   - This endpoint allows you to onboard an enduser (your customer) who is a company.
   - These endusers are businesses that are also your customers if you are a B2B business.
   - Endpoint: `POST "https://playlive.railsbank.com/v1/customer/endusers"`
@@ -286,6 +286,13 @@
   	--header "Accept: application/json"
   	--header "Authorization: API-Key <<yourapikey>>"
   ```
+
+  > **Example Curl Request**
+
+  ```shell
+      curl -X GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>"
+  ```
+
   > **Example Response**
 
   ```shell
@@ -334,11 +341,6 @@
     "screening_monitored_search": false
   }
   ```
-  > **Example Curl Request**
-
-  ```shell
-      curl -X GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>"
-  ```
 
   - This simple API call will return all the information about an enduser: the ledgers they hold, their beneficiaries, their status (they could be in quarantine) and their details.
   - Endpoint: `GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"`
@@ -381,18 +383,17 @@
     	}
     }
   ```
-
-  > **Example Response**
-  
-  ```shell
-  {
-      "enduser_id": "5c54418e-8bbf-4a66-b54a-XXXXXXXXXXXX"
-  }
-  ```
   > **Example Curl Request**
 
   ```shell
     curl -X PUT "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \t\"company\": { \t\t\"web_site\": \"www.correct_company_website.com\", \t\"trading_addresses\": [{ \t \"address_refinement\": \"Apartment 5\", \t\t \"address_number\": \"21\", \t\t \"address_street\": \"Flower Road\", \t\t \"address_city\": \"London\", \t\t \"address_region\": \"Greater London\", \t\t \"address_postal_code\": \"WC1R 7XS\", \t\t \"address_iso_country\": \"GB\" }] \t} }"
+  ```
+  > **Example Response**
+
+  ```shell
+  {
+      "enduser_id": "5c54418e-8bbf-4a66-b54a-XXXXXXXXXXXX"
+  }
   ```
 
   - You only need to include the keys and values that you want to change.
