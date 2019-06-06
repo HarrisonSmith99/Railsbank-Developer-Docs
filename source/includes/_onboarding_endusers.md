@@ -342,8 +342,17 @@
 
   - This simple API call will return all the information about an enduser: the ledgers they hold, their beneficiaries, their status (they could be in quarantine) and their details.
   - Endpoint: `GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"`
-  - The only new fields are: the `date_onboarded` which is the date the enduser was onboarded to Railsbank and `enduser_status` which is the state of the enduser. See the Status Codes section of Response Codes and Statuses to see all possible statuses.
+  - The only new fields are: the `date_onboarded` which is the date the enduser was onboarded to Railsbank and `enduser_status` which is the state of the enduser.
   - Use the `/wait` parameter to instruct the API to wait for (up to 60 seconds) the enduser to be in a REST state - i.e. not `pending`.
+
+### Enduser Statuses
+| Message                       | Description                                  |
+|:------------------------------|:---------------------------------------------|
+| `enduser-status-missing-data` | Extra data is required for the enduser to be created, for instance, the name of the enduser. |
+| `enduser-status-pending`      | The enduser is being processed. To avoid fetching an enduser in this state, use our `/wait` parameter. |
+| `enduser-status-quarantine`   | The enduser has broken a customer firewall rule and fallen into the customer quarantine queue. You will receive a `type: entity-fw-quarantine` webhook and a `type: enduser-firewall-finished` webhook. |
+| `enduser-status-ok`           | The enduser is ready to use: to add ledgers and beneficiaries to and send and receive transactions. You will receive a `type: entity-ready-to-use` webhook and a `type: enduser-firewall-finished` webhook if you have set and firewall rules up. |
+| `enduser-status-declined`     | The enduser has been declined by our system. This is usually because the enduser has broken a partner firewall rule and been rejected by our compliance team, for instance, if they are from a country we don't deal with, like North Korea. |
 
 ## Update an Enduser
   > **Example Request**
