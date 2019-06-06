@@ -87,6 +87,11 @@ These lists detail the states and an outline of the order things pass through th
 | Message                           | Description                              |
 |:----------------------------------|:-----------------------------------------|
 | `card-status-created`             | The card has been successfully created.  |
+| `card-status-suspending`          | The card is in the process of being suspended. Use the `/wait` parameter to wait until it is in a REST state (in this case, suspended). |
+| `card-status-suspended`           | The card has been suspended by the enduser. You will receive a `type: card-suspended` webhook. |
+| `card-status-awaiting-activation` | The card has been created but not activated. You will receive a `type: card-awaiting-activation` webhook. |
+| `card-status-activating`          | The card is being activated. Use the `/wait` parameter to wait until it is in a REST state (in this case, activated). |
+| `card-status-active`              | The card is active and ready to be used. You will receive a `type: card-activated` webhook. |
 | `card-status-failed`              | The card has failed to create for one of the reasons below. You will receive a `type: card-failed` webhook. |
 | Possible failure reasons:         |                                          |
 | `card-not-active`                 | Set when card status is not equal to active. |
@@ -95,8 +100,3 @@ These lists detail the states and an outline of the order things pass through th
 | `card-rules-breached`             | Added if any of the card rules are breached. |
 | `partner-error`                   | When an error occurs on the partner side. |
 | `insufficient-funds`              | When we have insufficient funds in customer card ledger. |
-| `card-status-suspending`          | The card is in the process of being suspended. Use the `/wait` parameter to wait until it is in a REST state (in this case, suspended). |
-| `card-status-suspended`           | The card has been suspended by the enduser. You will receive a `type: card-suspended` webhook. |
-| `card-status-awaiting-activation` | The card has been created but not activated. You will receive a `type: card-awaiting-activation` webhook. |
-| `card-status-activating`          | The card is being activated. Use the `/wait` parameter to wait until it is in a REST state (in this case, activated). |
-| `card-status-active`              | The card is active and ready to be used. You will receive a `type: card-activated` webhook. |
