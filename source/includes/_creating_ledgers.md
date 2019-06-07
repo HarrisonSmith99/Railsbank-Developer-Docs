@@ -280,8 +280,6 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 
 ## Fetch Multiple Ledgers
 
-### Fetch Ledgers by `holder_id` and `partner_product`
-
 > **Example Request**
 
 ```shell
@@ -365,12 +363,19 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 ]
 ```
 `GET /v1/customer/ledgers`
+
 `GET /v1/customer/ledgers?holder_id="{{CUSTOMER_ID}}"`
+
 `GET /v1/customer/ledgers?partner_product="PayrNet-GBP-1"`
+
 `GET /v1/customer/ledgers?holder_id="{{CUSTOMER_ID}}"&partner_product="PayrNet-GBP-1"`
+
 `GET /v1/customer/ledgers?created_at="2018-09-01"`
+
 `GET /v1/customer/ledgers?holder_id="{{CUSTOMER_ID}}"&partner_product="PayrNet-GBP-1"&created_at="2018-09-01"`
+
 `GET /v1/customer/ledgers?last_seen_id="{{LEDGER_ID}}"`
+
 `GET /v1/customer/ledgers?items_per_page=25`
 
 - This endpoint allows you to fetch multiple normal ledgers by the holder of the ledger and/or the partner product of the ledger.
@@ -389,7 +394,7 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 | `created_at` <br> _string_      | The date that the list of ledgers will begin at: any ledger created before this date will not be returned. <br> _YYYY-MM-DD_ |
 | `last_seen_id` <br> _string_    | The ledgers returned will have all been created after the ledger whose UUID is the `last_seen_id` |
 
-### Fetch Recently Modified Ledgers
+## Fetch Recently Modified Ledgers
 > **Example Request**
 
 ```shell
@@ -425,7 +430,7 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 - To fetch their details, iterate over each of them and call `GET v1/customer/ledgers/{{LEDGER_ID}}`.
 - In the response is a field called `next_request_date`, this signifies the timestamp of the first actual changed after the specified `from_date`.
 
-### Fetch Unassigned Ledgers
+## Fetch Unassigned Ledgers
 > **Example Request**
 
 ```shell
