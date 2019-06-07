@@ -139,7 +139,8 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 
 ## Assign a Ledger an IBAN
 
-**Example Request**
+> **Example Request**
+
 ```shell
  --request POST "https://playlive.railsbank.com/v1/customer/ledgers/{{LEDGER_ID}}/assign-iban"
  --header "Content-Type: application/json"
