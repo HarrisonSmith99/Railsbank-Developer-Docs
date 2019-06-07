@@ -57,7 +57,7 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
   "ledger_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
 }
 ```
-- `POST "https://playlive.railsbank.com/v1/customer/ledgers"`
+`POST "https://playlive.railsbank.com/v1/customer/ledgers"`
 - This endpoint issues a ledger, assigning it to a particular holder.
 - When GBP ledgers are issued the `uk_account_number` and `uk_sort_code` are automatically assigned, however, when EUR ledgers are issued, the `iban` and `bic_swift` are not automatically assigned – the `POST v1/customer/ledgers/{{LEDGER_ID}}/assign-iban` endpoint is required to do this.
 - Check out the `ledger_meta` field which allows you to add custom fields to the ledger, for instance, your own account number.
@@ -121,7 +121,7 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
   "ledger_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
 }
 ```
-- `POST "https://playlive.railsbank.com/v1/customer/ledgers/virtual"`
+`POST "https://playlive.railsbank.com/v1/customer/ledgers/virtual"`
 - Virtual Ledgers are ledgers that hold 'virtual' assets.
 - Assets currently supported are gold, goldbloc, and whisky.
 - They are designed to reflect an amount of the physical asset that an enduser might hold - in a vault, for instance.
@@ -154,13 +154,13 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
  "ledger_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
 }
 ```
-- `POST "https://playlive.railsbank.com/v1/customer/ledgers/{{LEDGER_ID}}/assign-iban"`
+`POST "https://playlive.railsbank.com/v1/customer/ledgers/{{LEDGER_ID}}/assign-iban"`
 - EUR ledgers are not automatically assigned an `iban` or `bic_swift` code upon creation.
 - To do so, you need to save the `ledger_id` the API responded with when you created the ledger, wait a couple of seconds for the ledger to be created, before calling this endpoint.
 - Our IBAN is reachable via the SEPA Step2 Payment Scheme.
 - The assigning of the ledger may take a few seconds or it could take a few hours: it is dependent upon the partner bank. Usually, it takes seconds.
 
-## Fetching Ledgers
+## Fetching Individual Ledgers
 > **Example Request: By UUID**
 
 ```shell
@@ -274,3 +274,5 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 | `ledger-status-error`        | The ledger has not been created properly. This occurs if the proposed holder of the ledger is in a state in which they are unable to hold the ledger, for instance, pending. |
 | `ledger-status-ok`           | The ledger is ready to receive and send money to and from. You will receive a `type: entity-ready-to-use` webhook. |
 | `ledger-status-declined`     | The ledger has been declined. For instance if the `"ledger_t_and_cs_country_of_jurisdiction":` is not acceptable to our compliance team. |
+
+## Fetch Multiple Ledgers
