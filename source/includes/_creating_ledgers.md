@@ -57,9 +57,8 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
   "ledger_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
 }
 ```
-
-- This endpoint issues a ledger, assigning it to a particular holder.
 - Endpoint: `POST "https://playlive.railsbank.com/v1/customer/ledgers"`
+- This endpoint issues a ledger, assigning it to a particular holder.
 - When GBP ledgers are issued the `uk_account_number` and `uk_sort_code` are automatically assigned, however, when EUR ledgers are issued, the `iban` and `bic_swift` are not automatically assigned – the `POST v1/customer/ledgers/{{LEDGER_ID}}/assign-iban` endpoint is required to do this.
 - Check out the `ledger_meta` field which allows you to add custom fields to the ledger, for instance, your own account number.
 
@@ -122,6 +121,7 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
   "ledger_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
 }
 ```
+- Endpoint: `POST "https://playlive.railsbank.com/v1/customer/ledgers/virtual"`
 - Virtual Ledgers are ledgers that hold 'virtual' assets.
 - Assets currently supported are gold, goldbloc, and whisky.
 - They are designed to reflect an amount of the physical asset that an enduser might hold - in a vault, for instance.
@@ -136,3 +136,107 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 | `asset_type` <br> _string_, required  | The type of asset being held in the ledger, in this case, the commodity <br> _Allowed Values:_ gold, whisky, goldbloc |
 | `asset_class` <br> _string_, required | The class of the asset being held in the ledger, for virtual ledgers, use `commodity` <br> _Allowed Values:_ commodity, currency |
 | `ledger_meta` <br> _object_, optional | Extra information you want to add to the ledger in the form of custom fields |
+
+## Assign a Ledger an IBAN
+
+**Example Request**
+```shell
+ --request POST "https://playlive.railsbank.com/v1/customer/ledgers/{{LEDGER_ID}}/assign-iban"
+ --header "Content-Type: application/json"
+ --header "Accept: application/json"
+ --header "Authorization: API-Key <<yourAPI-Key>>"
+```
+> **Example Response**
+
+```shell
+{
+ "ledger_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
+}
+```
+- Endpoint: `POST "https://playlive.railsbank.com/v1/customer/ledgers/{{LEDGER_ID}}/assign-iban"`
+- EUR ledgers are not automatically assigned an `iban` or `bic_swift` code upon creation.
+- To do so, you need to save the `ledger_id` the API responded with when you created the ledger, wait a couple of seconds for the ledger to be created, before calling this endpoint.
+- Our IBAN is reachable via the SEPA Step2 Payment Scheme.
+- The assigning of the ledger may take a few seconds or it could take a few hours: it is dependent upon the partner bank. Usually, it takes seconds.
+
+## Fetch a Ledger using its UUID
+**Example Request**
+```shell
+ --request GET "https://playlive.railsbank.com/v1/customer/ledgers/{{LEDGER_ID}}"
+ --header "Content-Type: application/json"
+ --header "Accept: application/json"
+ --header "Authorization: API-Key <<yourAPI-Key>>"
+```
+> **Example Response**
+
+```shell
+  {
+     "iban": "GB47PAYR040052123397XX",
+     "last_modified_at": "2019-06-03T10:26:17.646Z",
+     "ledger_primary_use_types": [
+         "ledger-primary-use-types-payments"
+     ],
+     "ledger_id": "5cf4f5c9-4307-4e51-92c6-098e55ccb8bf",
+     "ledger_holder": {
+         "customer_id": "5b9f7e0a-634b-441f-a755-e42c0b214c69",
+         "company": {
+             "name": "Railsbank"
+         }
+     },
+     "ledger_who_owns_assets": "ledger-assets-owned-by-me",
+     "uk_sort_code": "0400XX",
+     "partner_ref": "payrnet",
+     "holder_id": "5b9f7e0a-634b-441f-a755-e42c0b214c69",
+     "partner_id": "58fe2ce1-b90b-4868-b40d-cb3bc43395d9",
+     "ledger_t_and_cs_country_of_jurisdiction": "GB",
+     "bic_swift": "PAYRGB2LXXX",
+     "ledger_status": "ledger-status-ok",
+     "amount": 0,
+     "created_at": "2019-06-03T10:26:17.646Z",
+     "partner_product": "PayrNet-GBP-1",
+     "partner": {
+         "partner_id": "58fe2ce1-b90b-4868-b40d-cb3bc43395d9",
+         "company": {
+             "name": "PayrNet"
+         },
+         "partner_ref": "payrnet"
+     },
+     "ledger_iban_status": "ledger-iban-status-ok",
+     "asset_type": "gbp",
+     "uk_account_number": "123397XX",
+     "asset_class": "currency",
+     "ledger_type": "ledger-type-omnibus"
+ }
+```
+
+- Fetch a ledger to access the fundamental information about a ledger: the account details and balance.
+- We advise that you add the `/wait` parameter on the end of the url. This means the API will wait until the ledger is in a 'rest' state, meaning it is usable.
+  - This is useful because while the creation of a ledger is practically atomic, the assigning of an IBAN or an account number and sort code takes a couple of seconds. Wait allows them to be assigned before the ledger information is returned to you.
+
+### API-Generated Fields: Fields that you did not input when creating the ledger:
+| Attribute                            | Description                           |
+|:-------------------------------------|:--------------------------------------|
+| `amount` <br> _number_               | The ledger balance                    |
+| `ledger_status` <br> _string_        | The status of the ledger <br> _See below of Allowed Values_ \ |
+| `last_modified_at` <br> _string_     | The timestamp of the last time the ledger was changed in some way - either a PUT was executed to update information or the ledger was credited or debited |
+| `created_at` <br> _string_           | The timestamp of when the ledger was created |
+| `iban` <br> _string_                 | The iban assigned to the ledger       |
+| `bic_swift` <br> _string_            | The SWIFT Business Identifier Code    |
+| `ledger_iban_status` <br> _string_   | The status of the iban <br> _Allowed Values:_ ledger-iban-status-pending, entity-status-unable-to-advance, ledger-iban-status-declined, ledger-iban-status-ok |
+| `uk_account_number` <br> _string_    | The UK account number <br> _eight integers_ |
+| `uk_sort_code` <br> _string_         | The UK sort code - identifies the bank branch <br> _six integers_ |
+| `partner` <br> _object_              | Information regarding the partner the ledger was created by |
+| `partner.partner_ref` <br> _string_  | The reference of the partner          |
+| `partner.partner_id` <br> _string_   | The UUID of the partner               |
+| `partner.company` <br> _object_      | Object to hold the name of the partner |
+| `partner.company.name` <br> _string_ | The name of the Partner               |
+| `ledger_holder` <br> _object_        | Information regarding the ledger holder |
+
+### Ledger Statuses
+| Message                      | Description                                   |
+|:-----------------------------|:----------------------------------------------|
+| `ledger-status-missing-data` | Extra data required to create the ledger. Often, this occurs if the holder of the ledger is missing the data required to generate a ledger. |
+| `ledger-status-pending`      | The ledger is being created. To avoid fetching an ledger in this state, use our `/wait` parameter. |
+| `ledger-status-error`        | The ledger has not been created properly. This occurs if the proposed holder of the ledger is in a state in which they are unable to hold the ledger, for instance, pending. |
+| `ledger-status-ok`           | The ledger is ready to receive and send money to and from. You will receive a `type: entity-ready-to-use` webhook. |
+| `ledger-status-declined`     | The ledger has been declined. For instance if the `"ledger_t_and_cs_country_of_jurisdiction":` is not acceptable to our compliance team. |
