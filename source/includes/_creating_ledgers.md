@@ -228,6 +228,12 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
  }
 ```
 
+- Fetch a ledger to access the fundamental information about a ledger: the account details and balance.
+- We advise that you add the `/wait` parameter on the end of the url. This means the API will wait until the ledger is in a 'rest' state, meaning it is usable.
+  - This is useful because while the creation of a ledger is practically atomic, the assigning of an IBAN or an account number and sort code takes a couple of seconds. Wait allows them to be assigned before the ledger information is returned to you.
+
+### Endpoints
+
 `GET /v1/customer/ledgers/{{ledger_id}}`
 
 - Get a ledger based on its UUID. This will allow you to discover the account details that can be used in the following endpoints.
@@ -239,10 +245,6 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 `GET /v1/customer/ledgers/by-uk-bank-account?uk_account_number={{YOUR_UK_ACCOUNT_NUMBER}}&uk_sort_code={{YOUR_UK_SORT_CODE}}`
 
 - Get a ledger based on its uk account details.
-
-- Fetch a ledger to access the fundamental information about a ledger: the account details and balance.
-- We advise that you add the `/wait` parameter on the end of the url. This means the API will wait until the ledger is in a 'rest' state, meaning it is usable.
-  - This is useful because while the creation of a ledger is practically atomic, the assigning of an IBAN or an account number and sort code takes a couple of seconds. Wait allows them to be assigned before the ledger information is returned to you.
 
 ### New Fields
 
