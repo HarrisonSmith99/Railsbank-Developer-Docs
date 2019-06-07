@@ -215,7 +215,8 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 - We advise that you add the `/wait` parameter on the end of the url. This means the API will wait until the ledger is in a 'rest' state, meaning it is usable.
   - This is useful because while the creation of a ledger is practically atomic, the assigning of an IBAN or an account number and sort code takes a couple of seconds. Wait allows them to be assigned before the ledger information is returned to you.
 
-### API-Generated Fields: Fields that you did not input when creating the ledger:
+### New Fields
+
 | Attribute                            | Description                           |
 |:-------------------------------------|:--------------------------------------|
 | `amount` <br> _number_               | The ledger balance                    |
