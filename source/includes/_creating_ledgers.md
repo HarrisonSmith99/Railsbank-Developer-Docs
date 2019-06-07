@@ -220,7 +220,7 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 | Attribute                            | Description                           |
 |:-------------------------------------|:--------------------------------------|
 | `amount` <br> _number_               | The ledger balance                    |
-| `ledger_status` <br> _string_        | The status of the ledger <br> _See below of Allowed Values_ \ |
+| `ledger_status` <br> _string_        | The status of the ledger <br> _See below of Allowed Values_ |
 | `last_modified_at` <br> _string_     | The timestamp of the last time the ledger was changed in some way - either a PUT was executed to update information or the ledger was credited or debited |
 | `created_at` <br> _string_           | The timestamp of when the ledger was created |
 | `iban` <br> _string_                 | The iban assigned to the ledger       |
