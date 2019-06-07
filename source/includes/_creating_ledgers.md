@@ -323,7 +323,9 @@ Get a ledger based on its uk account details.
 ```
 
 `GET /v1/customer/ledgers/{{LEDGER_ID}}/entries`
+
 `GET /v1/customer/ledgers/{{LEDGER_ID}}/entries?starting_at_date=2018-09-09`
+
 `GET /v1/customer/ledgers/{{LEDGER_ID}}/entries?starting_at_date=2018-09-09`
 
 - This endpoint returns the transactions performed on a given ledger, providing a starting point for generating a statement for a ledger.
