@@ -278,12 +278,83 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 | `ledger-status-ok`           | The ledger is ready to receive and send money to and from. You will receive a `type: entity-ready-to-use` webhook. |
 | `ledger-status-declined`     | The ledger has been declined. For instance if the `"ledger_t_and_cs_country_of_jurisdiction":` is not acceptable to our compliance team. |
 
+## Fetch Ledger Entries
+> **Example Request**
+
+```shell
+ --request GET "https://playlive.railsbank.com/v1/customer/ledgers/{{LEDGER_ID}}/entries"
+ --header "Content-Type: application/json"
+ --header "Accept: application/json"
+ --header "Authorization: API-Key <<yourAPI-Key>>"
+```
+> **Example Response**
+
+```shell
+[
+  {
+    "created_at": "2000-01-01T00:00:00.000Z",
+    "ledger_entry_id": "bb8b2428-f94c-41df-8e82-a895ab4d6ac8",
+    "transaction_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d",
+    "amount": "0",
+    "ledger_entry_type": "debit"
+  },
+  {
+    "created_at": "2000-01-01T00:00:00.000Z",
+    "ledger_entry_id": "8763b5df-a61c-4f77-9724-41ca9cde3654",
+    "transaction_id": "8763b5df-a61c-4f77-9724-41ca9cde3654",
+    "amount": "3",
+    "ledger_entry_type": "credit"
+  },
+  {
+    "created_at": "2000-01-01T00:00:00.000Z",
+    "ledger_entry_id": "c91b339e-57d7-41ea-a805-8966ce8fe4ed",
+    "transaction_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d",
+    "amount": "5",
+    "ledger_entry_type": "credit"
+  },
+  {
+    "created_at": "2000-01-01T00:00:00.000Z",
+    "ledger_entry_id": "bb8b2428-f94c-41df-8e82-a895ab4d6ac8",
+    "transaction_id": "bb8b2428-f94c-41df-8e82-a895ab4d6ac8",
+    "amount": "10",
+    "ledger_entry_type": "credit"
+  }
+]
+```
+
+`GET /v1/customer/ledgers/{{LEDGER_ID}}/entries`
+`GET /v1/customer/ledgers/{{LEDGER_ID}}/entries?starting_at_date=2018-09-09`
+`GET /v1/customer/ledgers/{{LEDGER_ID}}/entries?starting_at_date=2018-09-09`
+
+- This endpoint returns the transactions performed on a given ledger, providing a starting point for generating a statement for a ledger.
+- It returns an array of transactions within the specified time range.
+- For optimal performance, we return limited data about the transactions.
+- Use either the date-based parameters or the id-based parameters, not both.
+- When using parameters, don't place the strings within quotes.
+
+| Parameter                        | Description                               |
+|:---------------------------------|:------------------------------------------|
+| `starting_at_date` <br> _string_ | Any transaction before this date will not be shown in the array <br> _YYYY-MM-DD_ |
+| `to_date` <br> _string_          | Any transactions after this date will not be shown <br> _YYYY-MM-DD_ |
+| `items_per_page` <br> _integer_  | The number of items returned in each page. A hyperlink to the next page will be found in the response headers |
+| `last_seen_id` <br> _string_     | The entries returned will have all been created after the `ledger_entry_id` whose UUID is the `last_seen_id` |
+
+### Ledger Entry Attribute
+
+| Attribute                         | Description                              |
+|:----------------------------------|:-----------------------------------------|
+| `created_at` <br> _string_        | The timestamp of when the transaction was created |
+| `ledger_entry_id` <br> _string_   | The UUID of the particular ledger entry  |
+| `transaction_id` <br> _string_    | The UUID of the transaction that made the entry. Can be fetched using `GET v1/customer/transactions/{{TRANSACTION_ID}}` |
+| `amount` <br> _string_            | The amount credited or debited           |
+| `ledger_entry_type` <br> _string_ | The type of entry <br> _debit or credit_ |
+
 ## Fetch Multiple Ledgers
 
 > **Example Request**
 
 ```shell
- --request GET "https://playlive.railsbank.com/v1/customer/ledgers?holder_id="{{CUSTOMER_ID}}""
+ --request GET "https://playlive.railsbank.com/v1/customer/ledgers?holder_id={{CUSTOMER_ID}}"
  --header "Content-Type: application/json"
  --header "Accept: application/json"
  --header "Authorization: API-Key <<yourAPI-Key>>"
@@ -364,17 +435,17 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 ```
 `GET /v1/customer/ledgers`
 
-`GET /v1/customer/ledgers?holder_id="{{CUSTOMER_ID}}"`
+`GET /v1/customer/ledgers?holder_id={{CUSTOMER_ID}}`
 
-`GET /v1/customer/ledgers?partner_product="PayrNet-GBP-1"`
+`GET /v1/customer/ledgers?partner_product=PayrNet-GBP-1`
 
-`GET /v1/customer/ledgers?holder_id="{{CUSTOMER_ID}}"&partner_product="PayrNet-GBP-1"`
+`GET /v1/customer/ledgers?holder_id={{CUSTOMER_ID}}&partner_product=PayrNet-GBP-1`
 
-`GET /v1/customer/ledgers?created_at="2018-09-01"`
+`GET /v1/customer/ledgers?created_at=2018-09-01`
 
-`GET /v1/customer/ledgers?holder_id="{{CUSTOMER_ID}}"&partner_product="PayrNet-GBP-1"&created_at="2018-09-01"`
+`GET /v1/customer/ledgers?holder_id={{CUSTOMER_ID}}&partner_product=PayrNet-GBP-1&created_at=2018-09-01`
 
-`GET /v1/customer/ledgers?last_seen_id="{{LEDGER_ID}}"`
+`GET /v1/customer/ledgers?last_seen_id={{LEDGER_ID}}`
 
 `GET /v1/customer/ledgers?items_per_page=25`
 
@@ -383,6 +454,8 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 - The response can also be constricted to a particular timeframe or a `last_seen_id`. It can also be paginated to shorten the response time.
 - All parameters are optional - you can simply fetch all the ledgers created using your API-Key in the given environment.
 - At the same time, all parameters can be used. To add a parameter simply use the `&` symbol.
+  - Use either the date-based parameters or the id-based parameters, not both.
+  - When using parameters, don't place the strings within quotes.
 - The response will be an array of ledger objects in the same format as if they had all been fetched individually.
 - The response will be in the same format no matter the number of parameters used.
 
@@ -460,3 +533,81 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 - This endpoint simply fetches the ledgers that do not have a holder.
 - The response will be an array of ledger UUIDs. To fetch their details you will need to iterate over each of them and call `GET v1/customer/ledgers/{{LEDGER_ID}}`.
 - To assign a ledger to a holder, call `POST /v1/customer/ledgers/{ledger_id}/assign` with the `holder_id` in the request body.
+
+## Assign a Ledger to a Holder
+> **Example Request**
+
+```shell
+ --request POST "https://playlive.railsbank.com/v1/customer/ledgers/{{LEDGER_ID}}/assign"
+ --header "Content-Type: application/json"
+ --header "Accept: application/json"
+ --header "Authorization: API-Key <<yourAPI-Key>>"
+
+ {
+  "holder_id": "bb8b2428-f94c-41df-8e82-a895ab4d6ac8"
+}
+```
+> **Example Response**
+
+```shell
+{
+  "ledger_id": "753fa673-66b4-4c94-9ddb-f9f4b5c1e9a3"
+}
+```
+`POST /v1/customer/ledgers/{{LEDGER_ID}}/assign`
+
+- This endpoint allows you to assign an unassigned ledger to a holder.
+- If you try and assign a ledger that already has a holder to a new holder using this endpoint you will receive `"error": "invalid-state-of-entity"`.
+
+## Update a Ledger
+> **Example Request**
+
+```shell
+ --request PUT "https://playlive.railsbank.com/v1/customer/ledgers/{{LEDGER_ID}}"
+ --header "Content-Type: application/json"
+ --header "Accept: application/json"
+ --header "Authorization: API-Key <<yourAPI-Key>>"
+ {
+   "ledger_meta": {
+     "custom_account_number"; "09867594"
+   }
+ }
+```
+> **Example Response**
+
+```shell
+{
+  "ledger_id": "753fa673-66b4-4c94-9ddb-f9f4b5c1e9a3"
+}
+```
+
+`PUT /v1/customer/ledgers/{{LEDGER_ID}}`
+
+- This endpoint allows you to update information on a given ledger.
+- At present, we only allow you to update the metadata on a ledger.
+  - This includes adding new metadata.
+- If you want to update other fields, we recommend closing the ledger and creating a new one.
+
+## Close a Ledger
+> **Example Request**
+
+```shell
+ --request POST "https://playlive.railsbank.com/v1/customer/{{LEDGER_ID}}/close"
+ --header "Content-Type: application/json"
+ --header "Accept: application/json"
+ --header "Authorization: API-Key <<yourAPI-Key>>"
+```
+> **Example Response**
+
+```shell
+{
+  "ledger_id": "753fa673-66b4-4c94-9ddb-f9f4b5c1e9a3"
+}
+```
+`POST /v1/customer/ledgers/{{LEDGER_ID}}/close`
+
+- This endpoint allows you to permanently close a ledger.
+- We do not currently allow the disabling and then reopening of ledgers.
+- This is supported for any type of normal Railsbank ledger: you cannot close virtual ledgers.
+- There's no request body.
+- You can't close multiple ledgers at a time with a single endpoint at present.
