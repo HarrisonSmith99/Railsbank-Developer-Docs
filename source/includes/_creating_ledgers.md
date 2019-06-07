@@ -237,7 +237,7 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 
 ### Endpoints
 
-`GET /v1/customer/ledgers/{{ledger_id}}`
+`GET /v1/customer/ledgers/{{ledger_id}}/wait`
 
 - Get a ledger based on its UUID. This will allow you to discover the account details that can be used in the following endpoints.
 
@@ -279,3 +279,179 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 | `ledger-status-declined`     | The ledger has been declined. For instance if the `"ledger_t_and_cs_country_of_jurisdiction":` is not acceptable to our compliance team. |
 
 ## Fetch Multiple Ledgers
+
+### Fetch Ledgers by `holder_id` and `partner_product`
+
+> **Example Request**
+
+```shell
+ --request GET "https://playlive.railsbank.com/v1/customer/ledgers?holder_id="{{CUSTOMER_ID}}""
+ --header "Content-Type: application/json"
+ --header "Accept: application/json"
+ --header "Authorization: API-Key <<yourAPI-Key>>"
+```
+
+> **Example Response**
+
+```shell
+[
+  {
+      "iban": "GB22PAYR00997700000143",
+      "last_modified_at": "2018-10-04T09:23:27.552Z",
+      "ledger_primary_use_types": [
+          "ledger-primary-use-types-payments"
+      ],
+      "ledger_id": "5bb5dc0f-800e-418d-8642-f3af85fb7e0c",
+      "ledger_holder": {
+          "customer_id": "5b9f7e0a-634b-441f-a755-e42c0b214c69",
+          "company": {
+              "name": "Railsbank"
+          }
+      },
+      "ledger_who_owns_assets": "ledger-assets-owned-by-me",
+      "partner_ref": "payrnet",
+      "holder_id": "5b9f7e0a-634b-441f-a755-e42c0b214c69",
+      "partner_id": "58fe2ce1-b90b-4868-b40d-cb3bc43395d9",
+      "ledger_t_and_cs_country_of_jurisdiction": "GB",
+      "bic_swift": "PAYRGB21",
+      "ledger_status": "ledger-status-ok",
+      "amount": 0.5,
+      "created_at": "2018-10-04T09:23:27.552Z",
+      "partner_product": "PayrNet-EUR-1",
+      "partner": {
+          "partner_id": "58fe2ce1-b90b-4868-b40d-cb3bc43395d9",
+          "company": {
+              "name": "PayrNet"
+          },
+          "partner_ref": "payrnet"
+      },
+      "ledger_iban_status": "ledger-iban-status-ok",
+      "asset_type": "eur",
+      "asset_class": "currency",
+      "ledger_type": "ledger-type-single-user"
+  },
+  {
+      "last_modified_at": "2018-10-16T09:31:05.026Z",
+      "ledger_primary_use_types": [
+          "ledger-primary-use-types-payments"
+      ],
+      "ledger_id": "5bc5afd9-bade-410d-add4-79b4ac56079f",
+      "ledger_holder": {
+          "customer_id": "5b9f7e0a-634b-441f-a755-e42c0b214c69",
+          "company": {
+              "name": "Railsbank"
+          }
+      },
+      "ledger_who_owns_assets": "ledger-assets-owned-by-me",
+      "partner_ref": "payrnet",
+      "holder_id": "5b9f7e0a-634b-441f-a755-e42c0b214c69",
+      "partner_id": "58fe2ce1-b90b-4868-b40d-cb3bc43395d9",
+      "ledger_t_and_cs_country_of_jurisdiction": "GB",
+      "ledger_status": "ledger-status-ok",
+      "amount": 0.1,
+      "created_at": "2018-10-16T09:31:05.026Z",
+      "partner_product": "PayrNet-EUR-1",
+      "partner": {
+          "partner_id": "58fe2ce1-b90b-4868-b40d-cb3bc43395d9",
+          "company": {
+              "name": "PayrNet"
+          },
+          "partner_ref": "payrnet"
+      },
+      "asset_type": "eur",
+      "asset_class": "currency",
+      "ledger_type": "ledger-type-single-user"
+  }
+]
+```
+`GET /v1/customer/ledgers`
+`GET /v1/customer/ledgers?holder_id="{{CUSTOMER_ID}}"`
+`GET /v1/customer/ledgers?partner_product="PayrNet-GBP-1"`
+`GET /v1/customer/ledgers?holder_id="{{CUSTOMER_ID}}"&partner_product="PayrNet-GBP-1"`
+`GET /v1/customer/ledgers?created_at="2018-09-01"`
+`GET /v1/customer/ledgers?holder_id="{{CUSTOMER_ID}}"&partner_product="PayrNet-GBP-1"&created_at="2018-09-01"`
+`GET /v1/customer/ledgers?last_seen_id="{{LEDGER_ID}}"`
+`GET /v1/customer/ledgers?items_per_page=25`
+
+- This endpoint allows you to fetch multiple normal ledgers by the holder of the ledger and/or the partner product of the ledger.
+- For instance, you might want to see all the GBP ledgers held by a particular enduser, or all the EUR ledgers held by the customer.
+- The response can also be constricted to a particular timeframe or a `last_seen_id`. It can also be paginated to shorten the response time.
+- All parameters are optional - you can simply fetch all the ledgers created using your API-Key in the given environment.
+- At the same time, all parameters can be used. To add a parameter simply use the `&` symbol.
+- The response will be an array of ledger objects in the same format as if they had all been fetched individually.
+- The response will be in the same format no matter the number of parameters used.
+
+| Parameter                       | Description                                |
+|:--------------------------------|:-------------------------------------------|
+| `holder_id` <br> _string_       | The holder of the ledgers: an enduser or a customer |
+| `partner_product` <br> _string_ | The partner product the ledgers call under <br> _Allowed Values:_ ExampleBank-GBP-1, ExampleBank-EUR-1, PayrNet-GBP-1, PayrNet-GBP-2, PayrNet-EUR-1 |
+| `items_per_page` <br> _integer_ | The number of items returned in each page. A hyperlink to the next page will be found in the response headers |
+| `created_at` <br> _string_      | The date that the list of ledgers will begin at: any ledger created before this date will not be returned. <br> _YYYY-MM-DD_ |
+| `last_seen_id` <br> _string_    | The ledgers returned will have all been created after the ledger whose UUID is the `last_seen_id` |
+
+### Fetch Recently Modified Ledgers
+> **Example Request**
+
+```shell
+ --request GET "https://playlive.railsbank.com/v1/customer/ledgers/changed?from_date="2018-09-09""
+ --header "Content-Type: application/json"
+ --header "Accept: application/json"
+ --header "Authorization: API-Key <<yourAPI-Key>>"
+```
+> **Example Response**
+
+```shell
+{
+  "next_request_date": "2020-01-01",
+  "ledgers": [
+    {
+      "ledger_id": "bb8b2428-f94c-41df-8e82-a895ab4d6ac8"
+    },
+    {
+      "ledger_id": "8763b5df-a61c-4f77-9724-41ca9cde3654"
+    },
+    {
+      "ledger_id": "8763b5df-a61c-4f77-9724-41ca9cde3654"
+    }
+  ]
+}
+```
+
+`GET /v1/customer/ledgers/changed?from_date="2018-09-09"`
+
+- This endpoint allows you to fetch all the ledgers changed after a specified date, the `from_date` (YYYY-MM-DD).
+- By changed, we mean ledgers that have been debited or credited.
+- The call is optimized to be extremely fast and as such will only respond the UUIDs of the ledgers that have been changed. Not all their details.
+- To fetch their details, iterate over each of them and call `GET v1/customer/ledgers/{{LEDGER_ID}}`.
+- In the response is a field called `next_request_date`, this signifies the timestamp of the first actual changed after the specified `from_date`.
+
+### Fetch Unassigned Ledgers
+> **Example Request**
+
+```shell
+ --request GET "https://playlive.railsbank.com/v1/customer/ledgers/unassigned"
+ --header "Content-Type: application/json"
+ --header "Accept: application/json"
+ --header "Authorization: API-Key <<yourAPI-Key>>"
+```
+> **Example Response**
+
+```shell
+[
+    {
+      "ledger_id": "bb8b2428-f94c-41df-8e82-a895ab4d6ac8"
+    },
+    {
+      "ledger_id": "8763b5df-a61c-4f77-9724-41ca9cde3654"
+    },
+    {
+      "ledger_id": "8763b5df-a61c-4f77-9724-41ca9cde3654"
+    }
+]
+```
+
+`GET /v1/customer/ledgers/unassigned`
+
+- This endpoint simply fetches the ledgers that do not have a holder.
+- The response will be an array of ledger UUIDs. To fetch their details you will need to iterate over each of them and call `GET v1/customer/ledgers/{{LEDGER_ID}}`.
+- To assign a ledger to a holder, call `POST /v1/customer/ledgers/{ledger_id}/assign` with the `holder_id` in the request body.
