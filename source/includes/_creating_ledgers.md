@@ -51,6 +51,7 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 }
 ```
 > **Example Response**
+
 ```shell
 {
   "ledger_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
@@ -77,22 +78,22 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 
 ### Allowed Values: `partner_product`
 
-| Value             | Explanation                                              |
-|:------------------|:---------------------------------------------------------|
-| ExampleBank-GBP-1 | The partner product to be used in **Play** for GBP ledgers |
-| PayrNet-GBP-1     | The default partner product to be used in **PlayLive and Live** for GBP ledgers |
-| PayrNet-GBP-2     | A secondary partner product available to **Live** customers |
-| ExampleBank-EUR-1 | The partner product to be used in **Play** for EUR ledgers |
-| PayrNet-EUR-1     | The default partner product to be used in **PlayLive and Live** for EUR ledgers |
+| Value               | Explanation                                            |
+|:--------------------|:-------------------------------------------------------|
+| `ExampleBank-GBP-1` | The partner product to be used in **Play** for GBP ledgers |
+| `PayrNet-GBP-1`     | The default partner product to be used in **PlayLive and Live** for GBP ledgers |
+| `PayrNet-GBP-2`     | A secondary partner product available to **Live** customers |
+| `ExampleBank-EUR-1` | The partner product to be used in **Play** for EUR ledgers |
+| `PayrNet-EUR-1`     | The default partner product to be used in **PlayLive and Live** for EUR ledgers |
 
 ### Allowed Values: `ledger_primary_use_types`
-| Value                               | Explanation                            |
-|:------------------------------------|:---------------------------------------|
-| ledger-primary-use-types-deposit    | Used to deposit money: there shouldn't be many transactions to and from this type of ledger |
-| ledger-primary-use-types-payments   | Used to make payments                  |
-| ledger-primary-use-types-settlement | Used to make settlement payments       |
-| ledger-primary-use-types-float      | Used as a float account                |
-| ledger-primary-use-types-fees       | Used to pay fees                       |
-| ledger-primary-use-types-investment | Used to make investments               |
-| ledger-primary-use-types-collateral | Used to hold collateral funds          |
-| ledger-primary-use-types-escrow     | Used for funds held by a third party on behalf of two other parties that are in the process of completing a transaction |
+| Value                                 | Explanation                          |
+|:--------------------------------------|:-------------------------------------|
+| `ledger-primary-use-types-deposit`    | Used to deposit money: there shouldn't be many transactions to and from this type of ledger |
+| `ledger-primary-use-types-payments`   | Used to make payments                |
+| `ledger-primary-use-types-settlement` | Used to make settlement payments     |
+| `ledger-primary-use-types-float`      | Used as a float account              |
+| `ledger-primary-use-types-fees`       | Used to pay fees                     |
+| `ledger-primary-use-types-investment` | Used to make investments             |
+| `ledger-primary-use-types-collateral` | Used to hold collateral funds        |
+| `ledger-primary-use-types-escrow`     | Used for funds held by a third party on behalf of two other parties that are in the process of completing a transaction |
