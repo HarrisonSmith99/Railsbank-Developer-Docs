@@ -103,8 +103,8 @@
   - This endpoint allows you to onboard an enduser (your customer) who is an individual.
   - Endpoint: `POST "https://playlive.railsbank.com/v1/customer/endusers"`
   - Make sure, at a minimum, to include the name and full address of the user to ensure they are not blocked by compliance.
-  - Check out the `enduser_meta` field which allows you to add customer fields to the enduser.
-
+  - Check out the `enduser_meta` field which allows you to add custom fields to the enduser.
+### The Individual Enduser Object
 | Attribute                                                            | Description |
 |:---------------------------------------------------------------------|:------|
 | `person` <br> _object_, required (for individuals)                   | Information about individual |
@@ -201,11 +201,11 @@
   - This endpoint allows you to onboard an enduser (your customer) who is a company.
   - These endusers are businesses that are also your customers if you are a B2B business.
   - Endpoint: `POST "https://playlive.railsbank.com/v1/customer/endusers"`
-  - Check out the `enduser_meta` field which allows you to add customer fields to the enduser.
+  - Check out the `enduser_meta` field which allows you to add custom fields to the enduser.
   - If the `trading_address` is different from `registered_address`, you need both (otherwise, just include registration address)
   - If there is a director who holds 10% or more of the stakes, then you must include the `director` details
   - If `pep` details are applicable you must include them
-
+### The Corporate Enduser Object
 | Attribute                                                                                 | Description |
 |:------------------------------------------------------------------------------------------|:--|
 | `company` <br> _object_, required (for companies)                                         | Information about the company |

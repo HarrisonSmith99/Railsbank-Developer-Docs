@@ -7,7 +7,7 @@ There are three environments within Railsbank: **Play,** **PlayLive,** and **Liv
 ## Play
 
   - Our preliminary Sandbox, through which you can test the API with complete freedom.
-  - **Is not** connected to the ouside world; it is a simulation. Therefore, it **costs nothing**, and there is no limit to the number of calls, transactions, or volumes.  
+  - **Is not** connected to the outside world; it is a simulation. Therefore, it **costs nothing**, and there is no limit to the number of calls, transactions, or volumes.  
   -  Can be accessed within minutes.
   - Partners, money, IBANs, account numbers, and sort codes are simulated, however they work in the same way as **PlayLive** and **Live**, with the same endpoints and fields.
   - Allows your developers to integrate into the API with ease.

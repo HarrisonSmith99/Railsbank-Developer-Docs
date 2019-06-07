@@ -2,8 +2,7 @@
 
 > **To authorize, use this code:**
 
-```plaintext
-  curl
+```shell
     --request "<<someAPIrequest>>"
     --header "Content-Type: application/json"
   	--header "Accept: application/json"
