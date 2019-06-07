@@ -77,7 +77,6 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 | `ledger_meta` <br> _object_, optional                             | Extra information you want to add to the ledger in the form of custom fields |
 
 ### Allowed Values: `partner_product`
-
 | Value               | Explanation                                            |
 |:--------------------|:-------------------------------------------------------|
 | `ExampleBank-GBP-1` | The partner product to be used in **Play** for GBP ledgers |
@@ -140,7 +139,6 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 | `ledger_meta` <br> _object_, optional | Extra information you want to add to the ledger in the form of custom fields |
 
 ## Assign a Ledger an IBAN
-
 > **Example Request**
 
 ```shell
@@ -334,6 +332,8 @@ Get a ledger based on its uk account details.
 - Use either the date-based parameters or the id-based parameters, not both.
 - When using parameters, don't place the strings within quotes.
 
+### Parameters
+
 | Parameter                        | Description                               |
 |:---------------------------------|:------------------------------------------|
 | `starting_at_date` <br> _string_ | Any transaction before this date will not be shown in the array <br> _YYYY-MM-DD_ |
@@ -341,7 +341,7 @@ Get a ledger based on its uk account details.
 | `items_per_page` <br> _integer_  | The number of items returned in each page. A hyperlink to the next page will be found in the response headers |
 | `last_seen_id` <br> _string_     | The entries returned will have all been created after the `ledger_entry_id` whose UUID is the `last_seen_id` |
 
-### Ledger Entry Attribute
+### The Ledger Entry Object
 
 | Attribute                         | Description                              |
 |:----------------------------------|:-----------------------------------------|
@@ -352,7 +352,6 @@ Get a ledger based on its uk account details.
 | `ledger_entry_type` <br> _string_ | The type of entry <br> _debit or credit_ |
 
 ## Fetch Multiple Ledgers
-
 > **Example Request**
 
 ```shell
@@ -460,6 +459,8 @@ Get a ledger based on its uk account details.
   - When using parameters, don't place the strings within quotes.
 - The response will be an array of ledger objects in the same format as if they had all been fetched individually.
 - The response will be in the same format no matter the number of parameters used.
+
+### Parameters
 
 | Parameter                       | Description                                |
 |:--------------------------------|:-------------------------------------------|
