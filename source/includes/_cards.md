@@ -280,7 +280,7 @@
   }
   ```
 
-  - A `created` card is cool, but an `activated` is awesome; it has access to global banking.
+  - A `created` card is cool, but an `activated` card is awesome; it has access to global banking.
   - This simple endpoint will **activate** the card.
 
 ## Suspend a Card
