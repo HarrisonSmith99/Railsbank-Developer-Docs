@@ -99,7 +99,7 @@
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
   ```
-  - Endpoint: `POST "https://playlive.railsbank.com/v1/customer/endusers"`
+  - `POST "https://playlive.railsbank.com/v1/customer/endusers"`
   - This endpoint allows you to onboard an enduser (your customer) who is an individual.
   - Make sure, at a minimum, to include the name and full address of the user to ensure they are not blocked by compliance.
   - Check out the `enduser_meta` field which allows you to add custom fields to the enduser.
@@ -197,7 +197,7 @@
       "enduser_id": "5b054129-9139-4300-b40a-2e1154e1edb8"
   }
   ```
-  - Endpoint: `POST "https://playlive.railsbank.com/v1/customer/endusers"`
+  - `POST "https://playlive.railsbank.com/v1/customer/endusers"`
   - This endpoint allows you to onboard an enduser (your customer) who is a company.
   - These endusers are businesses that are also your customers if you are a B2B business.
   - Check out the `enduser_meta` field which allows you to add custom fields to the enduser.
@@ -340,7 +340,7 @@
     "screening_monitored_search": false
   }
   ```
-  - Endpoint: `GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"`
+  - `GET "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"`
   - This simple API call will return all the information about an enduser: the ledgers they hold, their beneficiaries, their status (they could be in quarantine) and their details.
   - The only new fields are: the `date_onboarded` which is the date the enduser was onboarded to Railsbank and `enduser_status` which is the state of the enduser.
   - Use the `/wait` parameter to instruct the API to wait for (up to 60 seconds) the enduser to be in a REST state - i.e. not `pending`.
@@ -393,8 +393,8 @@
       "enduser_id": "5c54418e-8bbf-4a66-b54a-XXXXXXXXXXXX"
   }
   ```
+  - `PUT "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"`
   - This endpoint allows you to update an enduser.
-  - Endpoint: `PUT "https://playlive.railsbank.com/v1/customer/endusers/{{enduser_id}}"`
   - You only need to include the keys and values that you want to change.
   - If the key is a nested, you should include the parent in the request body field. I.e. if you want to update the name of a `person`, you cannot just write `"name": "example_name"`, you must write `"person": {"name": "example_name"}`.
   - Updating a non-existent enduser will return an error `"Invalid enduser id."`
