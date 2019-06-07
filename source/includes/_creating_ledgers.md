@@ -224,7 +224,7 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 | `last_modified_at` <br> _string_     | The timestamp of the last time the ledger was changed in some way - either a PUT was executed to update information or the ledger was credited or debited |
 | `created_at` <br> _string_           | The timestamp of when the ledger was created |
 | `iban` <br> _string_                 | The iban assigned to the ledger       |
-| `bic_swift` <br> _string_            | The SWIFT Business Identifier Code    |
+| `bic_swift` <br> _string_            | The SWIFT Business Identifier Code e.g. PAYRGB21XXX <br> _4 letters (bank code), 2 letters (ISO 3166-1 country code), 2 letters or digits (location code), 3 letters or digits (branch code, optional, 'XXX' for primary office)_ |
 | `ledger_iban_status` <br> _string_   | The status of the iban <br> _Allowed Values:_ ledger-iban-status-pending, entity-status-unable-to-advance, ledger-iban-status-declined, ledger-iban-status-ok |
 | `uk_account_number` <br> _string_    | The UK account number <br> _eight integers_ |
 | `uk_sort_code` <br> _string_         | The UK sort code - identifies the bank branch <br> _six integers_ |
