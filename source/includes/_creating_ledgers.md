@@ -227,7 +227,7 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
      "ledger_type": "ledger-type-omnibus"
  }
 ```
-### Endpoints
+
 `GET /v1/customer/ledgers/{{ledger_id}}`
 - Get a ledger based on its UUID. This will allow you to discover the account details that can be used in the following endpoints.
 `GET /v1/customer/ledgers/by-iban?iban={{YOUR_IBAN}}`
