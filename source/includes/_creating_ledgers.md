@@ -229,13 +229,11 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 ```
 ### Endpoints
 
-| Endpoint                                              | Function             |
-|:------------------------------------------------------|:---------------------|
-| `GET /v1/customer/ledgers/{{ledger_id}}`              | Get a ledger based on its UUID. This will allow you to discover the account details that can be used in the following endpoints. |
-| `GET /v1/customer/ledgers/by-iban?iban={{YOUR_IBAN}}` | Get a ledger based on its IBAN. |
-| `GET /v1/customer/ledgers/by-uk-bank-account?\        |                      |
-uk_account_number={{YOUR_UK_ACCOUNT_NUMBER}}&uk_sort_code={{YOUR_UK_SORT_CODE}}`
-| Get a ledger based on its uk account details. |
+| Endpoint                                                                                                                      | Function |
+|:------------------------------------------------------------------------------------------------------------------------------|:--|
+| `GET /v1/customer/ledgers/{{ledger_id}}`                                                                                      | Get a ledger based on its UUID. This will allow you to discover the account details that can be used in the following endpoints. |
+| `GET /v1/customer/ledgers/by-iban?iban={{YOUR_IBAN}}`                                                                         | Get a ledger based on its IBAN. |
+| `GET /v1/customer/ledgers/by-uk-bank-account?uk_account_number={{YOUR_UK_ACCOUNT_NUMBER}}&uk_sort_code={{YOUR_UK_SORT_CODE}}` | Get a ledger based on its uk account details. |
 
 - Fetch a ledger to access the fundamental information about a ledger: the account details and balance.
 - We advise that you add the `/wait` parameter on the end of the url. This means the API will wait until the ledger is in a 'rest' state, meaning it is usable.
@@ -269,5 +267,3 @@ uk_account_number={{YOUR_UK_ACCOUNT_NUMBER}}&uk_sort_code={{YOUR_UK_SORT_CODE}}`
 | `ledger-status-error`        | The ledger has not been created properly. This occurs if the proposed holder of the ledger is in a state in which they are unable to hold the ledger, for instance, pending. |
 | `ledger-status-ok`           | The ledger is ready to receive and send money to and from. You will receive a `type: entity-ready-to-use` webhook. |
 | `ledger-status-declined`     | The ledger has been declined. For instance if the `"ledger_t_and_cs_country_of_jurisdiction":` is not acceptable to our compliance team. |
-
-# Fetch
