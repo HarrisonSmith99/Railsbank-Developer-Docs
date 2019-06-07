@@ -68,7 +68,7 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 |:------------------------------------------------------------------|:---------|
 | `holder_id` <br> _string_, required                               | The UUID of the holder of the ledger, either an `enduser_id` or the `customer_id` |
 | `asset_class` <br> _string_, required                             | The class of the asset being held in the ledger, for a normal GBP or EUR ledger, use `currency` <br> _Allowed Values:_ commodity, currency |
-| `asset_type` <br> _string_, required                              | The type of asset being held in the ledger, for a normal ledger this means the currency <br> _Allowed Values:_ gbp, eur, aud, chf, cad, sek, usd, nok, nzd, jpy, gold, goldbloc, whisky |
+| `asset_type` <br> _string_, required                              | The type of asset being held in the ledger, for a normal ledger this means the currency <br> _Allowed Values:_ gbp, eur, aud, chf, cad, sek, usd, nok, nzd, jpy |
 | `partner_product` <br> _string_, required                         | The partner product of the ledger being created: this allows us to call the correct partner for issuing the chosen asset <br> _See below for Allowed Values_ |
 | `ledger_type` <br> _string_, required                             | The type of ledger being created <br> _Allowed Values:_ ledger-type-single-user, ledger-type-omnibus |
 | `ledger_primary_use_types` <br> _array of strings_, required      | What the ledger is going to be used for. <br> _See below for Allowed Values_ Can have multiple purposes |
@@ -97,3 +97,42 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 | `ledger-primary-use-types-investment` | Used to make investments             |
 | `ledger-primary-use-types-collateral` | Used to hold collateral funds        |
 | `ledger-primary-use-types-escrow`     | Used for funds held by a third party on behalf of two other parties that are in the process of completing a transaction |
+
+## Issue a Virtual Ledger
+> **Example Request**
+
+```shell
+  --request POST "https://playlive.railsbank.com/v1/customer/ledgers/virtual"
+  --header "Content-Type: application/json"
+	--header "Accept: application/json"
+	--header "Authorization: API-Key <<yourAPI-Key>>"
+  {
+  "asset_class": "commodity",
+  "asset_type": "gold",
+  "holder_id": "c91b339e-57d7-41ea-a805-8966ce8fe4ed",
+  "ledger_meta": {
+    "foo": "bar"
+  }
+}
+```
+> **Example Response**
+
+```shell
+{
+  "ledger_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
+}
+```
+- Virtual Ledgers are ledgers that hold 'virtual' assets.
+- Assets currently supported are gold, goldbloc, and whisky.
+- They are designed to reflect an amount of the physical asset that an enduser might hold - in a vault, for instance.
+- The assets can be manually credited and debited onto the ledgers.
+- You can move the assets between virual ledgers using the inter-ledger function.
+- You cannot convert assets on virtual ledgers into real assets on real ledgers.
+
+### The Virtual Ledger Object
+| Attribute                             | Description                          |
+|:--------------------------------------|:-------------------------------------|
+| `holder_id` <br> _string_, required   | The UUID of the holder of the ledger, either an `enduser_id` or the `customer_id` |
+| `asset_type` <br> _string_, required  | The type of asset being held in the ledger, in this case, the commodity <br> _Allowed Values:_ gold, whisky, goldbloc |
+| `asset_class` <br> _string_, required | The class of the asset being held in the ledger, for virtual ledgers, use `commodity` <br> _Allowed Values:_ commodity, currency |
+| `ledger_meta` <br> _object_, optional | Extra information you want to add to the ledger in the form of custom fields |
