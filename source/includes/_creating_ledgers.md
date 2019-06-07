@@ -229,11 +229,11 @@ PUT /v1/customer/ledgers/{{LEDGER_ID}}
 ```
 ### Endpoints
 `GET /v1/customer/ledgers/{{ledger_id}}`
-  - Get a ledger based on its UUID. This will allow you to discover the account details that can be used in the following endpoints.
+- Get a ledger based on its UUID. This will allow you to discover the account details that can be used in the following endpoints.
 `GET /v1/customer/ledgers/by-iban?iban={{YOUR_IBAN}}`
-  - Get a ledger based on its IBAN.
+- Get a ledger based on its IBAN.
 `GET /v1/customer/ledgers/by-uk-bank-account?uk_account_number={{YOUR_UK_ACCOUNT_NUMBER}}&uk_sort_code={{YOUR_UK_SORT_CODE}}`
-  - Get a ledger based on its uk account details.
+- Get a ledger based on its uk account details.
 
 - Fetch a ledger to access the fundamental information about a ledger: the account details and balance.
 - We advise that you add the `/wait` parameter on the end of the url. This means the API will wait until the ledger is in a 'rest' state, meaning it is usable.
