@@ -37,7 +37,7 @@
 
   - Please note that the `name` (or `trading name` in the case of a company) of your enduser has a 50 character maximum limit.
 
-## Onboard a Private Individual
+## Onboard an Individual Enduser
 
 > **Example Request**
 
@@ -140,7 +140,7 @@
 | `person.address_history.address_street` <br> _string_, optional      | Street the enduser lived on |
 | `enduser_meta` <br> _object_, optional                               | Any extra, custom fields that you want to include about the enduser |
 
-## Onboard a Company
+## Onboard a Corporate Enduser
 
   > **Example Request**
 
