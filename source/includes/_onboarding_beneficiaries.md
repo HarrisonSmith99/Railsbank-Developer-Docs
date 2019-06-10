@@ -2,7 +2,6 @@
 > **Endpoints**
 
 ```shell
-
 POST /v1/customer/beneficiaries
 POST /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts
 GET /v1/customer/beneficiaries/{{BENEFICIARY_ID}}
@@ -91,8 +90,8 @@ PUT /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts/{{ACCOUNT_ID}}/make-d
 | `holder_id` <br> _string_, required                                                    | The UUID of the holder of the beneficiary, either an `enduser_id` or the `customer_id` |
 | `asset_class` <br> _string_, required                                                  | Used for GBP and EUR beneficiaries. The class of the asset being held in the account, for a normal bank account use `currency` <br> _Allowed Values:_ commodity, currency |
 | `asset_type` <br> _string_, required                                                   | Used for GBP and EUR beneficiaries. The type of asset being held in the account, for a normal account this means the currency <br> _Allowed Values:_ gbp, eur, aud, chf, cad, sek, usd, nok, nzd, jpy |
-| `bank_country` <br> _string_, optional                                                 | Used for GBP and EUR beneficiaries. The country in which the beneficiary's bank account is held. |
-| `bank_name` <br> _string_, optional                                                    | Used for GBP and EUR beneficiaries. The name of the bank holding the beneficiary account. |
+| `bank_country` <br> _string_, optional                                                 | The country in which the beneficiary's bank account is held. |
+| `bank_name` <br> _string_, optional                                                    | The name of the bank holding the beneficiary account. |
 | `uk_account_number` <br> _string_, required for GBP beneficiaries                      | The account number of the beneficiary account <br> _Eight integers_ |
 | `uk_sort_code` <br> _string_, required for GBP beneficiaries                           | The sort code of the beneficiary account. Identifies the bank and the branch <br> _Six integers_ |
 | `iban` <br> _string_, required for EUR beneficiaries                                   | The IBAN of the beneficiary account |
@@ -228,8 +227,8 @@ PUT /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts/{{ACCOUNT_ID}}/make-d
 | `bic_swift` <br> _string_, required for EUR beneficiaries                                 | The SWIFT Branch Identifier Code of the beneficiary account |
 | `default_account` <br> _object_, required for non-GBP/EUR beneficiaries                   | The account to which funds will be sent |
 | `default_account.account_number` <br> _string_, required                                  | The account number of the beneficiary account |
-| `default_account.asset_class` <br> _string_, required                                     | Used for GBP and EUR beneficiaries. The class of the asset being held in the account, for a normal bank account use `currency` <br> _Allowed Values:_ commodity, currency |
-| `default_account.asset_type` <br> _string_, required                                      | Used for GBP and EUR beneficiaries. The type of asset being held in the account, for a normal account this means the currency <br> _Allowed Values:_ gbp, eur, aud, chf, cad, sek, usd, nok, nzd, jpy |
+| `default_account.asset_class` <br> _string_, required                                     | The class of the asset being held in the account, for a normal bank account use `currency` <br> _Allowed Values:_ commodity, currency |
+| `default_account.asset_type` <br> _string_, required                                      | The type of asset being held in the account, for a normal account this means the currency <br> _Allowed Values:_ gbp, eur, aud, chf, cad, sek, usd, nok, nzd, jpy |
 | `default_account.bank_code` <br> _string_, required                                       | The bank code of the beneficiary account. Allows us to identify the bank and branch |
 | `default_account.bank_code_type` <br> _string_, required                                  | The type of bank code of the beneficiary account. <br> _Allowed Values:_ routing-number, aba, sort-code, zengin-code, bsb |
 | `default_account.bank_country` <br> _string_, required                                    | The country in which the beneficiary's bank account is held. |
@@ -393,3 +392,49 @@ PUT /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts/{{ACCOUNT_ID}}/make-d
 | `beneficiary-status-quarantine`   | The beneficiary has broken a customer firewall rule and fallen into the customer quarantine queue. You will receive a `type: entity-fw-quarantine` webhook and a `type: beneficiary-firewall-finished` webhook. |
 | `beneficiary-status-ok`           | The beneficiary is ready to receive transactions. You will receive a `type: entity-ready-to-use` webhook and a `type: beneficiary-firewall-finished` webhook if you have set and firewall rules up. |
 | `beneficiary-status-declined`     | The beneficiary has been declined by our system. This is usually because the beneficiary has broken a partner firewall rule and been rejected by our compliance team, for instance, if they are from a country we don't deal with, like North Korea. |
+
+## Add an Beneficiary Account
+> **Example Request EUR Account**
+
+```shell
+{
+  "iban": "GB4402005678901234567890",
+  "account_number": "45564658",
+  "bank_country": "GB",
+  "bank_code": "45564658",
+  "bank_name": "Barclays",
+  "bic_swift": "SPSRSKBAXXX",
+  "asset_type": "eur",
+  "asset_class": "currency",
+  "bank_code_type": "sort-code"
+}
+```
+
+> **Example Response**
+
+```shell
+{
+  "account_id": "bb8b2428-f94c-41df-8e82-a895ab4d6ac8"
+}
+```
+
+`POST "https://playlive.railsbank.com/v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts"`
+
+- We understand that often, your beneficiaries will have multiple bank accounts, perhaps even in multiple currencies.
+Use this endpoint to add an account to a beneficiary.
+- You don't need to specify that this will be the default account – if it will be – because there is a separate endpoint for that.
+  - If you are unsure of the required account details for a **convert-and-send** transaction, refer to [this helpful guide](https://www.currencycloud.com/support/payment-guides/) and note that we use the **Priority Payment** method.
+
+### The Account Object
+
+| Attribute                                                              | Description |
+|:-----------------------------------------------------------------------|:----|
+| `account_number` <br> _string_, required                               | The account number of the beneficiary account |
+| `asset_class` <br> _string_, required                                  | The class of the asset being held in the account, for a normal bank account use `currency` <br> _Allowed Values:_ commodity, currency |
+| `asset_type` <br> _string_, required                                   | The type of asset being held in the account, for a normal account this means the currency <br> _Allowed Values:_ gbp, eur, aud, chf, cad, sek, usd, nok, nzd, jpy |
+| `bank_code` <br> _string_, required                                    | The bank code of the beneficiary account. Allows us to identify the bank and branch |
+| `bank_code_type` <br> _string_, required                               | The type of bank code of the beneficiary account. <br> _Allowed Values:_ routing-number, aba, sort-code, zengin-code, bsb |
+| `bank_country` <br> _string_, required                                 | The country in which the beneficiary's bank account is held. |
+| `bank_name` <br> _string_, optional                                    | The name of the bank in which the beneficiary's bank account is held. |
+| `iban` <br> _string_, required for convert-and-send if applicable      | The IBAN of the beneficiary account |
+| `bic_swift` <br> _string_, required for convert-and-send if applicable | The SWIFT Branch Identifier Code of the beneficiary account |
