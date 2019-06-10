@@ -1,4 +1,4 @@
-# Beneficiaries
+# Onboarding Beneficiaries
 - A **beneficiary** is an entity who *holds* an account to which money is sent to from a Railsbank ledger.
 - A beneficiary can either be: a **person** or a **company**
 - Beneficiaries are be held by either an **enduser** or the **customer**.
