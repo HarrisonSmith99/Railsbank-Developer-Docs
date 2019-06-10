@@ -397,6 +397,12 @@ PUT /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts/{{ACCOUNT_ID}}/make-d
 > **Example Request EUR Account**
 
 ```shell
+
+--request POST "https://playlive.railsbank.com/v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts"
+--header "Content-Type: application/json"
+--header "Accept: application/json"
+--header "Authorization: API-Key <<yourapikey>>"
+
 {
   "iban": "GB4402005678901234567890",
   "account_number": "45564658",
