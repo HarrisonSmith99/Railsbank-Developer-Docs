@@ -21,6 +21,7 @@ includes:
   - endpoints
   - onboarding_endusers
   - creating_ledgers
+  - onboarding_beneficiaries
   - cards
 
 toc_footers:

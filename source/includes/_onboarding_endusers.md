@@ -128,7 +128,9 @@
 | `person.address.address_refinement` <br> _string_, optional          | Extra detail, e.g. house name |
 | `person.address.address_region` <br> _string_, required              | Region in country |
 | `person.address.address_street` <br> _string_, required              | Street the enduser lives on |
-| `person.address_history` <br> _object_, optional                     | Previous address information |
+| `person.address_history` <br> _array of objects_, optional           | Previous address information. Can include multiple addresses in an array |
+| `person.address_history.address_start_date` <br> _string_, optional  | Date at which the person began living at the address |
+| `person.address_history.address_end_date` <br> _string_, optional    | Date at which the person stopped living at the address |
 | `person.address_history.address_city` <br> _string_, optional        | City that enduser lived in |
 | `person.address_history.address_iso_country` <br> _string_, optional | Country code <br>  _ISO 8601 format_ |
 | `person.address_history.address_number` <br> _string_, optional      | House or building number on street |
@@ -236,6 +238,8 @@
 | `company.registration_address.address_region` <br> _string_, required                     | Region in country |
 | `company.registration_address.address_street` <br> _string_, required                     | Street the enduser is registered on |
 | `company.registration_address_history` <br> _array of objects_, optional                  | Previous registration address(es) of the company: we use an array incase there are multiple| |
+| `company.registration_address_history.address_start_date` <br> _string_, optional         | Date the company began trading for the address. <br> _YYYY-MM-DD_ |
+| `company.registration_address_history.address_end_date` <br> _string_, optional           | Date the company stopped trading for the address. <br> _YYYY-MM-DD_ |
 | `company.registration_address_history.address_city` <br> _string_, optional               | City that enduser was registered in |
 | `company.registration_address_history.address_iso_country` <br> _string_, optional        | Country code <br>  _ISO 8601 format_ |
 | `company.registration_address_history.address_number` <br> _string_, optional             | House or building number on street |
@@ -259,7 +263,9 @@
 | `company.trading_address.address_refinement` <br> _string_, optional                      | Extra detail, e.g. house name |
 | `company.trading_address.address_region` <br> _string_, required                          | Region in country |
 | `company.trading_address.address_street` <br> _string_, required                          | Street the enduser trades on |
-| `company.trading_address_history` <br> _array of objects_, optional                       | Previous registration address(es) of the company: we use an array incase there are multiple| |
+| `company.trading_address_history` <br> _array of objects_, optional                       | Previous registration address(es) of the company: we use an array incase there are multiple |
+| `company.trading_address_history.address_start_date` <br> _string_, optional              | Date the company began trading for the address. <br> _YYYY-MM-DD_ |
+| `company.trading_address_history.address_end_date` <br> _string_, optional                | Date the company stopped trading for the address. <br> _YYYY-MM-DD_ |
 | `company.trading_address_history.address_city` <br> _string_, optional                    | City that enduser was trading in |
 | `company.trading_address_history.address_iso_country` <br> _string_, optional             | Country code <br>  _ISO 8601 format_ |
 | `company.trading_address_history.address_number` <br> _string_, optional                  | House or building number on street |
