@@ -1,4 +1,18 @@
 # Onboarding Beneficiaries
+> **Endpoints**
+
+```shell
+
+POST /v1/customer/beneficiaries
+POST /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts
+GET /v1/customer/beneficiaries/{{BENEFICIARY_ID}}
+GET /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts
+GET /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts/{{ACCOUNT_ID}}
+PUT /v1/customer/beneficiaries/{{BENEFICIARY_ID}}
+PUT /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts/{{ACCOUNT_ID}}
+PUT /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts/{{ACCOUNT_ID}}/make-default
+````
+
 - A **beneficiary** is an entity who *holds* an account to which money is sent to from a Railsbank ledger.
 - A beneficiary can either be: a **person** or a **company**
 - Beneficiaries are be held by either an **enduser** or the **customer**.
@@ -298,7 +312,7 @@
 > **Example Request**
 
 ```shell
-  --request GET "https://playlive.railsbank.com/v1/customer/beneficiaries{{BENEFICIARY_ID}}"
+  --request GET "https://playlive.railsbank.com/v1/customer/beneficiaries/{{BENEFICIARY_ID}}"
   --header "Content-Type: application/json"
   --header "Accept: application/json"
   --header "Authorization: API-Key <<yourapikey>>"
@@ -351,7 +365,7 @@
     }
 }
 ```
-`GET "https://playlive.railsbank.com/v1/customer/beneficiaries{{BENEFICIARY_ID}}"`
+`GET "https://playlive.railsbank.com/v1/customer/beneficiaries/{{BENEFICIARY_ID}}"`
 
 - Fetching a beneficiary is much like fetching anything else in the API.
 - We use a data-enhancing service to add extra detail to accounts: for instance, you will see that GBP accounts have an `iban` which we have determined using the data you provided when creating the beneficiary.
