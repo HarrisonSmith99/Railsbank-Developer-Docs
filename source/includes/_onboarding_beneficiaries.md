@@ -293,3 +293,89 @@
 | `company.ultimate_beneficial_owners.person` <br> _object_, optional                       | Information about a person who is a UBO of the company <br> The fields are the same as for an individual enduser (detailed above) |
 | `company.ultimate_beneficial_owners.percentage_holding` <br> _number_, optional           | The percentage of the company that the UBO owns |
 | `enduser_meta` <br> _object_, optional                                                    | Any extra, custom fields that you want to include about the enduser |
+
+## Fetch a Beneficiary
+> **Example Request**
+
+```shell
+  --request GET "https://playlive.railsbank.com/v1/customer/beneficiaries{{BENEFICIARY_ID}}"
+  --header "Content-Type: application/json"
+  --header "Accept: application/json"
+  --header "Authorization: API-Key <<yourapikey>>"
+```
+
+> **Example Response**
+
+```shell
+{
+    "iban": "GB69TRWI231470134598XX",
+    "last_modified_at": "2019-06-03T14:24:04.347Z",
+    "beneficiary_status": "beneficiary-status-ok",
+    "uk_sort_code": "2314XX",
+    "company": {
+        "name": "Railsbank Technology Limited",
+        "registration_address": {
+            "address_refinement": "Transferwise",
+            "address_number": "56",
+            "address_street": "Shoreditch High Street",
+            "address_city": "London",
+            "address_postal_code": "E1 6JJ",
+            "address_iso_country": "GB"
+        }
+    },
+    "screening_monitored_search": false,
+    "holder_id": "5b9f7e0a-634b-441f-a755-e42c0b214c69",
+    "beneficiary_holder": {
+        "customer_id": "5b9f7e0a-634b-441f-a755-e42c0b214c69",
+        "company": {
+            "name": "Railsbank"
+        }
+    },
+    "bic_swift": "TRWIGB22XXX",
+    "created_at": "2019-06-03T14:24:04.347Z",
+    "beneficiary_id": "5cf52d84-04ce-4de6-8f35-bc11295afd3b",
+    "asset_type": "gbp",
+    "uk_account_number": "134598XX",
+    "asset_class": "currency",
+    "default_account": {
+        "iban": "GB69TRWI231470134598XX",
+        "last_modified_at": "2019-06-03T14:24:04.347Z",
+        "account_number": "134598XX",
+        "bank_code": "2314XX",
+        "bic_swift": "TRWIGB22XXX",
+        "created_at": "2019-06-03T14:24:04.347Z",
+        "asset_type": "gbp",
+        "asset_class": "currency",
+        "account_id": "5cf52d84-0faa-4104-bf6c-395896f3b04b",
+        "bank_code_type": "sort-code"
+    }
+}
+```
+`GET "https://playlive.railsbank.com/v1/customer/beneficiaries{{BENEFICIARY_ID}}"`
+
+- Fetching a beneficiary is much like fetching anything else in the API.
+- We use a data-enhancing service to add extra detail to accounts: for instance, you will see that GBP accounts have an `iban` which we have determined using the data you provided when creating the beneficiary.
+- If extra data is required for the beneficiary to be created successfully, you will see it in the `missing_data` object.
+- We recommend using the `/wait` parameter to get the API to respond with the beneficiary in a REST state - to wait until the beneficiary is not in `status-pending` due to being processed by the API.
+
+### New Fields
+
+| Attribute                              | Description                         |
+|:---------------------------------------|:------------------------------------|
+| `beneficiary_holder` <br> _object_     | Information about the holder of the beneficiary |
+| `beneficiary_id` <br> _string_         | The UUID of the beneficiary         |
+| `beneficiary_status` <br> _string_     | The state of the beneficiary        |
+| `created_at` <br> _string_             | The timestamp of when the beneficiary was created |
+| `entity_type` <br> _string_            | The type of beneficiary <br> _Allowed Values:_ person, company |
+| `last_modified_at` <br> _string_       | The timestamp of when the beneficiary was last modified |
+| `missing_data` <br> _array of strings_ | Information regarding fields required for the beneficiary to be usable |
+
+
+### Beneficiary Statuses
+| Message                           | Description                              |
+|:----------------------------------|:-----------------------------------------|
+| `beneficiary-status-missing-data` | Extra data is required for the beneficiary to be created, for instance, the `uk_sort_code` of the beneficiary account. |
+| `beneficiary-status-pending`      | The beneficiary is being processed. To avoid fetching an beneficiary in this state, use our `/wait` parameter. |
+| `beneficiary-status-quarantine`   | The beneficiary has broken a customer firewall rule and fallen into the customer quarantine queue. You will receive a `type: entity-fw-quarantine` webhook and a `type: beneficiary-firewall-finished` webhook. |
+| `beneficiary-status-ok`           | The beneficiary is ready to receive transactions. You will receive a `type: entity-ready-to-use` webhook and a `type: beneficiary-firewall-finished` webhook if you have set and firewall rules up. |
+| `beneficiary-status-declined`     | The beneficiary has been declined by our system. This is usually because the beneficiary has broken a partner firewall rule and been rejected by our compliance team, for instance, if they are from a country we don't deal with, like North Korea. |

@@ -71,7 +71,6 @@ These lists detail the states and an outline of the order things pass through th
 | `beneficiary-status-quarantine`   | The beneficiary has broken a customer firewall rule and fallen into the customer quarantine queue. You will receive a `type: entity-fw-quarantine` webhook and a `type: beneficiary-firewall-finished` webhook. |
 | `beneficiary-status-ok`           | The beneficiary is ready to receive transactions. You will receive a `type: entity-ready-to-use` webhook and a `type: beneficiary-firewall-finished` webhook if you have set and firewall rules up. |
 | `beneficiary-status-declined`     | The beneficiary has been declined by our system. This is usually because the beneficiary has broken a partner firewall rule and been rejected by our compliance team, for instance, if they are from a country we don't deal with, like North Korea. |
-|                                   |                                          |
 
 ### Ledgers
 | Message                      | Description                                   |
