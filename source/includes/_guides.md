@@ -178,10 +178,17 @@
      --header "Accept: application/json"
      --header "Authorization: API-Key <<yourAPI-Key>>"
      {
-       "uk_account_number": "{{YOURACCOUNT_NUMBER}}",
-       "uk_sort_code": "{{YOURSORTCODE}}",
        "asset_class": "currency",
        "asset_type": "gbp",
+       "default_account": {
+         "account_number": "45564658",
+         "bank_country": "GB",
+         "bank_code": "040004",
+         "bank_name": "Monzo",
+         "asset_type": "gbp",
+         "asset_class": "currency",
+         "bank_code_type": "sort-code"
+       },
        "holder_id": "{{ENDUSER_ID}}",
        "person": {
             "name": "John Smith",

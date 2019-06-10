@@ -324,7 +324,7 @@ Get a ledger based on its uk account details.
 
 `GET /v1/customer/ledgers/{{LEDGER_ID}}/entries?starting_at_date=2018-09-09`
 
-`GET /v1/customer/ledgers/{{LEDGER_ID}}/entries?starting_at_date=2018-09-09`
+`GET /v1/customer/ledgers/{{LEDGER_ID}}/entries?items_per_page=25`
 
 - This endpoint returns the transactions performed on a given ledger, providing a starting point for generating a statement for a ledger.
 - It returns an array of transactions within the specified time range.
@@ -441,14 +441,6 @@ Get a ledger based on its uk account details.
 `GET /v1/customer/ledgers?partner_product=PayrNet-GBP-1`
 
 `GET /v1/customer/ledgers?holder_id={{CUSTOMER_ID}}&partner_product=PayrNet-GBP-1`
-
-`GET /v1/customer/ledgers?created_at=2018-09-01`
-
-`GET /v1/customer/ledgers?holder_id={{CUSTOMER_ID}}&partner_product=PayrNet-GBP-1&created_at=2018-09-01`
-
-`GET /v1/customer/ledgers?last_seen_id={{LEDGER_ID}}`
-
-`GET /v1/customer/ledgers?items_per_page=25`
 
 - This endpoint allows you to fetch multiple normal ledgers by the holder of the ledger and/or the partner product of the ledger.
 - For instance, you might want to see all the GBP ledgers held by a particular enduser, or all the EUR ledgers held by the customer.
