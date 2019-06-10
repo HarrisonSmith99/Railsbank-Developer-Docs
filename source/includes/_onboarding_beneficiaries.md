@@ -768,7 +768,7 @@ Use this endpoint to add an account to a beneficiary.
 | `iban` <br> _string_, required for EUR and convert-and-send if applicable      | The IBAN of the beneficiary account |
 | `bic_swift` <br> _string_, required for EUR and convert-and-send if applicable | The SWIFT Branch Identifier Code of the beneficiary account |
 
-## Update Default Account
+## Change Default Account
 > **Example Request**
 
 ```shell
