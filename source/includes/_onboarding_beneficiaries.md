@@ -556,7 +556,9 @@ PUT /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts/{{ACCOUNT_ID}}/make-d
 ]
 ```
 `GET "https://playlive.railsbank.com/v1/customer/beneficiaries"`
+
 `GET "https://playlive.railsbank.com/v1/customer/beneficiaries?holder_id={{ENDUSER_ID}}"`
+
 `GET "https://playlive.railsbank.com/v1/customer/beneficiaries?holder_id={{ENDUSER_ID}}&items_per_page=25"`
 
 - You can fetch multiple beneficiaries.
@@ -684,6 +686,7 @@ Use this endpoint to add an account to a beneficiary.
 ```
 
 `GET "https://playlive.railsbank.com/v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts"`
+
 `GET "https://playlive.railsbank.com/v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts/{{ACCOUNT_ID}}"`
 
 - With the Railsbank Api you can fetch all the accounts attached to a beneficiary or just a particular account.
