@@ -99,3 +99,16 @@ These lists detail the states and an outline of the order things pass through th
 | `card-rules-breached`             | Added if any of the card rules are breached. |
 | `partner-error`                   | When an error occurs on the partner side. |
 | `insufficient-funds`              | When we have insufficient funds in customer card ledger. |
+
+## Types of Transaction
+| Type                                        | Description                    |
+|:--------------------------------------------|:-------------------------------|
+| `transaction-type-send`                     | A transaction from a ledger to a beneficiary |
+| `transaction-type-inter-ledger`             | A transaction between two ledgers of the same `asset_class` and `asset_type` |
+| `transaction-type-manual-credit`            | A credit of a virtual ledger   |
+| `transaction-type-manual-debit`             | A debit of a virtual ledger    |
+| `transaction-type-inter-ledger-omnibus`     | A transaction to or from a ledger of type-omnibus |
+| `transaction-type-receive`                  | A transaction from an external bank account to a Railsbank ledger |
+| `transaction-type-virtual-debit-card-debit` | A Railsbank Debit Card debit   |
+| `transaction-type-card-receive`             | A Railsbank Card Credit        |
+| `transaction-type-fx`                       | A convert-and-send money transaction to a beneficiary |

@@ -19,9 +19,11 @@ includes:
   - faqs
   - guides
   - endpoints
-  - onboarding_endusers
-  - creating_ledgers
-  - onboarding_beneficiaries
+  - onboard_endusers
+  - create_ledgers
+  - onboard_beneficiaries
+  - receive_money
+  - send_money
   - cards
 
 toc_footers:
