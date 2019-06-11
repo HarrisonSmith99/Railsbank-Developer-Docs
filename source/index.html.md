@@ -22,7 +22,6 @@ includes:
   - onboard_endusers
   - create_ledgers
   - onboard_beneficiaries
-  - receive_money
   - send_money
   - cards
 
