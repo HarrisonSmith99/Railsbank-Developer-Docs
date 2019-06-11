@@ -8,7 +8,7 @@
   - An enduser or a customer holding a ledger with funds on it.
   - Another ledger or a beneficiary to send the money to.
 
-## Send Money to a Beneficiary
+## Send to a Beneficiary
 > **Example Request - EUR**
 
 ```shell
