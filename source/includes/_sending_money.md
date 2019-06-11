@@ -1,4 +1,4 @@
-# Send Money
+# Sending Money
 
 - It is incredibly simple to send money using the Railsbank API.
 - There are two ways that money can be sent (without being converted):

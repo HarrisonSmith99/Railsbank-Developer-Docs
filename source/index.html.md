@@ -19,10 +19,10 @@ includes:
   - faqs
   - guides
   - endpoints
-  - onboard_endusers
-  - create_ledgers
-  - onboard_beneficiaries
-  - send_money
+  - onboarding_endusers
+  - creating_ledgers
+  - onboarding_beneficiaries
+  - sending_money
   - cards
 
 toc_footers:

@@ -47,6 +47,6 @@
 
 - Using our **Mastercard Debit Cards**, your customers can spend the funds in their ledgers.
 
-## Manage Beneficiaries
+## Create Beneficiaries
 
 - Beneficiaries of Railsbank **endusers** or **customers** can have multiple accounts in any of the **G10** currencies, to which money can be sent to from a Railsbank ledger.
