@@ -622,3 +622,141 @@
 | `sending-fps-institution-action-required`               |
 | `amount-exceeds-account-limit`                          |
 | `beneficiary-account-closed`                            |
+
+## Fetch Multiple Transactions
+> **Example Request**
+
+```shell
+--request GET "https://playlive.railsbank.com/v1/customer/transactions?starting_at_date=2019-06-10"
+--header "Content-Type: application/json"
+--header "Accept: application/json"
+--header "Authorization: API-Key <<yourAPI-Key>>"
+```
+> **Example Response**
+
+```shell
+[
+    {
+        "payment_type": "payment-type-UK-FasterPayments",
+        "transaction_type": "transaction-type-receive",
+        "payment_info": {
+            "fpsSettlementDate": "2019-06-10",
+            "settlementCycleUid": "f2c59b80-32b9-4d69-94c7-251c6075c5a1",
+            "destinationAccount": {
+                "sortCode": "0400XX",
+                "accountNumber": "0718601XX",
+                "accountName": "GBP Daily Checks"
+            },
+            "instructedAmount": {
+                "currency": "GBP",
+                "minorUnits": 100
+            },
+            "settlementAmount": {
+                "currency": "GBP",
+                "minorUnits": 100
+            },
+            "receivedAt": "2019-06-10T14:59:00.000Z",
+            "paymentAccountUid": "5b9f7e0a-634b-441f-a755-e42c0b214c69",
+            "paymentBusinessUid": "818a221c-8dca-43c5-9f3c-49d605a97d6d",
+            "fpsSettlementCycleId": "CYCLE_002",
+            "type": "SIP",
+            "sourceAccount": {
+                "sortCode": "2314XX",
+                "accountNumber": "134598XX",
+                "accountName": "railsbank technology limited"
+            },
+            "returnDetails": {},
+            "reference": "Daily-GBP-Checks",
+            "fpid": "TW00000000662939301020190610826231470     ",
+            "addressUid": "5cf4f5b7-5943-4c87-b597-cd330110ecff",
+            "paymentUid": "25080177-dd3c-4da3-9564-2978ae76dfe2"
+        },
+        "transaction_status": "transaction-status-accepted",
+        "ledger_to_id": "5cf4f5b7-5943-4c87-b597-cd330110ecff",
+        "transaction_info": {},
+        "reference": "Daily-GBP-Checks",
+        "amount": 1,
+        "transaction_id": "5cfe7035-6035-449c-b6b6-8e52ab3e8b84",
+        "created_at": "2019-06-10T14:59:01.186Z",
+        "partner_product": "PayrNet-GBP-1",
+        "transaction_printout": {
+            "beneficiaryiban": "GB69PAYR04005207186010",
+            "pspofsendername": "PayrNet",
+            "pspofsenderphysicallocation": "GB",
+            "ultimatesendername": "railsbank technology limited",
+            "pspofsenderaddress": {
+                "address_refinement": "Kemp House",
+                "address_number": "152",
+                "address_street": "City Road",
+                "address_city": "London",
+                "address_postal_code": "EC1V 2NX",
+                "address_iso_country": "GB"
+            },
+            "paymentonbehalfoftype": "POO",
+            "pspofultimatebenename": "Starling",
+            "ultimatesenderaccountnumber": "2314XX/13459XX",
+            "beneficiaryname": "Railsbank",
+            "paymentpartytype": "receive third_party"
+        },
+        "asset_type": "gbp",
+        "asset_class": "currency",
+        "invoices": []
+    },
+    {
+        "payment_type": "payment-type-inter-ledger",
+        "transaction_type": "transaction-type-inter-ledger-omnibus",
+        "transaction_status": "transaction-status-accepted",
+        "ledger_to_id": "5cf4f5c9-4307-4e51-92c6-098e55ccb8bf",
+        "transaction_info": {},
+        "amount": 1,
+        "ledger_from_id": "5cf4f5b7-5943-4c87-b597-cd330110ecff",
+        "transaction_id": "5cfe707b-fb2b-4a86-bc7e-21ef55c817b3",
+        "created_at": "2019-06-10T15:00:11.759Z",
+        "partner_product": "PayrNet-GBP-1",
+        "transaction_printout": {
+            "ultimatesenderaddress": {
+                "address_iso_country": "GB"
+            },
+            "beneficiaryiban": "GB47PAYR040052123397XX",
+            "pspofsendername": "Railsbank",
+            "pspaccountlocation": "PAYRGB2LXXX",
+            "pspofsenderphysicallocation": "GB",
+            "pspaccounttandcscountryofjurisdiction": "GB",
+            "ultimatesendername": "Railsbank",
+            "pspofsenderaddress": {
+                "address_iso_country": "GB"
+            },
+            "pspofultimatebenephysicallocation": "GB",
+            "pspofultimatebeneaddress": {
+                "address_iso_country": "GB"
+            },
+            "paymentonbehalfoftype": "POO",
+            "pspofultimatebenename": "Railsbank",
+            "ultimatesenderaccountnumber": "GB69PAYR040052071860XX",
+            "beneficiaryname": "Railsbank",
+            "paymentpartytype": "interledger"
+        },
+        "asset_type": "gbp",
+        "asset_class": "currency",
+        "invoices": []
+    },
+]
+```
+
+`GET "https://playlive.railsbank.com/v1/customer/transactions`
+`GET "https://playlive.railsbank.com/v1/customer/transactions?items_per_page=25`
+`GET "https://playlive.railsbank.com/v1/customer/transactions?last_seen_id={{TRANSACTION_ID}}`
+
+- This endpoint returns multiple transactions in an array.
+- The transactions returned will be in the same format as when you fetch a single transaction.
+- You cannot fetch transactions for a particular enduser or ledger: you cannot call `transactions/{{LEDGER_ID}}` or `transactions/{{ENDUSER_ID}}`. To fetch the transactions to a ledger, you need to call `ledgers/{{LEDGER_ID}}/entries` and iterate through the transaction_id's it returns, fetch each transaction sequentially.
+
+### Parameters
+
+| Parameter                        | Description                               |
+|:---------------------------------|:------------------------------------------|
+| `starting_at_date` <br> _string_ | Any transactions created before this date will not be shown in the array <br> _YYYY-MM-DD_ |
+| `items_per_page` <br> _integer_  | The number of items returned in each page. A hyperlink to the next page will be found in the response headers |
+| `last_seen_id` <br> _string_     | The beneficiaries returned will have all been created after the beneficiary whose UUID is the `last_seen_id` |
+| `from_date` <br> _string_        | The date that the list of transactions will start from |
+| `end_date` <br> _string_         | The date that the list of transactions will end at |

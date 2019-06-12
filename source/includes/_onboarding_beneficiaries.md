@@ -577,7 +577,8 @@ PUT /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts/{{ACCOUNT_ID}}/make-d
 | `items_per_page` <br> _integer_  | The number of items returned in each page. A hyperlink to the next page will be found in the response headers |
 | `created_at` <br> _string_       | The date that the list of beneficiaries will begin at: any beneficiary created before this date will not be returned. <br> _YYYY-MM-DD_ |
 | `last_seen_id` <br> _string_     | The beneficiaries returned will have all been created after the beneficiary whose UUID is the `last_seen_id` |
-
+| `from_date` <br> _string_        | The date that the list of beneficiaries will start from |
+| `end_date` <br> _string_         | The date that the list of beneficiaries will end at |
 
 ## Add an Beneficiary Account
 > **Example Request - EUR Bank Account**
