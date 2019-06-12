@@ -843,3 +843,111 @@
 | `last_seen_id` <br> _string_     | The transactions returned will have all been created after the transaction whose UUID is the `last_seen_id` |
 | `from_date` <br> _string_        | The date that the list of transactions will start from |
 | `end_date` <br> _string_         | The date that the list of transactions will end at |
+
+## Update Transactions
+> **Example Request**
+
+```shell
+--request PUT "https://playlive.railsbank.com/v1/customer/transactions/{{{TRANSACTION_ID}}}"
+--header "Content-Type: application/json"
+--header "Accept: application/json"
+--header "Authorization: API-Key <<yourAPI-Key>>"
+
+{
+  "transaction_meta": {
+    "foo": "bar"
+  }
+}
+```
+> **Example Response**
+
+```shell
+{
+  "transaction_id": "8763b5df-a61c-4f77-9724-41ca9cde3654"
+}
+```
+`PUT "https://playlive.railsbank.com/v1/customer/transactions/{{TRANSACTION_ID}}`
+
+- This endpoint allows you to update a transaction.
+- Currently, the only thing you can update is the `transaction_meta` field.
+- This allows you to add custom information to the transaction after it has been sent.
+
+## Upload a Transaction Invoice
+> **Example Request**
+
+```shell
+--request POST "https://playlive.railsbank.com/v1/customer/transactions/{{TRANSACTION_ID}}/invoices"
+--header "Content-Type: application/json"
+--header "Accept: application/json"
+--header "Authorization: API-Key <<yourAPI-Key>>"
+{
+  "file": "{{some_file}}",
+  "description": "John's March Invoice"
+}
+```
+> **Example Response**
+
+```shell
+{
+  "transaction_id": "8763b5df-a61c-4f77-9724-41ca9cde3654"
+}
+```
+
+`POST "https://playlive.railsbank.com/v1/customer/transactions/{{TRANSACTION_ID}}/invoices`
+
+- This endpoint allows you to add an invoice to a transaction in the form of a file.
+- You should also add a description, however this field is optional.
+- We will generate a `document_id` corresponding to the invoice.
+
+## Credit and Debit Virtual Ledgers
+
+> **Example Request - Credit**
+
+```shell
+--request POST "https://playlive.railsbank.com/v1/customer/transactions/manual-credit"
+--header "Content-Type: application/json"
+--header "Accept: application/json"
+--header "Authorization: API-Key <<yourAPI-Key>>"
+{
+    "amount": "3",
+    "ledger_id": "8763b5df-a61c-4f77-9724-41ca9cde3654",
+    "transaction_meta": {
+      "my_transaction_id": "08575937"
+    }
+}
+```
+
+> **Example Request - Debit**
+
+```shell
+--request POST "https://playlive.railsbank.com/v1/customer/transactions/manual-debit"
+--header "Content-Type: application/json"
+--header "Accept: application/json"
+--header "Authorization: API-Key <<yourAPI-Key>>"
+{
+    "amount": "3",
+    "ledger_id": "8763b5df-a61c-4f77-9724-41ca9cde3654",
+    "transaction_meta": {
+      "my_transaction_id": "08575937"
+    }
+}
+```
+> **Example Response**
+
+```shell
+{
+  "transaction_id": "8763b5df-a61c-4f77-9724-41ca9cde3654"
+}
+```
+
+- These endpoints allow you to credit or debit a virtual ledger.
+- They are designed to allow you to track of real assets, like gold, outside of Railsbank.
+- There are no limits on how much you can credit or debit.
+- These transactions can be fetched like any other transaction.
+
+### The Virtual Transaction Object
+| Attribute                                   | Description                    |
+|:--------------------------------------------|:-------------------------------|
+| `amount` <br> _number_, required            | The amount to be sent          |
+| `ledger_id` <br> _string_, required         | The ledger to be debited or credited |
+| `transaction_meta` <br>  _object_, optional | Extra information you want to input in the form of custom fields |
