@@ -104,7 +104,7 @@
   - This endpoint allows you to onboard an enduser (your customer) who is an individual.
   - Make sure, at a minimum, to include the name and full address of the user to ensure they are not blocked by compliance.
   - Check out the `enduser_meta` field which allows you to add custom fields to the enduser.
-  
+
 ### The Individual Enduser Object
 | Attribute                                                            | Description |
 |:---------------------------------------------------------------------|:------|
@@ -212,18 +212,6 @@
   - If `pep` details are applicable you must include them
   <a href="javascript:void(0);"onclick="javascript:toggledarkbox()">Expand Table</a>
 
-  <script type="text/javascript">
-    hidden=false;
-    function toggledarkbox() {
-      if (hidden == false) {
-        $(".content table").css("overflow", "visible")
-        hidden = true
-      }else{
-        $(".content table").css("overflow", "auto")
-        hidden = false
-      }
-  }
-  </script>
 ### The Corporate Enduser Object
 | Attribute                                                                                 | Description |
 |:------------------------------------------------------------------------------------------|:--|
@@ -298,6 +286,19 @@
 | `company.ultimate_beneficial_owners.person` <br> _object_, optional                       | Information about a person who is a UBO of the company <br> The fields are the same as for an individual enduser (detailed above) |
 | `company.ultimate_beneficial_owners.percentage_holding` <br> _number_, optional           | The percentage of the company that the UBO owns |
 | `enduser_meta` <br> _object_, optional                                                    | Any extra, custom fields that you want to include about the enduser |
+
+<script type="text/javascript">
+  hidden=false;
+  function toggledarkbox() {
+    if (hidden == false) {
+      $(".content table").css("overflow", "visible")
+      hidden = true
+    }else{
+      $(".content table").css("overflow", "auto")
+      hidden = false
+    }
+}
+</script>
 
 ## Fetch an Enduser
 
