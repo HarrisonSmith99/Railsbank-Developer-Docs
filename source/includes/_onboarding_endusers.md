@@ -104,9 +104,7 @@
   - This endpoint allows you to onboard an enduser (your customer) who is an individual.
   - Make sure, at a minimum, to include the name and full address of the user to ensure they are not blocked by compliance.
   - Check out the `enduser_meta` field which allows you to add custom fields to the enduser.
-
-    <a href="javascript:void(0);"onclick="javascript:toggledarkbox()">Expand Table</a>
-
+  
 ### The Individual Enduser Object
 | Attribute                                                            | Description |
 |:---------------------------------------------------------------------|:------|
@@ -142,18 +140,6 @@
 | `person.address_history.address_street` <br> _string_, optional      | Street the enduser lived on |
 | `enduser_meta` <br> _object_, optional                               | Any extra, custom fields that you want to include about the enduser |
 
-<script type="text/javascript">
-  hidden=false;
-  function toggledarkbox() {
-    if (hidden == false) {
-      $(".content table").css("overflow", "visible")
-      hidden = true
-    }else{
-      $(".content table").css("overflow", "auto")
-      hidden = false
-    }
-}
-</script>
 
 ## Onboard a Corporate Enduser
 
@@ -224,7 +210,20 @@
   - If the `trading_address` is different from `registered_address`, you need both (otherwise, just include registration address)
   - If there is a director who holds 10% or more of the stakes, then you must include the `director` details
   - If `pep` details are applicable you must include them
+  <a href="javascript:void(0);"onclick="javascript:toggledarkbox()">Expand Table</a>
 
+  <script type="text/javascript">
+    hidden=false;
+    function toggledarkbox() {
+      if (hidden == false) {
+        $(".content table").css("overflow", "visible")
+        hidden = true
+      }else{
+        $(".content table").css("overflow", "auto")
+        hidden = false
+      }
+  }
+  </script>
 ### The Corporate Enduser Object
 | Attribute                                                                                 | Description |
 |:------------------------------------------------------------------------------------------|:--|
