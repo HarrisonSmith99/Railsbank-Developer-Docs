@@ -23,7 +23,7 @@ includes:
   - creating_ledgers
   - onboarding_beneficiaries
   - sending_money
-  - cards
+  - issuing_debit_cards
 
 toc_footers:
   - <a href='https://app.railsbank.com'>Sign Up for an API-Key</a>

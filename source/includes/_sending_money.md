@@ -1,4 +1,21 @@
 # Sending Money
+> **Endpoints**
+
+```shell
+`POST /v1/customer/transactions`
+`POST /v1/customer/transactions/inter-ledger`
+`POST /v1/customer/transactions/{{TRANSACTION_ID}}/invoices`
+`POST /v1/customer/transactions/bulk`
+`POST /v1/customer/transactions/manual-debit`
+`POST /v1/customer/transactions/manual-credit`
+`GET /v1/customer/transactions`
+`GET /v1/customer/transactions/{{TRANSACTION_ID}}`
+`PUT /v1/customer/transactions/{{TRANSACTION_ID}}`
+
+
+
+
+```
 
 - It is incredibly simple to send money using the Railsbank API.
 - There are two ways that money can be sent (without being converted):

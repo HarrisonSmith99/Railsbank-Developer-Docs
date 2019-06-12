@@ -1,4 +1,4 @@
-# Cards
+# Issuing Debit Cards
 > **Endpoints**
 
 ```shell
