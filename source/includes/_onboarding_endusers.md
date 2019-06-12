@@ -210,7 +210,6 @@
   - If the `trading_address` is different from `registered_address`, you need both (otherwise, just include registration address)
   - If there is a director who holds 10% or more of the stakes, then you must include the `director` details
   - If `pep` details are applicable you must include them
-  <a href="javascript:void(0);"onclick="javascript:toggledarkbox()">Expand Table</a>
 
 ### The Corporate Enduser Object
 | Attribute                                                                                 | Description |
@@ -286,19 +285,6 @@
 | `company.ultimate_beneficial_owners.person` <br> _object_, optional                       | Information about a person who is a UBO of the company <br> The fields are the same as for an individual enduser (detailed above) |
 | `company.ultimate_beneficial_owners.percentage_holding` <br> _number_, optional           | The percentage of the company that the UBO owns |
 | `enduser_meta` <br> _object_, optional                                                    | Any extra, custom fields that you want to include about the enduser |
-
-<script type="text/javascript">
-  hidden=false;
-  function toggledarkbox() {
-    if (hidden == false) {
-      $(".content table").css("overflow", "visible")
-      hidden = true
-    }else{
-      $(".content table").css("overflow", "auto")
-      hidden = false
-    }
-}
-</script>
 
 ## Fetch an Enduser
 
