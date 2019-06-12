@@ -130,6 +130,87 @@
 | `ledger_to_id` <br> _string_, required      | The ledger to which funds will be sent |
 | `transaction_meta` <br>  _object_, optional | Extra information you want to input in the form of custom fields |
 
+## Send Multiple Transactions
+> **Example Request**
+
+```shell
+--request POST "https://playlive.railsbank.com/v1/customer/transactions/bulk"
+--header "Content-Type: application/json"
+--header "Accept: application/json"
+--header "Authorization: API-Key <<yourAPI-Key>>"
+[
+  {
+    "payment_credit_date": "2000-11-05",
+    "payment_type": "payment-type-EU-SEPA-Step2",
+    "ledger_id": "753fa673-66b4-4c94-9ddb-f9f4b5c1e9a3",
+    "who_pays_charges": "shared",
+    "reference": "this is a test payment",
+    "amount": "0",
+    "ledger_from_id": "753fa673-66b4-4c94-9ddb-f9f4b5c1e9a3",
+    "beneficiary_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d",
+    "transaction_meta": {
+      "foo": "bar"
+    },
+    "beneficiary_account_id": "c91b339e-57d7-41ea-a805-8966ce8fe4ed",
+    "cut_off_time_implementation": "loose"
+  },
+  {
+    "payment_credit_date": "2000-11-05",
+    "payment_type": "payment-type-EU-SEPA-Step2",
+    "ledger_id": "8763b5df-a61c-4f77-9724-41ca9cde3654",
+    "who_pays_charges": "shared",
+    "reference": "this is a test payment",
+    "amount": "0",
+    "ledger_from_id": "c91b339e-57d7-41ea-a805-8966ce8fe4ed",
+    "beneficiary_id": "8763b5df-a61c-4f77-9724-41ca9cde3654",
+    "transaction_meta": {
+      "foo": "bar"
+    },
+    "beneficiary_account_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d",
+    "cut_off_time_implementation": "loose"
+  },
+  {
+    "payment_credit_date": "2000-11-05",
+    "payment_type": "payment-type-EU-SEPA-Step2",
+    "ledger_id": "753fa673-66b4-4c94-9ddb-f9f4b5c1e9a3",
+    "who_pays_charges": "shared",
+    "reference": "this is a test payment",
+    "amount": "0",
+    "ledger_from_id": "c91b339e-57d7-41ea-a805-8966ce8fe4ed",
+    "beneficiary_id": "8763b5df-a61c-4f77-9724-41ca9cde3654",
+    "transaction_meta": {
+      "foo": "bar"
+    },
+    "beneficiary_account_id": "c91b339e-57d7-41ea-a805-8966ce8fe4ed",
+    "cut_off_time_implementation": "loose"
+  }
+]
+```
+> **Example Response**
+
+```shell
+[
+  {
+    "transaction_id": "6630b391-c5ce-46c1-9d23-a82a9e27f82d"
+  },
+  {
+    "transaction_id": "753fa673-66b4-4c94-9ddb-f9f4b5c1e9a3"
+  },
+  {
+    "transaction_id": "8763b5df-a61c-4f77-9724-41ca9cde3654"
+  },
+  {
+    "transaction_id": "753fa673-66b4-4c94-9ddb-f9f4b5c1e9a3"
+  }
+]
+```
+`POST "https://playlive.railsbank.com/v1/customer/transactions/bulk`
+
+- This endpoint allows you to send multiple transactions to multiple beneficiaries with one request.
+- Each transaction in the array has the same object as a standard transaction.
+- You can send different types of payment in the same request. For instance, you can send both EUR and GBP payments.
+- The API will respond with an array of transaction ids in the order of the transactions POSTed.
+
 ## Fetch a Transaction
 > **Example Request**
 
