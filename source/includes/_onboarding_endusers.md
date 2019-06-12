@@ -106,7 +106,7 @@
   - Check out the `enduser_meta` field which allows you to add custom fields to the enduser.
 
     <a href="javascript:void(0);"onclick="javascript:toggledarkbox()">Expand Table</a>
-    
+
 ### The Individual Enduser Object
 | Attribute                                                            | Description |
 |:---------------------------------------------------------------------|:------|
@@ -141,6 +141,19 @@
 | `person.address_history.address_region` <br> _string_, optional      | Region in country |
 | `person.address_history.address_street` <br> _string_, optional      | Street the enduser lived on |
 | `enduser_meta` <br> _object_, optional                               | Any extra, custom fields that you want to include about the enduser |
+
+<<script type="text/javascript">
+  hidden=false;
+  function toggledarkbox() {
+    if (hidden == false) {
+      $(".content table").css("overflow", "visible")
+      hidden = true
+    }else{
+      $(".content table").css("overflow", "auto")
+      hidden = false
+    }
+}
+</script>
 
 ## Onboard a Corporate Enduser
 
