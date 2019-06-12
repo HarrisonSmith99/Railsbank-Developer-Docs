@@ -744,7 +744,9 @@
 ```
 
 `GET "https://playlive.railsbank.com/v1/customer/transactions`
+
 `GET "https://playlive.railsbank.com/v1/customer/transactions?items_per_page=25`
+
 `GET "https://playlive.railsbank.com/v1/customer/transactions?last_seen_id={{TRANSACTION_ID}}`
 
 - This endpoint returns multiple transactions in an array.
@@ -757,6 +759,6 @@
 |:---------------------------------|:------------------------------------------|
 | `starting_at_date` <br> _string_ | Any transactions created before this date will not be shown in the array <br> _YYYY-MM-DD_ |
 | `items_per_page` <br> _integer_  | The number of items returned in each page. A hyperlink to the next page will be found in the response headers |
-| `last_seen_id` <br> _string_     | The beneficiaries returned will have all been created after the beneficiary whose UUID is the `last_seen_id` |
+| `last_seen_id` <br> _string_     | The transactions returned will have all been created after the transaction whose UUID is the `last_seen_id` |
 | `from_date` <br> _string_        | The date that the list of transactions will start from |
 | `end_date` <br> _string_         | The date that the list of transactions will end at |

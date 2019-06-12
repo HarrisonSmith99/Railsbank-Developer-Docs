@@ -366,6 +366,50 @@
 | `enduser-status-ok`           | The enduser is ready to use: to add ledgers and beneficiaries to and send and receive transactions. You will receive a `type: entity-ready-to-use` webhook and a `type: enduser-firewall-finished` webhook if you have set and firewall rules up. |
 | `enduser-status-declined`     | The enduser has been declined by our system. This is usually because the enduser has broken a partner firewall rule and been rejected by our compliance team, for instance, if they are from a country we don't deal with, like North Korea. |
 
+## Fetch Multiple Endusers
+> **Example Request**
+
+```shell
+  --request GET "https://playlive.railsbank.com/v1/customer/endusers"
+  --header "Content-Type: application/json"
+  --header "Accept: application/json"
+  --header "Authorization: API-Key <<yourapikey>>"
+```
+
+> **Example Response**
+
+```shell
+[
+  {
+    "enduser_id": "bb8b2428-f94c-41df-8e82-a895ab4d6ac8"
+  },
+  {
+    "enduser_id": "753fa673-66b4-4c94-9ddb-f9f4b5c1e9a3"
+  },
+  {
+    "enduser_id": "c91b339e-57d7-41ea-a805-8966ce8fe4ed"
+  },
+  {
+    "enduser_id": "753fa673-66b4-4c94-9ddb-f9f4b5c1e9a3"
+  }
+]
+```
+`GET "https://playlive.railsbank.com/v1/customer/endusers`
+
+`GET "https://playlive.railsbank.com/v1/customer/endusers?starting_at_date=2019-01-01"`
+
+- This endpoint allows you to fetch multiple endusers.
+- If it is not parameterized, it will return all the endusers created using the API Key.
+- It will return an array of enduser id's which you can iterate over and fetch individually to get more information on.
+
+### Parameters
+| Parameter                        | Description                               |
+|:---------------------------------|:------------------------------------------|
+| `starting_at_date` <br> _string_ | Any endusers created before this date will not be shown in the array <br> _YYYY-MM-DD_ |
+| `items_per_page` <br> _integer_  | The number of items returned in each page. A hyperlink to the next page will be found in the response headers |
+| `last_seen_id` <br> _string_     | The endusers returned will have all been created after the enduser whose UUID is the `last_seen_id` |
+
+
 ## Update an Enduser
   > **Example Request**
 
