@@ -142,7 +142,7 @@
 | `person.address_history.address_street` <br> _string_, optional      | Street the enduser lived on |
 | `enduser_meta` <br> _object_, optional                               | Any extra, custom fields that you want to include about the enduser |
 
-<<script type="text/javascript">
+<script type="text/javascript">
   hidden=false;
   function toggledarkbox() {
     if (hidden == false) {
