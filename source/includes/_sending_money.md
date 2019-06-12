@@ -481,156 +481,156 @@
 
 ### The Fetched Transaction Object
 
-| Attribute                                                      | Description |
-|:---------------------------------------------------------------|:------------|
-| amount _number_                                                | The transaction amount |
-| amount_beneficiary_account _number_                            | The amount credited in the receiver's account in the target currency (for convert-and-send money transactions). |
-| amount_ledger_from _number_                                    | The amount debited from the sender's ledger in the original currency (for convert-and-send money transactions). |
-| amount_local_currency _number_                                 | The amount of the local currency transferred (for convert-and-send money transactions). |
-| additional_info _string_                                       | Any additional information about the transaction. |
-| `asset_class` <br> _string_                                    | The class of the asset being sent or received. <br> _Allowed Values:_ commodity, currency |
-| `asset_type` <br> _string_                                     | The type of asset being sent or received. <br> _Allowed Values:_ gbp, eur, aud, chf, cad, sek, usd, nok, nzd, jpy |
-| beneficiary_account_id _string_                                | The Railsbank Beneficiary account ID to be credited. |
-| beneficiary_id _string_                                        | The receiving Railsbank Beneficiary ID. |
-| card_currency _string_                                         | The currency on the debit card, if it is a card transaction. |
-| card_entry_method _string_                                     |             |
-| card_expiry_date _string_                                      | The card expiry date, if it is a card transaction. |
-| card_rules_breached _array of strings_                         | The card rules breached, if any, if it is a card transaction. |
-| card_transaction_type _string_                                 | The type of card transaction. |
-| card_used _string_                                             |             |
-| conversion_date _string_                                       | The date that the convert-and-send funds were converted |
-| conversion_rate _number_                                       | The rate at which the convert-and-send funds were converted. |
-| created_at _string_                                            | The date the transaction was created |
-| daily_unique_refence _string_                                  | A unique daily reference attached to the transaction. |
-| failure_reasons _array of strings_                             | The failure reasons, if any. <br> _Allowed Values:_ declined-by-compliance-firewall, card-not-active, insufficient-funds, partner-error, card-rules-breached, contact-support, fx-issue. |
-| fixed_side _string_                                            | Sets the base currency for pair rate direction, which determines how much the base currency is worth as measured against the second currency. It assures if the amount specified will either be debited from the sending ledger or credited in the receiving account. <br> _Allowed Values:_ beneficiary, sender. |
-| invoices _arrayof objects_                                     | Attached invoice documents. |
-| invoices.created_at _string_                                   | The date the invoice was created. |
-| invoices.description _string_                                  | A description of the invoice. |
-| invoices.document_id _string_                                  | The id of the invoice document. |
-| ledger_from_id _string_                                        | The Railsbank Ledger ID to be debited. |
-| ledger_to_id _string_                                          | The Railsbank ledger ID to be credited. |
-| mcc_description _string_                                       | The merchant category code description (for card transactions). |
-| merchant_category_code _string_                                | The merchant category code (for card transactions). |
-| merchant_details _string_                                      | Extra details about the merchant (for card transactions). |
-| merchant_id _string_                                           | The merchant's UUID (for card transactions). |
-| merchantbank_id _string_                                       | The merchant's bank UUID. |
-| missing_data _array of strings_                                | Any data required for the transaction to be accepted . |
-| partner_product _string_                                       | The partner product of the sending or receiving ledger. |
-| partner_product_fx _string_                                    | The convert-and-send partner product, if it is an FX transaction. <br> _Allowed Values:_ PayrNet-FX-1 |
-| payment_info _object_                                          | Transaction information that will be populated by the payment scheme. See example. |
-| payment_method _string_                                        | Shows whether the transaction was be sent/received via local (e.g. UKFP) or international (e.g. Swift) payment schemes. |
-| payment_type _string_                                          | The type of payment: the scheme via which it was transferred . |
-| point_of_sale_country_code _string_                            | The country code of the country in which the transaction occurred. |
-| point_of_sale_info _string_                                    | Extra information regarding the point of sale. |
-| point_of_sale_reference _string_                               | The reference from the point of sale. |
-| reason _string_                                                | Text the enduser can add to the transaction for the beneficiary. |
-| receipt_id _string_                                            | The UUID of the transaction receipt, if any. |
-| reference _string_                                             | The transaction reference. |
-| rejection_reasons _array of strings_                           | The reason the transaction was rejected, if it was. See below for possible reasons. |
-| return_info _object_                                           | Information populated by the scheme if the transaction is a return |
-| settlement_date _string_                                       | The date the transaction was/will be settled. |
-| swift_charge_bearer _string_                                   | The charge bearer if the transaction is a SWIFT transfer |
-| swift_service_level _string_                                   | The service level of the SWIFT transaction. |
-| transaction_audit_number _string_                              | The audit number, if any, of the transaction |
-| transaction_currency _string_                                  | The currency of the transaction. |
-| transaction_fee _number_                                       | The fee attached to the transaction, if any. |
-| transaction_id _string_                                        | The Railsbank UUID of the transaction. |
-| transaction_info _object_                                      | Extra detail about the transaction. |
-| transaction_info.amount _number_                               | The amount transferred. |
-| transaction_info.charge_bearer _string_                        | The bearer, if any, of any charges |
-| transaction_info.clearing_system _string_                      | The type of clearing system, if any, of the transaction. |
-| transaction_info.clearing_system_proprietary _string_          | The owner of the clearing system, if any. |
-| transaction_info.created_at _string_                           | The timestamp of when the transaction was created. |
-| transaction_info.currency _string_                             | The currency of the transaction. |
-| transaction_info.end_to_end_id _string_                        | The end to end UUID of the transaction. |
-| transaction_info.instructed_agent _object_                     | The instructed agent of the transaction. |
-| transaction_info.instructed_agent.bic _string_                 | The Branch Identifier Code of the instructed agent. |
-| transaction_info.instructing_agent _object_                    | The instructing agent of the transaction. |
-| transaction_info.instructing_agent.bic _string_                | The Branch Identifier Code of the instructing agent. |
-| transaction_info.instruction_id _string_                       | The UUID of the transaction instruction. |
-| transaction_info.local_instrument _string_                     | The instrument used to perform the transaction. For instance, a debit card. |
-| transaction_info.local_instrument_proprietary _string_         | The owner of the instrument. |
-| transaction_info.message_id _string_                           | The UUID of the message. |
-| transaction_info.message_schema _string_                       | The schema of the message. |
-| transaction_info.purpose _string_                              | The purpose of the transaction. |
-| transaction_info.purpose_category _string_                     | The category of the purpose |
-| transaction_info.purpose_category_proprietary _string_         | The owner of the category. |
-| transaction_info.receiver _object_                             | Information regarding the receiver of the transaction. |
-| transaction_info.receiver.address _object_                     | Receiver's address information. |
-| transaction_info.receiver.address.country _string_             | The country the receiver is based in. |
-| transaction_info.receiver.address.lines _string_               |             |
-| transaction_info.receiver.bic _string_                         | The Branch Identifier Code of the receiver. |
-| transaction_info.receiver.birth_city _string_                  | The birth city. |
-| transaction_info.receiver.birth_country _string_               | The birth country. |
-| transaction_info.receiver.birth_date _string_                  | The date of birth. |
-| transaction_info.receiver.birth_province _string_              | The province of birth. |
-| transaction_info.receiver.id _string_                          | The UUID of the receiver. |
-| transaction_info.receiver.issuer _string_                      | The issuing bank of the receiver. |
-| transaction_info.receiver.name _string_                        | The receiver's name |
-| transaction_info.receiver.scheme _string_                      | The scheme by which the money was received. |
-| transaction_info.receiver.scheme_proprietary _string_          | The owner of the scheme. |
-| transaction_info.receiver_account _object_                     | The account details of the receiver. |
-| transaction_info.receiver_account.iban _string_                | The IBAN of the receiver. |
-| transaction_info.receiver_agent _object_                       | The receiving agent, if any. |
-| transaction_info.receiver_agent.bic _string_                   | The BIC of the receiving agent. |
-| transaction_info.remittance_information_unstructured _string_  | Information for remittance, if any. |
-| transaction_info.sender _object_                               | Information about the sender. |
-| transaction_info.sender.address _object_                       | Sender's address information. |
-| transaction_info.sender.address.country _string_               | The country the sender is based in. |
-| transaction_info.sender.address.lines _string_                 |             |
-| transaction_info.sender.bic _string_                           | The Branch Identifier Code of the sender. |
-| transaction_info.sender.birth_city _string_                    | The birth city. |
-| transaction_info.sender.birth_country _string_                 | The birth country. |
-| transaction_info.sender.birth_date _string_                    | The date of birth. |
-| transaction_info.sender.birth_province _string_                | The province of birth. |
-| transaction_info.sender.id _string_                            | The UUID of the sender. |
-| transaction_info.sender.issuer _string_                        | The issuing bank of the sender. |
-| transaction_info.sender.name _string_                          | The sender's name |
-| transaction_info.sender.scheme _string_                        | The scheme by which the money was sent. |
-| transaction_info.sender.scheme_proprietary _string_            | The owner of the scheme. |
-| transaction_info.sender_account _object_                       | The account details of the sender. |
-| transaction_info.sender_account.iban _string_                  | The IBAN of the sender. |
-| transaction_info.sender_agent _object_                         | The sending agent, if any. |
-| transaction_info.sender_agent.bic _string_                     | The BIC of the sending agent. |
-| transaction_info.service_level _string_                        | The service level of the sender. |
-| transaction_info.settlement_account _object_                   | The settlement account details, if any. |
-| transaction_info.settlement_account.iban _string_              | The IBAN of the settlement account. |
-| transaction_info.settlement_date _string_                      | The date the transaction was/will be settled. |
-| transaction_info.settlement_method _string_                    | The method of settlement. |
-| transaction_info.transaction_id _string_                       | The transaction UUID. |
-| transaction_info.ultimate_receiver _object_                    | Information regarding the ultimate receiver of the transaction. |
-| transaction_info.ultimate_receiver.address _object_            | Ultimate receiver's address information. |
-| transaction_info.ultimate_receiver.address.country _string_    | The country the ultimate receiver is based in. |
-| transaction_info.ultimate_receiver.address.lines _string_      |             |
-| transaction_info.ultimate_receiver.bic _string_                | The Branch Identifier Code of the ultimate receiver. |
-| transaction_info.ultimate_receiver.birth_city _string_         | The birth city. |
-| transaction_info.ultimate_receiver.birth_country _string_      | The birth country. |
-| transaction_info.ultimate_receiver.birth_date _string_         | The date of birth. |
-| transaction_info.ultimate_receiver.birth_province _string_     | The province of birth. |
-| transaction_info.ultimate_receiver.id _string_                 | The UUID of the ultimate receiver. |
-| transaction_info.ultimate_receiver.issuer _string_             | The issuing bank of the ultimate receiver. |
-| transaction_info.ultimate_receiver.name _string_               | The ultimate receiver's name |
-| transaction_info.ultimate_receiver.scheme _string_             | The scheme by which the money was received. |
-| transaction_info.ultimate_receiver.scheme_proprietary _string_ | The owner of the scheme. |
-| transaction_info.ultimate_sender _object_                      | Information regarding the ultimate sender of the transaction. |
-| transaction_info.ultimate_sender.address _object_              | Ultimate sender's address information. |
-| transaction_info.ultimate_sender.address.country _string_      | The country the ultimate sender is based in. |
-| transaction_info.ultimate_sender.address.lines _string_        |             |
-| transaction_info.ultimate_sender.bic _string_                  | The Branch Identifier Code of the ultimate sender. |
-| transaction_info.ultimate_sender.birth_city _string_           | The birth city. |
-| transaction_info.ultimate_sender.birth_country _string_        | The birth country. |
-| transaction_info.ultimate_sender.birth_date _string_           | The date of birth. |
-| transaction_info.ultimate_sender.birth_province _string_       | The province of birth. |
-| transaction_info.ultimate_sender.id _string_                   | The UUID of the ultimate sender. |
-| transaction_info.ultimate_sender.issuer _string_               | The issuing bank of the ultimate sender. |
-| transaction_info.ultimate_sender.name _string_                 | The ultimate sender's name |
-| transaction_info.ultimate_sender.scheme _string_               | The scheme by which the money was sent. |
-| transaction_info.ultimate_sender.scheme_proprietary _string_   | The owner of the scheme. |
-| transaction_meta _object_                                      | An object allowing custom fields that can be created and stored against the transaction. |
-| transaction_printout _object_                                  | More information about the transaction. Will be populated by the scheme. |
-| transaction_status _string_                                    | The status of the transaction. See below. |
-| transaction_type _string_                                      | The type of transaction. |
+| Attribute                                                             | Description |
+|:----------------------------------------------------------------------|:-----|
+| `amount` <br> _number_                                                | The transaction amount |
+| `amount_beneficiary_account` <br> _number_                            | The amount credited in the receiver's account in the target currency (for convert-and-send money transactions). |
+| `amount_ledger_from` <br> _number_                                    | The amount debited from the sender's ledger in the original currency (for convert-and-send money transactions). |
+| `amount_local_currency` <br> _number_                                 | The amount of the local currency transferred (for convert-and-send money transactions). |
+| `additional_info` <br> _string_                                       | Any additional information about the transaction. |
+| `asset_class` <br> _string_                                           | The class of the asset being sent or received. <br> _Allowed Values:_ commodity, currency |
+| `asset_type` <br> _string_                                            | The type of asset being sent or received. <br> _Allowed Values:_ gbp, eur, aud, chf, cad, sek, usd, nok, nzd, jpy |
+| `beneficiary_account_id` <br> _string_                                | The Railsbank Beneficiary account ID to be credited. |
+| `beneficiary_id` <br> _string_                                        | The receiving Railsbank Beneficiary ID. |
+| `card_currency` <br> _string_                                         | The currency on the debit card, if it is a card transaction. |
+| `card_entry_method` <br> _string_                                     |      |
+| `card_expiry_date` <br> _string_                                      | The card expiry date, if it is a card transaction. |
+| `card_rules_breached` <br> _array of strings_                         | The card rules breached, if any, if it is a card transaction. |
+| `card_transaction_type` <br> _string_                                 | The type of card transaction. |
+| `card_used` <br> _string_                                             |      |
+| `conversion_date` <br> _string_                                       | The date that the convert-and-send funds were converted |
+| `conversion_rate` <br> _number_                                       | The rate at which the convert-and-send funds were converted. |
+| `created_at` <br> _string_                                            | The date the transaction was created |
+| `daily_unique_refence` <br> _string_                                  | A unique daily reference attached to the transaction. |
+| `failure_reasons` <br> _array of strings_                             | The failure reasons, if any. <br> _Allowed Values:_ declined-by-compliance-firewall, card-not-active, insufficient-funds, partner-error, card-rules-breached, contact-support, fx-issue. |
+| `fixed_side` <br> _string_                                            | Sets the base currency for pair rate direction, which determines how much the base currency is worth as measured against the second currency. It assures if the amount specified will either be debited from the sending ledger or credited in the receiving account. <br> _Allowed Values:_ beneficiary, sender. |
+| `invoices` <br> _array of objects_                                    | Attached invoice documents. |
+| `invoices.created_at` <br> _string_                                   | The date the invoice was created. |
+| `invoices.description` <br> _string_                                  | A description of the invoice. |
+| `invoices.document_id` <br> _string_                                  | The id of the invoice document. |
+| `ledger_from_id` <br> _string_                                        | The Railsbank Ledger ID to be debited. |
+| `ledger_to_id` <br> _string_                                          | The Railsbank ledger ID to be credited. |
+| `mcc_description` <br> _string_                                       | The merchant category code description (for card transactions). |
+| `merchant_category_code` <br> _string_                                | The merchant category code (for card transactions). |
+| `merchant_details` <br> _string_                                      | Extra details about the merchant (for card transactions). |
+| `merchant_id` <br> _string_                                           | The merchant's UUID (for card transactions). |
+| `merchantbank_id` <br> _string_                                       | The merchant's bank UUID. |
+| `missing_data` <br> _array of strings_                                | Any data required for the transaction to be accepted . |
+| `partner_product` <br> _string_                                       | The partner product of the sending or receiving ledger. |
+| `partner_product_fx` <br> _string_                                    | The convert-and-send partner product, if it is an FX transaction. <br> _Allowed Values:_ PayrNet-FX-1 |
+| `payment_info` <br> _object_                                          | Transaction information that will be populated by the payment scheme. See example. |
+| `payment_method` <br> _string_                                        | Shows whether the transaction was be sent/received via local (e.g. UKFP) or international (e.g. Swift) payment schemes. |
+| `payment_type` <br> _string_                                          | The type of payment: the scheme via which it was transferred . |
+| `point_of_sale_country_code` <br> _string_                            | The country code of the country in which the transaction occurred. |
+| `point_of_sale_info` <br> _string_                                    | Extra information regarding the point of sale. |
+| `point_of_sale_reference` <br> _string_                               | The reference from the point of sale. |
+| `reason` <br> _string_                                                | Text the enduser can add to the transaction for the beneficiary. |
+| `receipt_id` <br> _string_                                            | The UUID of the transaction receipt, if any. |
+| `reference` <br> _string_                                             | The transaction reference. |
+| `rejection_reasons` <br> _array of strings_                           | The reason the transaction was rejected, if it was. See below for possible reasons. |
+| `return_info` <br> _object_                                           | Information populated by the scheme if the transaction is a return |
+| `settlement_date` <br> _string_                                       | The date the transaction was/will be settled. |
+| `swift_charge_bearer` <br> _string_                                   | The charge bearer if the transaction is a SWIFT transfer |
+| `swift_service_level` <br> _string_                                   | The service level of the SWIFT transaction. |
+| `transaction_audit_number` <br> _string_                              | The audit number, if any, of the transaction |
+| `transaction_currency` <br> _string_                                  | The currency of the transaction. |
+| `transaction_fee` <br> _number_                                       | The fee attached to the transaction, if any. |
+| `transaction_id` <br> _string_                                        | The Railsbank UUID of the transaction. |
+| `transaction_info` <br> _object_                                      | Extra detail about the transaction. |
+| `transaction_info.amount` <br> _number_                               | The amount transferred. |
+| `transaction_info.charge_bearer` <br> _string_                        | The bearer, if any, of any charges |
+| `transaction_info.clearing_system` <br> _string_                      | The type of clearing system, if any, of the transaction. |
+| `transaction_info.clearing_system_proprietary` <br> _string_          | The owner of the clearing system, if any. |
+| `transaction_info.created_at` <br> _string_                           | The timestamp of when the transaction was created. |
+| `transaction_info.currency` <br> _string_                             | The currency of the transaction. |
+| `transaction_info.end_to_end_id` <br> _string_                        | The end to end UUID of the transaction. |
+| `transaction_info.instructed_agent` <br> _object_                     | The instructed agent of the transaction. |
+| `transaction_info.instructed_agent.bic` <br> _string_                 | The Branch Identifier Code of the instructed agent. |
+| `transaction_info.instructing_agent` <br> _object_                    | The instructing agent of the transaction. |
+| `transaction_info.instructing_agent.bic` <br> _string_                | The Branch Identifier Code of the instructing agent. |
+| `transaction_info.instruction_id` <br> _string_                       | The UUID of the transaction instruction. |
+| `transaction_info.local_instrument` <br> _string_                     | The instrument used to perform the transaction. For instance, a debit card. |
+| `transaction_info.local_instrument_proprietary` <br> _string_         | The owner of the instrument. |
+| `transaction_info.message_id` <br> _string_                           | The UUID of the message. |
+| `transaction_info.message_schema` <br> _string_                       | The schema of the message. |
+| `transaction_info.purpose` <br> _string_                              | The purpose of the transaction. |
+| `transaction_info.purpose_category` <br> _string_                     | The category of the purpose |
+| `transaction_info.purpose_category_proprietary` <br> _string_         | The owner of the category. |
+| `transaction_info.receiver` <br> _object_                             | Information regarding the receiver of the transaction. |
+| `transaction_info.receiver.address` <br> _object_                     | Receiver's address information. |
+| `transaction_info.receiver.address.country` <br> _string_             | The country the receiver is based in. |
+| `transaction_info.receiver.address.lines` <br> _string_               |      |
+| `transaction_info.receiver.bic` <br> _string_                         | The Branch Identifier Code of the receiver. |
+| `transaction_info.receiver.birth_city` <br> _string_                  | The birth city. |
+| `transaction_info.receiver.birth_country` <br> _string_               | The birth country. |
+| `transaction_info.receiver.birth_date` <br> _string_                  | The date of birth. |
+| `transaction_info.receiver.birth_province` <br> _string_              | The province of birth. |
+| `transaction_info.receiver.id` <br> _string_                          | The UUID of the receiver. |
+| `transaction_info.receiver.issuer` <br> _string_                      | The issuing bank of the receiver. |
+| `transaction_info.receiver.name` <br> _string_                        | The receiver's name |
+| `transaction_info.receiver.scheme` <br> _string_                      | The scheme by which the money was received. |
+| `transaction_info.receiver.scheme_proprietary` <br> _string_          | The owner of the scheme. |
+| `transaction_info.receiver_account` <br> _object_                     | The account details of the receiver. |
+| `transaction_info.receiver_account.iban` <br> _string_                | The IBAN of the receiver. |
+| `transaction_info.receiver_agent` <br> _object_                       | The receiving agent, if any. |
+| `transaction_info.receiver_agent.bic` <br> _string_                   | The BIC of the receiving agent. |
+| `transaction_info.remittance_information_unstructured` <br> _string_  | Information for remittance, if any. |
+| `transaction_info.sender` <br> _object_                               | Information about the sender. |
+| `transaction_info.sender.address` <br> _object_                       | Sender's address information. |
+| `transaction_info.sender.address.country` <br> _string_               | The country the sender is based in. |
+| `transaction_info.sender.address.lines` <br> _string_                 |      |
+| `transaction_info.sender.bic` <br> _string_                           | The Branch Identifier Code of the sender. |
+| `transaction_info.sender.birth_city` <br> _string_                    | The birth city. |
+| `transaction_info.sender.birth_country` <br> _string_                 | The birth country. |
+| `transaction_info.sender.birth_date` <br> _string_                    | The date of birth. |
+| `transaction_info.sender.birth_province` <br> _string_                | The province of birth. |
+| `transaction_info.sender.id` <br> _string_                            | The UUID of the sender. |
+| `transaction_info.sender.issuer` <br> _string_                        | The issuing bank of the sender. |
+| `transaction_info.sender.name` <br> _string_                          | The sender's name |
+| `transaction_info.sender.scheme` <br> _string_                        | The scheme by which the money was sent. |
+| `transaction_info.sender.scheme_proprietary` <br> _string_            | The owner of the scheme. |
+| `transaction_info.sender_account` <br> _object_                       | The account details of the sender. |
+| `transaction_info.sender_account.iban` <br> _string_                  | The IBAN of the sender. |
+| `transaction_info.sender_agent` <br> _object_                         | The sending agent, if any. |
+| `transaction_info.sender_agent.bic` <br> _string_                     | The BIC of the sending agent. |
+| `transaction_info.service_level` <br> _string_                        | The service level of the sender. |
+| `transaction_info.settlement_account` <br> _object_                   | The settlement account details, if any. |
+| `transaction_info.settlement_account.iban` <br> _string_              | The IBAN of the settlement account. |
+| `transaction_info.settlement_date` <br> _string_                      | The date the transaction was/will be settled. |
+| `transaction_info.settlement_method` <br> _string_                    | The method of settlement. |
+| `transaction_info.transaction_id` <br> _string_                       | The transaction UUID. |
+| `transaction_info.ultimate_receiver` <br> _object_                    | Information regarding the ultimate receiver of the transaction. |
+| `transaction_info.ultimate_receiver.address` <br> _object_            | Ultimate receiver's address information. |
+| `transaction_info.ultimate_receiver.address.country` <br> _string_    | The country the ultimate receiver is based in. |
+| `transaction_info.ultimate_receiver.address.lines` <br> _string_      |      |
+| `transaction_info.ultimate_receiver.bic` <br> _string_                | The Branch Identifier Code of the ultimate receiver. |
+| `transaction_info.ultimate_receiver.birth_city` <br> _string_         | The birth city. |
+| `transaction_info.ultimate_receiver.birth_country` <br> _string_      | The birth country. |
+| `transaction_info.ultimate_receiver.birth_date` <br> _string_         | The date of birth. |
+| `transaction_info.ultimate_receiver.birth_province` <br> _string_     | The province of birth. |
+| `transaction_info.ultimate_receiver.id` <br> _string_                 | The UUID of the ultimate receiver. |
+| `transaction_info.ultimate_receiver.issuer` <br> _string_             | The issuing bank of the ultimate receiver. |
+| `transaction_info.ultimate_receiver.name` <br> _string_               | The ultimate receiver's name |
+| `transaction_info.ultimate_receiver.scheme` <br> _string_             | The scheme by which the money was received. |
+| `transaction_info.ultimate_receiver.scheme_proprietary` <br> _string_ | The owner of the scheme. |
+| `transaction_info.ultimate_sender` <br> _object_                      | Information regarding the ultimate sender of the transaction. |
+| `transaction_info.ultimate_sender.address` <br> _object_              | Ultimate sender's address information. |
+| `transaction_info.ultimate_sender.address.country` <br> _string_      | The country the ultimate sender is based in. |
+| `transaction_info.ultimate_sender.address.lines` <br> _string_        |      |
+| `transaction_info.ultimate_sender.bic` <br> _string_                  | The Branch Identifier Code of the ultimate sender. |
+| `transaction_info.ultimate_sender.birth_city` <br> _string_           | The birth city. |
+| `transaction_info.ultimate_sender.birth_country` <br> _string_        | The birth country. |
+| `transaction_info.ultimate_sender.birth_date` <br> _string_           | The date of birth. |
+| `transaction_info.ultimate_sender.birth_province` <br> _string_       | The province of birth. |
+| `transaction_info.ultimate_sender.id` <br> _string_                   | The UUID of the ultimate sender. |
+| `transaction_info.ultimate_sender.issuer` <br> _string_               | The issuing bank of the ultimate sender. |
+| `transaction_info.ultimate_sender.name` <br> _string_                 | The ultimate sender's name |
+| `transaction_info.ultimate_sender.scheme` <br> _string_               | The scheme by which the money was sent. |
+| `transaction_info.ultimate_sender.scheme_proprietary` <br> _string_   | The owner of the scheme. |
+| `transaction_meta` <br> _object_                                      | An object allowing custom fields that can be created and stored against the transaction. |
+| `transaction_printout` <br> _object_                                  | More information about the transaction. Will be populated by the scheme. |
+| `transaction_status` <br> _string_                                    | The status of the transaction. See below. |
+| `transaction_type` <br> _string_                                      | The type of transaction. |
 
 ### Transaction Statuses
 | Message                           | Description                              |
@@ -642,39 +642,40 @@
 | `transaction-status-declined`     | Transaction has ben declined. When you fetch the transaction you will see the `failure_reasons`, for instance: `insufficient-funds`. You will receive a `type: transaction-declined` webhook. |
 
 ### Rejection Reasons
-| Reason                                                 |
-|:-------------------------------------------------------|
-| account-transferred,                                   |
-| beneficiary-sort-code-not-enabled-for-faster-payments, |
-| transaction-currency-different-to-receiver-account,    |
-| beneficiary-sort-code-and-account-number-unknown,      |
-| beneficiary-account-number-invalid,                    |
-| beneficiary-name-does-not-match-beneficiary-account,   |
-| currency-and-amount-invalid,                           |
-| sending-agency-account-stopped,                        |
-| sending-account-transferred,                           |
-| beneficiary-sort-code-invalid,                         |
-| amount-invalid,                                        |
-| rejected-by-receiving-bank-with-unspecified-reason,    |
-| sending-agency-account-closed, insufficient-funds,     |
-| transaction-failed-contact-beneficiary,                |
-| currency-invalid,                                      |
-| beneficiary-account-stopped,                           |
-| receiving-agency-account-stopped,                      |
-| account-overdrawn,                                     |
-| syntax-error,                                          |
-| receiving-agency-account-closed,                       |
-| additional-remittance-info-invalid,                    |
-| beneficiary-name-missing,                              |
-| account-number-invalid,                                |
-| receiving-account-transferred,                         |
-| receiving-agency-sort-code-and-account-number-unknown, |
-| reference-invalid,                                     |
-| transaction-failed-please-retry,                       |
-| duplicate-fpid2,                                       |
-| terms-and-conditions-limit,                            |
-| sending-agency-sort-code-and-account-number-unknown,   |
-| transaction-failed,                                    |
-| sending-fps-institution-action-required,               |
-| amount-exceeds-account-limit,                          |
-| beneficiary-account-closed                             |
+| Reason                                                  |
+|:--------------------------------------------------------|
+| `account-transferred`                                   |
+| `beneficiary-sort-code-not-enabled-for-faster-payments` |
+| `transaction-currency-different-to-receiver-account`    |
+| `beneficiary-sort-code-and-account-number-unknown`      |
+| `beneficiary-account-number-invalid`                    |
+| `beneficiary-name-does-not-match-beneficiary-account`   |
+| `currency-and-amount-invalid`                           |
+| `sending-agency-account-stopped`                        |
+| `sending-account-transferred`                           |
+| `beneficiary-sort-code-invalid`                         |
+| `amount-invalid`                                        |
+| `rejected-by-receiving-bank-with-unspecified-reason`    |
+| `sending-agency-account-closed`                         |
+| `insufficient-funds`                                    |
+| `transaction-failed-contact-beneficiary `               |
+| `currency-invalid`                                      |
+| `beneficiary-account-stopped`                           |
+| `receiving-agency-account-stopped`                      |
+| `account-overdrawn`                                     |
+| `syntax-error`                                          |
+| `receiving-agency-account-close`                        |
+| `additional-remittance-info-invalid`                    |
+| `beneficiary-name-missing`                              |
+| `account-number-invalid`                                |
+| `receiving-account-transferred`                         |
+| `receiving-agency-sort-code-and-account-number-unknown` |
+| `reference-invalid`                                     |
+| `transaction-failed-please-retry`                       |
+| `duplicate-fpid2`                                       |
+| `terms-and-conditions-limit`                            |
+| `sending-agency-sort-code-and-account-number-unknown`   |
+| `transaction-failed`                                    |
+| `sending-fps-institution-action-required`               |
+| `amount-exceeds-account-limit`                          |
+| `beneficiary-account-closed`                            |
