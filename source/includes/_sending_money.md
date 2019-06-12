@@ -87,7 +87,7 @@
 | `payment-type-EU-SEPA-Target2`          | A EUR payment via SEPA Target 2    |
 | `payment-type-virtual-debit-card-debit` | A debit card payment               |
 
-## Send to a Ledger
+## Send to another Ledger
 > **Example Request**
 
 ```shell
@@ -129,3 +129,552 @@
 | `ledger_from_id` <br> _string_, required    | The ledger from which funds will be sent |
 | `ledger_to_id` <br> _string_, required      | The ledger to which funds will be sent |
 | `transaction_meta` <br>  _object_, optional | Extra information you want to input in the form of custom fields |
+
+## Fetch a Transaction
+> **Example Request**
+
+```shell
+--request GET "https://playlive.railsbank.com/v1/customer/transactions/{{TRANSACTION_ID}}"
+--header "Content-Type: application/json"
+--header "Accept: application/json"
+--header "Authorization: API-Key <<yourAPI-Key>>"
+```
+> **Example Response - GBP**
+
+```shell
+{
+        "payment_type": "payment-type-UK-FasterPayments",
+        "transaction_type": "transaction-type-send",
+        "transaction_status": "transaction-status-accepted",
+        "transaction_info": {},
+        "reference": "xyz",
+        "amount": 8.08,
+        "ledger_from_id": "5bed3df1-9fb6-4c23-8d61-814a0e61113c",
+        "transaction_id": "5cff65c2-71aa-42c0-b620-0211c7a891c2",
+        "created_at": "2019-06-11T08:26:42.607Z",
+        "partner_product": "PayrNet-GBP-1",
+        "beneficiary_id": "5cf52d84-04ce-4de6-8f35-bc11295afd3b",
+        "transaction_printout": {
+            "ultimatesenderaddress": {
+                "address_iso_country": "GB"
+            },
+            "beneficiaryiban": "sort-code - 231470/13459843",
+            "pspofsendername": "PayrNet",
+            "pspaccountlocation": "PAYRGB2LXXX",
+            "pspofsenderphysicallocation": "GB",
+            "pspaccounttandcscountryofjurisdiction": "GB",
+            "ultimatesendername": "Railsbank",
+            "pspofsenderaddress": {
+                "address_refinement": "Kemp House",
+                "address_number": "152",
+                "address_street": "City Road",
+                "address_city": "London",
+                "address_postal_code": "EC1V 2NX",
+                "address_iso_country": "GB"
+            },
+            "paymentonbehalfoftype": "POO",
+            "pspofultimatebenename": "Starling",
+            "ultimatesenderaccountnumber": "GB24PAYR04005213694938",
+            "beneficiaryname": "Railsbank Technology Limited",
+            "paymentpartytype": "third_party"
+        },
+        "asset_type": "gbp",
+        "asset_class": "currency",
+        "transaction_meta": {
+            "info": "2018-02-21T16:05:13.016Z | 0.19"
+        },
+        "invoices": [],
+        "beneficiary_account_id": "5cf52d84-0faa-4104-bf6c-395896f3b04b"
+    },
+    {
+        "payment_type": "payment-type-UK-FasterPayments",
+        "transaction_type": "transaction-type-send",
+        "payment_info": {
+            "domesticInstructionAccount": {
+                "sortCode": "231470",
+                "accountNumber": "13459843",
+                "accountName": "Railsbank Technology Limited"
+            },
+            "reference": "xyz",
+            "currencyAndAmount": {
+                "currency": "GBP",
+                "minorUnits": 79
+            },
+            "type": "SIP"
+        },
+        "transaction_status": "transaction-status-accepted",
+        "transaction_info": {},
+        "reference": "xyz",
+        "amount": 0.79,
+        "ledger_from_id": "5bed4559-a448-43ba-a826-5900d6766457",
+        "transaction_id": "5cff660e-037c-4371-a2ef-a0c42bf5c1d9",
+        "created_at": "2019-06-11T08:27:58.143Z",
+        "partner_product": "PayrNet-GBP-1",
+        "beneficiary_id": "5cf52d84-04ce-4de6-8f35-bc11295afd3b",
+        "transaction_printout": {
+            "ultimatesenderaddress": {
+                "address_iso_country": "GB"
+            },
+            "beneficiaryiban": "sort-code - 231470/13459843",
+            "pspofsendername": "PayrNet",
+            "pspaccountlocation": "PAYRGB2LXXX",
+            "pspofsenderphysicallocation": "GB",
+            "pspaccounttandcscountryofjurisdiction": "GB",
+            "ultimatesendername": "Railsbank",
+            "pspofsenderaddress": {
+                "address_refinement": "Kemp House",
+                "address_number": "152",
+                "address_street": "City Road",
+                "address_city": "London",
+                "address_postal_code": "EC1V 2NX",
+                "address_iso_country": "GB"
+            },
+            "paymentonbehalfoftype": "POO",
+            "pspofultimatebenename": "Starling",
+            "ultimatesenderaccountnumber": "GB62PAYR04005218848640",
+            "beneficiaryname": "Railsbank Technology Limited",
+            "paymentpartytype": "third_party"
+        },
+        "asset_type": "gbp",
+        "asset_class": "currency",
+        "transaction_meta": {
+            "info": "2018-02-21T16:05:13.016Z | 0.19"
+        },
+        "invoices": [],
+        "beneficiary_account_id": "5cf52d84-0faa-4104-bf6c-395896f3b04b"
+    }
+```
+
+> **Example Response - EUR**
+
+```shell
+{
+    "payment_type": "payment-type-EU-SEPA-Step2",
+    "transaction_type": "transaction-type-send",
+    "payment_info": {
+        "credit-transfer-transaction-information*": [
+            {
+                "debtor-account": {
+                    "identification": {
+                        "iban": "GB65PAYR00997700000339"
+                    }
+                },
+                "debtor-agent": {
+                    "financial-institution-identification": {
+                        "bic": "PAYRGB21"
+                    }
+                },
+                "creditor-account": {
+                    "identification": {
+                        "iban": "DE75700111106050110069"
+                    }
+                },
+                "creditor": {
+                    "name": "Railsbank Technology Limited",
+                    "postal-address": {
+                        "country": "DE"
+                    }
+                },
+                "payment-type-information": {
+                    "service-level": {
+                        "code": "SEPA"
+                    }
+                },
+                "remittance-information": {
+                    "unstructured*": [
+                        "xyz"
+                    ]
+                },
+                "creditor-agent": {
+                    "financial-institution-identification": {
+                        "bic": "DEKTDE7GXXX"
+                    }
+                },
+                "interbank-settlement-amount": {
+                    "value": 1.1,
+                    "currency": "EUR"
+                },
+                "payment-identification": {
+                    "end-to-end-identification": "NOTPROVIDED",
+                    "transaction-identification": "174682e83ae04fa5a8fb2b099cdcbe9b"
+                },
+                "charge-bearer": "SLEV",
+                "debtor": {
+                    "name": "Railsbank",
+                    "postal-address": {
+                        "country": "GB"
+                    }
+                }
+            }
+        ],
+        "group-header": {
+            "message-identification": "174682e83ae04fa5a8fb2b099cdcbe9b",
+            "creation-date-time": "2019-06-11T08:40:38.163Z",
+            "settlement-information": {
+                "settlement-method": "CLRG"
+            },
+            "total-interbank-settlement-amount": {
+                "value": 1.1,
+                "currency": "EUR"
+            },
+            "interbank-settlement-date": "2019-06-11",
+            "instructing-agent": {
+                "financial-institution-identification": {
+                    "bic": "PAYRGB21"
+                }
+            },
+            "instructed-agent": {
+                "financial-institution-identification": {
+                    "bic": "CMBRFR2B"
+                }
+            }
+        }
+    },
+    "transaction_status": "transaction-status-accepted",
+    "transaction_info": {},
+    "reference": "xyz",
+    "amount": 1.1,
+    "ledger_from_id": "5c9e28c4-8db2-4a9e-b73d-45dabe2f41d3",
+    "transaction_id": "5cff6659-bbc5-4923-adc5-3e0e7b6404b2",
+    "created_at": "2019-06-11T08:29:13.060Z",
+    "partner_product": "PayrNet-EUR-1",
+    "beneficiary_id": "5cf52ed8-7879-4adc-a9a6-476f0aa5fdf8",
+    "transaction_printout": {
+        "ultimatesenderaddress": {
+            "address_iso_country": "GB"
+        },
+        "beneficiaryiban": "DE75700111106050110069",
+        "pspofsendername": "PayrNet",
+        "pspaccountlocation": "PAYRGB21",
+        "pspofsenderphysicallocation": "GB",
+        "pspaccounttandcscountryofjurisdiction": "GB",
+        "ultimatesendername": "Railsbank",
+        "pspofsenderaddress": {
+            "address_refinement": "Kemp House",
+            "address_number": "152",
+            "address_street": "City Road",
+            "address_city": "London",
+            "address_postal_code": "EC1V 2NX",
+            "address_iso_country": "GB"
+        },
+        "paymentonbehalfoftype": "POO",
+        "pspofultimatebenename": "Arkea",
+        "ultimatesenderaccountnumber": "GB65PAYR00997700000339",
+        "beneficiaryname": "Railsbank Technology Limited",
+        "paymentpartytype": "third_party"
+    },
+    "asset_type": "eur",
+    "asset_class": "currency",
+    "transaction_meta": {
+        "info": "2018-02-21T16:05:13.016Z | 0.19"
+    },
+    "invoices": [],
+    "beneficiary_account_id": "5cf52ed8-7e87-4cb4-aa88-702a0b1c19e4"
+}
+```
+> **Example Response - INTER-LEDGER**
+
+```shell
+{
+        "payment_type": "payment-type-inter-ledger",
+        "transaction_type": "transaction-type-inter-ledger-omnibus",
+        "transaction_status": "transaction-status-accepted",
+        "ledger_to_id": "5cf4f5c9-4307-4e51-92c6-098e55ccb8bf",
+        "transaction_info": {},
+        "amount": 0.1,
+        "ledger_from_id": "5cf4f5b7-5943-4c87-b597-cd330110ecff",
+        "transaction_id": "5cfe73b5-4148-4b04-af06-e6c6a5053c89",
+        "created_at": "2019-06-10T15:13:57.782Z",
+        "partner_product": "PayrNet-GBP-1",
+        "transaction_printout": {
+            "ultimatesenderaddress": {
+                "address_iso_country": "GB"
+            },
+            "beneficiaryiban": "GB47PAYR04005212339725",
+            "pspofsendername": "Railsbank",
+            "pspaccountlocation": "PAYRGB2LXXX",
+            "pspofsenderphysicallocation": "GB",
+            "pspaccounttandcscountryofjurisdiction": "GB",
+            "ultimatesendername": "Railsbank",
+            "pspofsenderaddress": {
+                "address_iso_country": "GB"
+            },
+            "pspofultimatebenephysicallocation": "GB",
+            "pspofultimatebeneaddress": {
+                "address_iso_country": "GB"
+            },
+            "paymentonbehalfoftype": "POO",
+            "pspofultimatebenename": "Railsbank",
+            "ultimatesenderaccountnumber": "GB69PAYR04005207186010",
+            "beneficiaryname": "Railsbank",
+            "paymentpartytype": "interledger"
+        },
+        "asset_type": "gbp",
+        "asset_class": "currency",
+        "invoices": []
+    },
+    {
+        "payment_type": "payment-type-UK-FasterPayments",
+        "transaction_type": "transaction-type-send",
+        "payment_info": {
+            "domesticInstructionAccount": {
+                "sortCode": "231470",
+                "accountNumber": "13459843",
+                "accountName": "Railsbank Technology Limited"
+            },
+            "reference": "xyz",
+            "currencyAndAmount": {
+                "currency": "GBP",
+                "minorUnits": 10
+            },
+            "type": "SIP"
+        },
+        "transaction_status": "transaction-status-accepted",
+        "transaction_info": {},
+        "reference": "xyz",
+        "amount": 0.1,
+        "ledger_from_id": "5cf4f5c9-4307-4e51-92c6-098e55ccb8bf",
+        "transaction_id": "5cfe7478-9cb5-4135-83a0-f83be718e98c",
+        "created_at": "2019-06-10T15:17:12.379Z",
+        "partner_product": "PayrNet-GBP-1",
+        "beneficiary_id": "5cf52d84-04ce-4de6-8f35-bc11295afd3b",
+        "transaction_printout": {
+            "ultimatesenderaddress": {
+                "address_iso_country": "GB"
+            },
+            "beneficiaryiban": "sort-code - 231470/13459843",
+            "pspofsendername": "PayrNet",
+            "pspaccountlocation": "PAYRGB2LXXX",
+            "pspofsenderphysicallocation": "GB",
+            "pspaccounttandcscountryofjurisdiction": "GB",
+            "ultimatesendername": "Railsbank",
+            "pspofsenderaddress": {
+                "address_refinement": "Kemp House",
+                "address_number": "152",
+                "address_street": "City Road",
+                "address_city": "London",
+                "address_postal_code": "EC1V 2NX",
+                "address_iso_country": "GB"
+            },
+            "paymentonbehalfoftype": "POO",
+            "pspofultimatebenename": "Starling",
+            "ultimatesenderaccountnumber": "GB47PAYR04005212339725",
+            "beneficiaryname": "Railsbank Technology Limited",
+            "paymentpartytype": "third_party"
+        },
+        "asset_type": "gbp",
+        "asset_class": "currency",
+        "transaction_meta": {
+            "info": "2018-02-21T16:05:13.016Z | 0.19"
+        },
+        "invoices": [],
+        "beneficiary_account_id": "5cf52d84-0faa-4104-bf6c-395896f3b04b"
+    }
+```
+
+`GET "https://playlive.railsbank.com/v1/customer/transactions/{{TRANSACTION_ID}}"`
+
+- This endpoint allows you to fetch a transaction.
+- Please note:
+  - When you see `transaction-status-accepted`, this does not necessarily mean that the funds will be transferred to the beneficiary or the ledger. The reason for this is that the transaction could have fallen into our Partner Quarantine Queue if it has broken a firewall rule. We are not allowed to notify customers when this happens due to regulation, and it is possible that the transaction can change from `status-accepted` to `status-declined` if our Compliance Team rejects the transaction. If this occurs you will receive a webhook notification of `type: transaction-declined`.
+  - Not all of the fields below will be returned in every fetch transaction call! They are all the possible fields (not including fields that could be sent to us via the payment scheme. Many are dependent on the type of transaction. See the examples to the right for responses for different types of transaction. For an example of our card transactions, see the cards endpoints.
+
+### The Fetched Transaction Object
+
+| Attribute                                                      | Description |
+|:---------------------------------------------------------------|:------------|
+| amount _number_                                                | The transaction amount |
+| amount_beneficiary_account _number_                            | The amount credited in the receiver's account in the target currency (for convert-and-send money transactions). |
+| amount_ledger_from _number_                                    | The amount debited from the sender's ledger in the original currency (for convert-and-send money transactions). |
+| amount_local_currency _number_                                 | The amount of the local currency transferred (for convert-and-send money transactions). |
+| additional_info _string_                                       | Any additional information about the transaction. |
+| `asset_class` <br> _string_                                    | The class of the asset being sent or received. <br> _Allowed Values:_ commodity, currency |
+| `asset_type` <br> _string_                                     | The type of asset being sent or received. <br> _Allowed Values:_ gbp, eur, aud, chf, cad, sek, usd, nok, nzd, jpy |
+| beneficiary_account_id _string_                                | The Railsbank Beneficiary account ID to be credited. |
+| beneficiary_id _string_                                        | The receiving Railsbank Beneficiary ID. |
+| card_currency _string_                                         | The currency on the debit card, if it is a card transaction. |
+| card_entry_method _string_                                     |             |
+| card_expiry_date _string_                                      | The card expiry date, if it is a card transaction. |
+| card_rules_breached _array of strings_                         | The card rules breached, if any, if it is a card transaction. |
+| card_transaction_type _string_                                 | The type of card transaction. |
+| card_used _string_                                             |             |
+| conversion_date _string_                                       | The date that the convert-and-send funds were converted |
+| conversion_rate _number_                                       | The rate at which the convert-and-send funds were converted. |
+| created_at _string_                                            | The date the transaction was created |
+| daily_unique_refence _string_                                  | A unique daily reference attached to the transaction. |
+| failure_reasons _array of strings_                             | The failure reasons, if any. <br> _Allowed Values:_ declined-by-compliance-firewall, card-not-active, insufficient-funds, partner-error, card-rules-breached, contact-support, fx-issue. |
+| fixed_side _string_                                            | Sets the base currency for pair rate direction, which determines how much the base currency is worth as measured against the second currency. It assures if the amount specified will either be debited from the sending ledger or credited in the receiving account. <br> _Allowed Values:_ beneficiary, sender. |
+| invoices _arrayof objects_                                     | Attached invoice documents. |
+| invoices.created_at _string_                                   | The date the invoice was created. |
+| invoices.description _string_                                  | A description of the invoice. |
+| invoices.document_id _string_                                  | The id of the invoice document. |
+| ledger_from_id _string_                                        | The Railsbank Ledger ID to be debited. |
+| ledger_to_id _string_                                          | The Railsbank ledger ID to be credited. |
+| mcc_description _string_                                       | The merchant category code description (for card transactions). |
+| merchant_category_code _string_                                | The merchant category code (for card transactions). |
+| merchant_details _string_                                      | Extra details about the merchant (for card transactions). |
+| merchant_id _string_                                           | The merchant's UUID (for card transactions). |
+| merchantbank_id _string_                                       | The merchant's bank UUID. |
+| missing_data _array of strings_                                | Any data required for the transaction to be accepted . |
+| partner_product _string_                                       | The partner product of the sending or receiving ledger. |
+| partner_product_fx _string_                                    | The convert-and-send partner product, if it is an FX transaction. <br> _Allowed Values:_ PayrNet-FX-1 |
+| payment_info _object_                                          | Transaction information that will be populated by the payment scheme. See example. |
+| payment_method _string_                                        | Shows whether the transaction was be sent/received via local (e.g. UKFP) or international (e.g. Swift) payment schemes. |
+| payment_type _string_                                          | The type of payment: the scheme via which it was transferred . |
+| point_of_sale_country_code _string_                            | The country code of the country in which the transaction occurred. |
+| point_of_sale_info _string_                                    | Extra information regarding the point of sale. |
+| point_of_sale_reference _string_                               | The reference from the point of sale. |
+| reason _string_                                                | Text the enduser can add to the transaction for the beneficiary. |
+| receipt_id _string_                                            | The UUID of the transaction receipt, if any. |
+| reference _string_                                             | The transaction reference. |
+| rejection_reasons _array of strings_                           | The reason the transaction was rejected, if it was. See below for possible reasons. |
+| return_info _object_                                           | Information populated by the scheme if the transaction is a return |
+| settlement_date _string_                                       | The date the transaction was/will be settled. |
+| swift_charge_bearer _string_                                   | The charge bearer if the transaction is a SWIFT transfer |
+| swift_service_level _string_                                   | The service level of the SWIFT transaction. |
+| transaction_audit_number _string_                              | The audit number, if any, of the transaction |
+| transaction_currency _string_                                  | The currency of the transaction. |
+| transaction_fee _number_                                       | The fee attached to the transaction, if any. |
+| transaction_id _string_                                        | The Railsbank UUID of the transaction. |
+| transaction_info _object_                                      | Extra detail about the transaction. |
+| transaction_info.amount _number_                               | The amount transferred. |
+| transaction_info.charge_bearer _string_                        | The bearer, if any, of any charges |
+| transaction_info.clearing_system _string_                      | The type of clearing system, if any, of the transaction. |
+| transaction_info.clearing_system_proprietary _string_          | The owner of the clearing system, if any. |
+| transaction_info.created_at _string_                           | The timestamp of when the transaction was created. |
+| transaction_info.currency _string_                             | The currency of the transaction. |
+| transaction_info.end_to_end_id _string_                        | The end to end UUID of the transaction. |
+| transaction_info.instructed_agent _object_                     | The instructed agent of the transaction. |
+| transaction_info.instructed_agent.bic _string_                 | The Branch Identifier Code of the instructed agent. |
+| transaction_info.instructing_agent _object_                    | The instructing agent of the transaction. |
+| transaction_info.instructing_agent.bic _string_                | The Branch Identifier Code of the instructing agent. |
+| transaction_info.instruction_id _string_                       | The UUID of the transaction instruction. |
+| transaction_info.local_instrument _string_                     | The instrument used to perform the transaction. For instance, a debit card. |
+| transaction_info.local_instrument_proprietary _string_         | The owner of the instrument. |
+| transaction_info.message_id _string_                           | The UUID of the message. |
+| transaction_info.message_schema _string_                       | The schema of the message. |
+| transaction_info.purpose _string_                              | The purpose of the transaction. |
+| transaction_info.purpose_category _string_                     | The category of the purpose |
+| transaction_info.purpose_category_proprietary _string_         | The owner of the category. |
+| transaction_info.receiver _object_                             | Information regarding the receiver of the transaction. |
+| transaction_info.receiver.address _object_                     | Receiver's address information. |
+| transaction_info.receiver.address.country _string_             | The country the receiver is based in. |
+| transaction_info.receiver.address.lines _string_               |             |
+| transaction_info.receiver.bic _string_                         | The Branch Identifier Code of the receiver. |
+| transaction_info.receiver.birth_city _string_                  | The birth city. |
+| transaction_info.receiver.birth_country _string_               | The birth country. |
+| transaction_info.receiver.birth_date _string_                  | The date of birth. |
+| transaction_info.receiver.birth_province _string_              | The province of birth. |
+| transaction_info.receiver.id _string_                          | The UUID of the receiver. |
+| transaction_info.receiver.issuer _string_                      | The issuing bank of the receiver. |
+| transaction_info.receiver.name _string_                        | The receiver's name |
+| transaction_info.receiver.scheme _string_                      | The scheme by which the money was received. |
+| transaction_info.receiver.scheme_proprietary _string_          | The owner of the scheme. |
+| transaction_info.receiver_account _object_                     | The account details of the receiver. |
+| transaction_info.receiver_account.iban _string_                | The IBAN of the receiver. |
+| transaction_info.receiver_agent _object_                       | The receiving agent, if any. |
+| transaction_info.receiver_agent.bic _string_                   | The BIC of the receiving agent. |
+| transaction_info.remittance_information_unstructured _string_  | Information for remittance, if any. |
+| transaction_info.sender _object_                               | Information about the sender. |
+| transaction_info.sender.address _object_                       | Sender's address information. |
+| transaction_info.sender.address.country _string_               | The country the sender is based in. |
+| transaction_info.sender.address.lines _string_                 |             |
+| transaction_info.sender.bic _string_                           | The Branch Identifier Code of the sender. |
+| transaction_info.sender.birth_city _string_                    | The birth city. |
+| transaction_info.sender.birth_country _string_                 | The birth country. |
+| transaction_info.sender.birth_date _string_                    | The date of birth. |
+| transaction_info.sender.birth_province _string_                | The province of birth. |
+| transaction_info.sender.id _string_                            | The UUID of the sender. |
+| transaction_info.sender.issuer _string_                        | The issuing bank of the sender. |
+| transaction_info.sender.name _string_                          | The sender's name |
+| transaction_info.sender.scheme _string_                        | The scheme by which the money was sent. |
+| transaction_info.sender.scheme_proprietary _string_            | The owner of the scheme. |
+| transaction_info.sender_account _object_                       | The account details of the sender. |
+| transaction_info.sender_account.iban _string_                  | The IBAN of the sender. |
+| transaction_info.sender_agent _object_                         | The sending agent, if any. |
+| transaction_info.sender_agent.bic _string_                     | The BIC of the sending agent. |
+| transaction_info.service_level _string_                        | The service level of the sender. |
+| transaction_info.settlement_account _object_                   | The settlement account details, if any. |
+| transaction_info.settlement_account.iban _string_              | The IBAN of the settlement account. |
+| transaction_info.settlement_date _string_                      | The date the transaction was/will be settled. |
+| transaction_info.settlement_method _string_                    | The method of settlement. |
+| transaction_info.transaction_id _string_                       | The transaction UUID. |
+| transaction_info.ultimate_receiver _object_                    | Information regarding the ultimate receiver of the transaction. |
+| transaction_info.ultimate_receiver.address _object_            | Ultimate receiver's address information. |
+| transaction_info.ultimate_receiver.address.country _string_    | The country the ultimate receiver is based in. |
+| transaction_info.ultimate_receiver.address.lines _string_      |             |
+| transaction_info.ultimate_receiver.bic _string_                | The Branch Identifier Code of the ultimate receiver. |
+| transaction_info.ultimate_receiver.birth_city _string_         | The birth city. |
+| transaction_info.ultimate_receiver.birth_country _string_      | The birth country. |
+| transaction_info.ultimate_receiver.birth_date _string_         | The date of birth. |
+| transaction_info.ultimate_receiver.birth_province _string_     | The province of birth. |
+| transaction_info.ultimate_receiver.id _string_                 | The UUID of the ultimate receiver. |
+| transaction_info.ultimate_receiver.issuer _string_             | The issuing bank of the ultimate receiver. |
+| transaction_info.ultimate_receiver.name _string_               | The ultimate receiver's name |
+| transaction_info.ultimate_receiver.scheme _string_             | The scheme by which the money was received. |
+| transaction_info.ultimate_receiver.scheme_proprietary _string_ | The owner of the scheme. |
+| transaction_info.ultimate_sender _object_                      | Information regarding the ultimate sender of the transaction. |
+| transaction_info.ultimate_sender.address _object_              | Ultimate sender's address information. |
+| transaction_info.ultimate_sender.address.country _string_      | The country the ultimate sender is based in. |
+| transaction_info.ultimate_sender.address.lines _string_        |             |
+| transaction_info.ultimate_sender.bic _string_                  | The Branch Identifier Code of the ultimate sender. |
+| transaction_info.ultimate_sender.birth_city _string_           | The birth city. |
+| transaction_info.ultimate_sender.birth_country _string_        | The birth country. |
+| transaction_info.ultimate_sender.birth_date _string_           | The date of birth. |
+| transaction_info.ultimate_sender.birth_province _string_       | The province of birth. |
+| transaction_info.ultimate_sender.id _string_                   | The UUID of the ultimate sender. |
+| transaction_info.ultimate_sender.issuer _string_               | The issuing bank of the ultimate sender. |
+| transaction_info.ultimate_sender.name _string_                 | The ultimate sender's name |
+| transaction_info.ultimate_sender.scheme _string_               | The scheme by which the money was sent. |
+| transaction_info.ultimate_sender.scheme_proprietary _string_   | The owner of the scheme. |
+| transaction_meta _object_                                      | An object allowing custom fields that can be created and stored against the transaction. |
+| transaction_printout _object_                                  | More information about the transaction. Will be populated by the scheme. |
+| transaction_status _string_                                    | The status of the transaction. See below. |
+| transaction_type _string_                                      | The type of transaction. |
+
+### Transaction Statuses
+| Message                           | Description                              |
+|:----------------------------------|:-----------------------------------------|
+| `transaction-status-missing-data` | Extra data required to complete the transaction. For instance, if the beneficiary does not have enough account information for the transaction to be completed. |
+| `transaction-status-pending`      | Transaction is being processed. We do not have a `/wait` parameter for transactions as they can be processed for a longer period of time. We advise using a webhook to notify you when processing has been completed. |
+| `transaction-status-quarantine`   | The transaction has fallen into your customer quarantine queue. You will receive a `type: entity-fw-quarantine` webhook and a `type: transaction-firewall-finished` webhook. **We recommend setting your own firewall rules to prevent any of your transactions falling into the partner quarantine queue and therefore out of your control.** |
+| `transaction-status-accepted`     | The transaction has been accepted by the Railsbank platform and the funds have left the ledger. YOu will receive a `type: ledger-changed` webhook. Please note that this doesn't mean they have arrived at the beneficiary account: due to regulation, we cannot inform customers when a transaction lands in the partner quarantine queue, so if a transaction is `accepted`, it may be in the partner quarantine and it can be `declined`. If it is declined you will receive a `type: transaction-declined` webhook. |
+| `transaction-status-declined`     | Transaction has ben declined. When you fetch the transaction you will see the `failure_reasons`, for instance: `insufficient-funds`. You will receive a `type: transaction-declined` webhook. |
+
+### Rejection Reasons
+| Reason                                                 |
+|:-------------------------------------------------------|
+| account-transferred,                                   |
+| beneficiary-sort-code-not-enabled-for-faster-payments, |
+| transaction-currency-different-to-receiver-account,    |
+| beneficiary-sort-code-and-account-number-unknown,      |
+| beneficiary-account-number-invalid,                    |
+| beneficiary-name-does-not-match-beneficiary-account,   |
+| currency-and-amount-invalid,                           |
+| sending-agency-account-stopped,                        |
+| sending-account-transferred,                           |
+| beneficiary-sort-code-invalid,                         |
+| amount-invalid,                                        |
+| rejected-by-receiving-bank-with-unspecified-reason,    |
+| sending-agency-account-closed, insufficient-funds,     |
+| transaction-failed-contact-beneficiary,                |
+| currency-invalid,                                      |
+| beneficiary-account-stopped,                           |
+| receiving-agency-account-stopped,                      |
+| account-overdrawn,                                     |
+| syntax-error,                                          |
+| receiving-agency-account-closed,                       |
+| additional-remittance-info-invalid,                    |
+| beneficiary-name-missing,                              |
+| account-number-invalid,                                |
+| receiving-account-transferred,                         |
+| receiving-agency-sort-code-and-account-number-unknown, |
+| reference-invalid,                                     |
+| transaction-failed-please-retry,                       |
+| duplicate-fpid2,                                       |
+| terms-and-conditions-limit,                            |
+| sending-agency-sort-code-and-account-number-unknown,   |
+| transaction-failed,                                    |
+| sending-fps-institution-action-required,               |
+| amount-exceeds-account-limit,                          |
+| beneficiary-account-closed                             |
