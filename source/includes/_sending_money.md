@@ -204,7 +204,7 @@
   }
 ]
 ```
-`POST "https://playlive.railsbank.com/v1/customer/transactions/bulk`
+`POST "https://playlive.railsbank.com/v1/customer/transactions/bulk"`
 
 - This endpoint allows you to send multiple transactions to multiple beneficiaries with one request.
 - Each transaction in the array has the same object as a standard transaction.
