@@ -50,6 +50,7 @@ under the License.
         <%= image_tag('navbar.png') %>
       </span>
     </a>
+    <a href="javascript:void(0);"onclick="javascript:toggledarkbox()">Expand Table</a>
     <div class="toc-wrapper"; style = "padding-right: 10px; padding-top: 10px">
       <%= image_tag "logo.png", class: 'logo' %>
       <% if language_tabs.any? %>
@@ -114,3 +115,16 @@ under the License.
     </div>
   </body>
 </html>
+
+<<script type="text/javascript">
+  hidden=false;
+  function toggledarkbox() {
+    if (hidden == false) {
+      $(".content table").css("overflow", "visible")
+      hidden = true
+    }else{
+      $(".content table").css("overflow", "auto")
+      hidden = false
+    }
+}
+</script>

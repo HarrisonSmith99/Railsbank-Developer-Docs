@@ -436,11 +436,11 @@
 | `beneficiary_account_id` <br> _string_                                | The Railsbank Beneficiary account ID to be credited. |
 | `beneficiary_id` <br> _string_                                        | The receiving Railsbank Beneficiary ID. |
 | `card_currency` <br> _string_                                         | The currency on the debit card, if it is a card transaction. |
-| `card_entry_method` <br> _string_                                     |      |
+| `card_entry_method` <br> _string_                                     | The way the card was used, for instance ATM, ecommerce etc. |
 | `card_expiry_date` <br> _string_                                      | The card expiry date, if it is a card transaction. |
 | `card_rules_breached` <br> _array of strings_                         | The card rules breached, if any, if it is a card transaction. |
 | `card_transaction_type` <br> _string_                                 | The type of card transaction. |
-| `card_used` <br> _string_                                             |      |
+| `card_used` <br> _string_                                             | The token number of the card used. |
 | `conversion_date` <br> _string_                                       | The date that the convert-and-send funds were converted |
 | `conversion_rate` <br> _number_                                       | The rate at which the convert-and-send funds were converted. |
 | `created_at` <br> _string_                                            | The date the transaction was created |
