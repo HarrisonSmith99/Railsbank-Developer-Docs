@@ -158,7 +158,7 @@
             "ultimatesenderaddress": {
                 "address_iso_country": "GB"
             },
-            "beneficiaryiban": "sort-code - 231470/13459843",
+            "beneficiaryiban": "sort-code - 2314XX/134598XX",
             "pspofsendername": "PayrNet",
             "pspaccountlocation": "PAYRGB2LXXX",
             "pspofsenderphysicallocation": "GB",
@@ -191,8 +191,8 @@
         "transaction_type": "transaction-type-send",
         "payment_info": {
             "domesticInstructionAccount": {
-                "sortCode": "231470",
-                "accountNumber": "13459843",
+                "sortCode": "2314XX",
+                "accountNumber": "134598XX",
                 "accountName": "Railsbank Technology Limited"
             },
             "reference": "xyz",
@@ -343,7 +343,7 @@
         "ultimatesenderaddress": {
             "address_iso_country": "GB"
         },
-        "beneficiaryiban": "DE75700111106050110069",
+        "beneficiaryiban": "DE757001111060501100XX",
         "pspofsendername": "PayrNet",
         "pspaccountlocation": "PAYRGB21",
         "pspofsenderphysicallocation": "GB",
@@ -359,7 +359,7 @@
         },
         "paymentonbehalfoftype": "POO",
         "pspofultimatebenename": "Arkea",
-        "ultimatesenderaccountnumber": "GB65PAYR00997700000339",
+        "ultimatesenderaccountnumber": "GB65PAYR009977000003XX",
         "beneficiaryname": "Railsbank Technology Limited",
         "paymentpartytype": "third_party"
     },
@@ -390,7 +390,7 @@
             "ultimatesenderaddress": {
                 "address_iso_country": "GB"
             },
-            "beneficiaryiban": "GB47PAYR04005212339725",
+            "beneficiaryiban": "GB47PAYR040052123397XX",
             "pspofsendername": "Railsbank",
             "pspaccountlocation": "PAYRGB2LXXX",
             "pspofsenderphysicallocation": "GB",
@@ -405,70 +405,13 @@
             },
             "paymentonbehalfoftype": "POO",
             "pspofultimatebenename": "Railsbank",
-            "ultimatesenderaccountnumber": "GB69PAYR04005207186010",
+            "ultimatesenderaccountnumber": "GB69PAYR040052071860XX",
             "beneficiaryname": "Railsbank",
             "paymentpartytype": "interledger"
         },
         "asset_type": "gbp",
         "asset_class": "currency",
         "invoices": []
-    },
-    {
-        "payment_type": "payment-type-UK-FasterPayments",
-        "transaction_type": "transaction-type-send",
-        "payment_info": {
-            "domesticInstructionAccount": {
-                "sortCode": "231470",
-                "accountNumber": "13459843",
-                "accountName": "Railsbank Technology Limited"
-            },
-            "reference": "xyz",
-            "currencyAndAmount": {
-                "currency": "GBP",
-                "minorUnits": 10
-            },
-            "type": "SIP"
-        },
-        "transaction_status": "transaction-status-accepted",
-        "transaction_info": {},
-        "reference": "xyz",
-        "amount": 0.1,
-        "ledger_from_id": "5cf4f5c9-4307-4e51-92c6-098e55ccb8bf",
-        "transaction_id": "5cfe7478-9cb5-4135-83a0-f83be718e98c",
-        "created_at": "2019-06-10T15:17:12.379Z",
-        "partner_product": "PayrNet-GBP-1",
-        "beneficiary_id": "5cf52d84-04ce-4de6-8f35-bc11295afd3b",
-        "transaction_printout": {
-            "ultimatesenderaddress": {
-                "address_iso_country": "GB"
-            },
-            "beneficiaryiban": "sort-code - 231470/13459843",
-            "pspofsendername": "PayrNet",
-            "pspaccountlocation": "PAYRGB2LXXX",
-            "pspofsenderphysicallocation": "GB",
-            "pspaccounttandcscountryofjurisdiction": "GB",
-            "ultimatesendername": "Railsbank",
-            "pspofsenderaddress": {
-                "address_refinement": "Kemp House",
-                "address_number": "152",
-                "address_street": "City Road",
-                "address_city": "London",
-                "address_postal_code": "EC1V 2NX",
-                "address_iso_country": "GB"
-            },
-            "paymentonbehalfoftype": "POO",
-            "pspofultimatebenename": "Starling",
-            "ultimatesenderaccountnumber": "GB47PAYR04005212339725",
-            "beneficiaryname": "Railsbank Technology Limited",
-            "paymentpartytype": "third_party"
-        },
-        "asset_type": "gbp",
-        "asset_class": "currency",
-        "transaction_meta": {
-            "info": "2018-02-21T16:05:13.016Z | 0.19"
-        },
-        "invoices": [],
-        "beneficiary_account_id": "5cf52d84-0faa-4104-bf6c-395896f3b04b"
     }
 ```
 
