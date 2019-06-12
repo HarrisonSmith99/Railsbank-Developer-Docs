@@ -93,8 +93,7 @@ under the License.
         </ul>
       <% end %>
     </div>
-    <button onclick="hideCode()">Hide Code</button>
-    <div class="page-wrapper"; id="code">
+    <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <%= page_content %>
@@ -115,14 +114,3 @@ under the License.
     </div>
   </body>
 </html>
-
-<script type="text/javascript">
-  function hideCode() {
-  var x = document.getElementById("code");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-</script>
