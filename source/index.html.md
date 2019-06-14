@@ -24,6 +24,7 @@ includes:
   - onboarding_beneficiaries
   - sending_money
   - issuing_debit_cards
+  - webhooks 
 
 toc_footers:
   - <a href='https://app.railsbank.com'>Sign Up for an API-Key</a>
