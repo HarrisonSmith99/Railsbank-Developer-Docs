@@ -17,6 +17,102 @@
 - Ensure your SSL Certificate is issued by a Trusted Authority or has the full chain included.
 
 ## Types of Notification
+> **Entity Ready to Use**
+
+```shell
+{
+  "enduser_id" : "5d0385ac-4ae5-4eae-be6b-fa126c0a6bfc",
+  "owner" : "5be950c7-ef99-43d7-a0c7-96da0106a68d",
+  "type" : "entity-ready-to-use",
+  "created_at" : "2019-06-14T11:32:06.279Z",
+  "notification_id" : "5d0385b6-d5b0-47ab-a57d-ab1fede836b4",
+  "secret" : "927741"
+}
+```
+> **Ledger Changed**
+
+```shell
+{
+  "owner" : "5be950c7-ef99-43d7-a0c7-96da0106a68d",
+  "ledger_id" : "5ca22664-edd8-443e-9c56-5bb9a1c79a79",
+  "type" : "ledger-changed",
+  "secret" : "927741",
+  "transaction_id" : "5d0385b2-b496-4396-9f36-f4f0c14d4660",
+  "created_at" : "2019-06-14T11:32:15.046Z",
+  "notification_id" : "5d0385bf-0409-48a2-8906-2d6d106e0372",
+}
+```
+
+> **Entity FW Quarantine**
+
+```shell
+{
+  "transaction_id" : "5d0385b5-1ffe-4039-8494-0163a51e2e21",
+  "owner" : "5be950c7-ef99-43d7-a0c7-96da0106a68d",
+  "type" : "entity-fw-quarantine",
+  "created_at" : "2019-06-14T11:32:05.194Z",
+  "notification_id" : "5d0385b5-3aa7-4b9a-af0a-93f1d7fd9b73",
+  "secret" : "927741"
+}
+```
+> **Firewall Finished**
+
+```shell
+{
+  "beneficiary_id" : "5d0385af-20d6-4a9b-9578-191752f4a585",
+  "beneficiary_status" : "beneficiary-status-quarantine",
+  "owner" : "5be950c7-ef99-43d7-a0c7-96da0106a68d",
+  "type" : "beneficiary-firewall-finished",
+  "created_at" : "2019-06-14T11:31:59.695Z",
+  "notification_id" : "5d0385af-6779-45f0-96e6-54592efb9487",
+  "secret" : "927741"
+}
+```
+
+> **Card Awaiting Activation, Activated, and Card Suspended**
+
+```shell
+{
+  "card_id" : "5d038588-5006-4eaf-8235-c67676b77db5",
+  "owner" : "5be950c7-ef99-43d7-a0c7-96da0106a68d",
+  "type" : "card-awaiting-activation",
+  "created_at" : "2019-06-14T11:31:21.944Z",
+  "notification_id" : "5d038589-e16a-460d-84ee-9f9b12064fed",
+  "secret" : "927741"
+}
+
+{
+  "card_id" : "5d038588-5006-4eaf-8235-c67676b77db5",
+  "owner" : "5be950c7-ef99-43d7-a0c7-96da0106a68d",
+  "type" : "card-activated",
+  "created_at" : "2019-06-14T11:31:32.568Z",
+  "notification_id" : "5d038594-5de6-4402-9ba8-94628b3c546f",
+  "secret" : "927741"
+}
+
+{
+  "card_id" : "5d038588-5006-4eaf-8235-c67676b77db5",
+  "owner" : "5be950c7-ef99-43d7-a0c7-96da0106a68d",
+  "type" : "card-suspended",
+  "created_at" : "2019-06-14T11:31:45.891Z",
+  "notification_id" : "5d0385a1-2d64-4498-9e28-c250513f13e0",
+  "secret" : "927741"
+}
+```
+> **Transaction declined**
+
+```shell
+{
+  "transaction_id" : "5d03851d-013a-41b5-821b-4071e743061a",
+  "owner" : "5be950c7-ef99-43d7-a0c7-96da0106a68d",
+  "type" : "transaction-declined",
+  "created_at" : "2019-06-14T11:29:33.912Z",
+  "notification_id" : "5d03851d-86e4-410e-814d-8b68d51ce55b",
+  "secret" : "927741"
+}
+```
+
+
 
 - **All** notifications will include:
   - `owner` - your customer id
@@ -27,10 +123,10 @@
 
 | **Type**                          | **Description**                          |
 |:----------------------------------|:-----------------------------------------|
+| `:entity-ready-to-use`            | An entity is created successfully and ready to use <br>• the notification will  include the id of the entity |
+| `:ledger-changed`                 | A ledger has changed been credited or debited (includes if it is credited due to a send-money transaction being declined) <br>• the notification will include the `ledger_id` of the changed ledger and the `transaction_id` of the transaction that caused the change |
 | `:enduser-firewall-finished`      | A Compliance Firewall check is performed on an enduser entity <br>• the notification will include the id of the enduser and their status |
 | `:beneficiary-firewall-finished`  | A Compliance Firewall check is performed on a beneficiary entity <br>• the notification will include the id of the beneficiary and their status |
-| `:ledger-changed`                 | A ledger has changed been credited or debited (includes if it is credited due to a send-money transaction being declined) <br>• the notification will include the `ledger_id` of the changed ledger and the `transaction_id` of the transaction that caused the change |
-| `:entity-ready-to-use`            | An entity is created successfully and ready to use <br>• the notification will  include the id of the entity |
 | `:entity-fw-quarantine`           | An entity has been put into quarantine for breaching a firewall rule <br>• the notification will  include the id of the entity that hit the quarantine |
 | `:entity-fw-warning`              |                                          |
 | `:entity-fw-missing-data`         | An entity has not been created successfully due to missing firewall data |
@@ -49,6 +145,8 @@
 | `:direct-debit-payment-paid`      | Direct debit related activity:<br> a mandate payment is successful |
 | `:direct-debit-payment-failed`    | Direct debit related activity:<br> a mandate payment has failed |
 | `:direct-debit-payment-refunded`  | Direct debit related activity:<br> payment has been refunded |
+| `:webhook-test`                   | The notification sent upon the successful creation of the webhook or updating of a secret. |
+
 
 ## Set up a Webhook
 > **Example Request**
@@ -69,6 +167,7 @@
 - This endpoint allows you to set your webhook.
 - Make sure to include both the URL you want the notifications sent to, and the secret you want to use to verify that the notifications are your particular notifications.
 - If the webhook is set-up successfully, the API will return a 200 HTTP response with no payload.
+- When you create your webhook you will receive a notification of ` "type" : "webhook-test"`.
 
 ## Fetch your Webhook
 
@@ -113,6 +212,8 @@
 - This helps you to improve the security of your notifications.
 - The secret is sent with every event, allowing you to verify that the events.
 - There will be no response body, only the HHTP code.
+- If the webhook secret is updated successfully, the API will return a 200 HTTP response with no payload.
+- When you update your webhook secret you will receive a notification of ` "type" : "webhook-test"`.
 
 ## Delete your Webhook
 
