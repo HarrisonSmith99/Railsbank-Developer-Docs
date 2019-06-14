@@ -846,7 +846,6 @@
 
 ### Parameters
 
-<details><summary>Parameters</summary>
 | Parameter                        | Description                               |
 |:---------------------------------|:------------------------------------------|
 | `starting_at_date` <br> _string_ | Any transactions created before this date will not be shown in the array <br> _YYYY-MM-DD_ |
@@ -854,7 +853,7 @@
 | `last_seen_id` <br> _string_     | The transactions returned will have all been created after the transaction whose UUID is the `last_seen_id` |
 | `from_date` <br> _string_        | The date that the list of transactions will start from |
 | `end_date` <br> _string_         | The date that the list of transactions will end at |
-</details>
+
 
 ## Update Transactions
 > **Example Request**
