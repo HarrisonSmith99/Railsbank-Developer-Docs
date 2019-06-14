@@ -844,9 +844,6 @@
 - The transactions returned will be in the same format as when you fetch a single transaction.
 - You cannot fetch transactions for a particular enduser or ledger: you cannot call `transactions/{{LEDGER_ID}}` or `transactions/{{ENDUSER_ID}}`. To fetch the transactions to a ledger, you need to call `ledgers/{{LEDGER_ID}}/entries` and iterate through the transaction_id's it returns, fetch each transaction sequentially.
 
-<details>
-  <summary>Click to expand!</summary>
-
 ### Parameters
 
 | Parameter                        | Description                               |
@@ -857,7 +854,6 @@
 | `from_date` <br> _string_        | The date that the list of transactions will start from |
 | `end_date` <br> _string_         | The date that the list of transactions will end at |
 
-</details>
 
 ## Update Transactions
 > **Example Request**
