@@ -169,9 +169,9 @@
   ```
   `GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}"`
 
-    - Fetching a card is much like 'fetching' anything else with the API.
-    - In this case, all you need to know is the `card_id`.
-    - The possible statuses of the card can be seen below.
+  - Fetching a card is much like 'fetching' anything else with the API.
+  - In this case, all you need to know is the `card_id`.
+  - The possible statuses of the card can be seen below.
 
 ### Card Statuses
 | Message                           | Description                              |
