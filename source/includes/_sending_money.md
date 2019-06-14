@@ -12,9 +12,6 @@
 `GET /v1/customer/transactions/{{TRANSACTION_ID}}`
 `PUT /v1/customer/transactions/{{TRANSACTION_ID}}`
 
-
-
-
 ```
 
 - It is incredibly simple to send money using the Railsbank API.
@@ -842,10 +839,6 @@
 ```
 
 `GET "https://playlive.railsbank.com/v1/customer/transactions`
-
-`GET "https://playlive.railsbank.com/v1/customer/transactions?items_per_page=25`
-
-`GET "https://playlive.railsbank.com/v1/customer/transactions?last_seen_id={{TRANSACTION_ID}}`
 
 - This endpoint returns multiple transactions in an array.
 - The transactions returned will be in the same format as when you fetch a single transaction.

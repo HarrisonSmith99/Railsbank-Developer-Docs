@@ -58,6 +58,8 @@
     curl -X POST "https://beta-playlive.railsbank.com/v1/customer/cards" -H "accept: application/json" -H "Authorization: API-Key <<yourAPI-Key>>" -H "Content-Type: application/json" -d "{ \"ledger_id\": \"{{enduser_GBPledger_id}}\", \"card_type\": \"virtual\", \"card_design\": \"design one\", \"card_programme\": \"{{GBPcard_programme}}\"}"
   ```
 
+  `POST "https://live.railsbank.com/v1/customer/cards"`
+
   - Once you've created your **card-holding** enduser, carefully go through our Issue a ledger tutorial - it'll only take a minute or so - to create the bank account to which your card is going to be attached.
   - When issuing the ledger, make sure to do so in the **Live** environment with your **Live API Key** and the `enduser_id` of the **card-holding** enduser you've created.
   - For customers with a **Live API Key**, the **Railsbank-Debit-Card** capability is available for testing in the **Play** environment. Please [email our Business Development Team](mailto:support@railsbank.com) if you want Live Keys.
@@ -113,6 +115,8 @@
 ```shell
   curl -X POST "https://beta-playlive.railsbank.com/v1/customer/cards" -H "accept: application/json" -H "Authorization: API-Key wotzuvu60fr9y7z1o94heszi2geu8np8#kmkd4uvdmrg864ce9n4zlyygvf86opbwqddgmsdrobgqp4dlzf3thynck6qm7gso" -H "Content-Type: application/json" -d "{\"ledger_id\": \"{{enduser_GBPledger_id}}\", \"card_carrier_type\": \"standard\", \"card_delivery_name\": \"John Smith\", \"card_type\": \"physical\", \"card_delivery_method\": \"dhl\", \"card_design\": \"{{design_one}}\", \"card_delivery_address\": { \"address_region\": \"England\", \"address_iso_country\": \"GBR\", \"address_number\": \"35\", \"address_postal_code\": \"W1 4AQ\", \"address_refinement\": \"First Floor\", \"address_street\": \"John Street\", \"address_city\": \"London\" }, \"card_programme\": \"{{GBPcard_programme}}\" }"
 ```
+`POST "https://live.railsbank.com/v1/customer/cards"`
+
   - Physical cards require a little more data than virtual cards.
   - Once you've created your **card-holding** enduser, carefully go through our Issue a ledger tutorial - it'll only take a minute or so - to create the bank account to which your card is going to be attached.
   - When issuing the ledger, make sure to do so in the **Live** environment with your **Live API Key** and the `enduser_id` of the **card-holding** enduser you've created.
@@ -163,6 +167,8 @@
     "temp_card_image_url": "237564rh43ht43"
   }
   ```
+  `GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}"`
+
     - Fetching a card is much like 'fetching' anything else with the API.
     - In this case, all you need to know is the `card_id`.
     - The possible statuses of the card can be seen below.
@@ -212,6 +218,8 @@
       "card_programme": "rbbe-313-gbp-person"
   }
   ```
+  `GET "https://live.railsbank.com/v1/customer/cards/{{card_token}}"`
+
   - A few seconds after a card is created, a token is assigned to it.
   - This token can also be used to fetch the card.
   - If you are fetching the card using this endpoint after generation you will need to wait a few seconds before the token is added to the card, at which point you must fetch the card using the `card_id` in order to discover the token.
@@ -252,7 +260,25 @@
     }
   ```
 
+  `GET "https://live.railsbank.com/v1/customer/cards"`
+
   - If you want to see the details of all the cards you have issued, then this powerful endpoint is for you.
+  - You can filter the cards to the `holder_id`, allowing you to see the cards attached to a specific enduser, for instance.
+    - You can also filter by `ledger_id`, allowing you to see the cards attached to a ledger.
+    - You can specify both the `ledger_id` and the `holder_id`.
+
+### Parameters
+
+| Parameter                        | Description                               |
+|:---------------------------------|:------------------------------------------|
+| `holder_id` <br> _string_        | The UUID of the card(s) holder, an enduser or the customer. |
+| `ledger_id` <br> _string_        | The UUID of the ledger to which the returned cards are attached. |
+| `starting_at_date` <br> _string_ | Any cards created before this date will not be shown in the array. <br> _YYYY-MM-DD_ |
+| `items_per_page` <br> _integer_  | The number of items returned in each page. A hyperlink to the next page will be found in the response headers. |
+| `last_seen_id` <br> _string_     | The cards returned will have all been created after the card whose UUID is the `last_seen_id`. |
+| `from_date` <br> _string_        | The date that the list of cards will start from. |
+| `end_date` <br> _string_         | The date that the list of cards will end at. |
+
 
 ## Activate a Card
   > **Example Request**
@@ -279,6 +305,7 @@
       "card_programme": "rbbe-313-gbp-person"
   }
   ```
+`POST "https://live.railsbank.com/v1/customer/cards/{{card_id}}/activate"`
 
   - A `created` card is cool, but an `activated` card is awesome; it has access to global banking.
   - This simple endpoint will **activate** the card.
@@ -293,9 +320,11 @@
     --header "Accept: application/json"
     --header "Authorization: API-Key <<yourliveapikey>>"
   ```
-  - The API will respond with your suspended `card_id`. Simple.
+  `POST "https://live.railsbank.com/v1/customer/cards/{{card_id}}/suspend"`
+
   - Naturally, there will come a time when you or your endusers need to `suspend` a card. This endpoint allows you to do so in one easy call.
   - Once you suspended a card, it can be reactivated at any time by using `activate` endpoint. However, if you don't reactivate it, it will remain suspended.
+  - The API will respond with your suspended `card_id`. Simple.
 
 ## Fetching Card PINs
   > **Example Request**
@@ -313,10 +342,13 @@
     "pin": "2477"
   }
   ```
+  `GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}/pin"`
+
   - You may want to fetch the PIN number for chip-and-PIN transactions. All you need is your `card_id` to obtain it.
   - Before you fetch you physical card PIN it is important to note:
   - PINs for new cards are generated at 05:05 each day, as part of generating the xml file for the manufacturer.
   - If the PIN is not set you will receive `"error": "card-pin-not-set"`
+  - Unfortunately, we do not allow you to update a card PIN via an API call. To do this your users will have to go to an ATM.
 
 
 ## Get Card Image
@@ -335,5 +367,7 @@
     "temp_card_image_url": "http://40.127.00.174:8002/Paymentology/585256_F347DBA257102343AB5132840D231AB3.png"
   }
   ```
-  - The endpoint provides a URL which can be used to view the card image.
+`GET "https://live.railsbank.com/v1/customer/cards/{{card_id}}/image"`
+
+  - This endpoint provides a URL which can be used to view the card image.
   - The URL is valid for ten minutes.

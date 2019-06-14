@@ -396,8 +396,6 @@
 ```
 `GET "https://playlive.railsbank.com/v1/customer/endusers`
 
-`GET "https://playlive.railsbank.com/v1/customer/endusers?starting_at_date=2019-01-01"`
-
 - This endpoint allows you to fetch multiple endusers.
 - If it is not parameterized, it will return all the endusers created using the API Key.
 - It will return an array of enduser id's which you can iterate over and fetch individually to get more information on.

@@ -557,10 +557,6 @@ PUT /v1/customer/beneficiaries/{{BENEFICIARY_ID}}/accounts/{{ACCOUNT_ID}}/make-d
 ```
 `GET "https://playlive.railsbank.com/v1/customer/beneficiaries"`
 
-`GET "https://playlive.railsbank.com/v1/customer/beneficiaries?holder_id={{ENDUSER_ID}}"`
-
-`GET "https://playlive.railsbank.com/v1/customer/beneficiaries?holder_id={{ENDUSER_ID}}&items_per_page=25"`
-
 - You can fetch multiple beneficiaries.
   - You can filter the response from this endpoint by `holder_id`, allowing you to retrieve the beneficiaries held by you as the customer or by a particular enduser.
   - Use either the date-based parameters or the id-based parameters, not both.
