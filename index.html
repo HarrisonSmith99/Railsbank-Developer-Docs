@@ -785,8 +785,8 @@
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: left"><code>transaction-status-missing-data</code></td>
-<td style="text-align: left">Extra data required to complete the transaction. For instance, if the beneficiary does not have enough account information for the transaction to be completed.</td>
+<td style="text-align: left"><code>transaction-status-accepted</code></td>
+<td style="text-align: left">The transaction has been accepted by the Railsbank platform and the funds have left the ledger. YOu will receive a <code>type: ledger-changed</code> webhook. Please note that this doesn&#39;t mean they have arrived at the beneficiary account: due to regulation, we cannot inform customers when a transaction lands in the partner quarantine queue, so if a transaction is <code>accepted</code>, it may be in the partner quarantine and it can be <code>declined</code>. If it is declined you will receive a <code>type: transaction-declined</code> webhook.</td>
 </tr>
 <tr>
 <td style="text-align: left"><code>transaction-status-pending</code></td>
@@ -797,12 +797,12 @@
 <td style="text-align: left">The transaction has fallen into your customer quarantine queue. You will receive a <code>type: entity-fw-quarantine</code> webhook and a <code>type: transaction-firewall-finished</code> webhook. <strong>We recommend setting your own firewall rules to prevent any of your transactions falling into the partner quarantine queue and therefore out of your control.</strong></td>
 </tr>
 <tr>
-<td style="text-align: left"><code>transaction-status-accepted</code></td>
-<td style="text-align: left">The transaction has been accepted by the Railsbank platform and the funds have left the ledger. YOu will receive a <code>type: ledger-changed</code> webhook. Please note that this doesn&#39;t mean they have arrived at the beneficiary account: due to regulation, we cannot inform customers when a transaction lands in the partner quarantine queue, so if a transaction is <code>accepted</code>, it may be in the partner quarantine and it can be <code>declined</code>. If it is declined you will receive a <code>type: transaction-declined</code> webhook.</td>
-</tr>
-<tr>
 <td style="text-align: left"><code>transaction-status-declined</code></td>
 <td style="text-align: left">Transaction has ben declined. When you fetch the transaction you will see the <code>failure_reasons</code>, for instance: <code>insufficient-funds</code>. You will receive a <code>type: transaction-declined</code> webhook.</td>
+</tr>
+<tr>
+<td style="text-align: left"><code>transaction-status-missing-data</code></td>
+<td style="text-align: left">Extra data required to complete the transaction. For instance, if the beneficiary does not have enough account information for the transaction to be completed.</td>
 </tr>
 </tbody></table>
 <h3 id='receiving-money'>Receiving money</h3>
@@ -5535,8 +5535,8 @@ Use this endpoint to add an account to a beneficiary.</li>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: left"><code>transaction-status-missing-data</code></td>
-<td style="text-align: left">Extra data required to complete the transaction. For instance, if the beneficiary does not have enough account information for the transaction to be completed.</td>
+<td style="text-align: left"><code>transaction-status-accepted</code></td>
+<td style="text-align: left">The transaction has been accepted by the Railsbank platform and the funds have left the ledger. YOu will receive a <code>type: ledger-changed</code> webhook. Please note that this doesn&#39;t mean they have arrived at the beneficiary account: due to regulation, we cannot inform customers when a transaction lands in the partner quarantine queue, so if a transaction is <code>accepted</code>, it may be in the partner quarantine and it can be <code>declined</code>. If it is declined you will receive a <code>type: transaction-declined</code> webhook.</td>
 </tr>
 <tr>
 <td style="text-align: left"><code>transaction-status-pending</code></td>
@@ -5547,12 +5547,12 @@ Use this endpoint to add an account to a beneficiary.</li>
 <td style="text-align: left">The transaction has fallen into your customer quarantine queue. You will receive a <code>type: entity-fw-quarantine</code> webhook and a <code>type: transaction-firewall-finished</code> webhook. <strong>We recommend setting your own firewall rules to prevent any of your transactions falling into the partner quarantine queue and therefore out of your control.</strong></td>
 </tr>
 <tr>
-<td style="text-align: left"><code>transaction-status-accepted</code></td>
-<td style="text-align: left">The transaction has been accepted by the Railsbank platform and the funds have left the ledger. YOu will receive a <code>type: ledger-changed</code> webhook. Please note that this doesn&#39;t mean they have arrived at the beneficiary account: due to regulation, we cannot inform customers when a transaction lands in the partner quarantine queue, so if a transaction is <code>accepted</code>, it may be in the partner quarantine and it can be <code>declined</code>. If it is declined you will receive a <code>type: transaction-declined</code> webhook.</td>
-</tr>
-<tr>
 <td style="text-align: left"><code>transaction-status-declined</code></td>
 <td style="text-align: left">Transaction has ben declined. When you fetch the transaction you will see the <code>failure_reasons</code>, for instance: <code>insufficient-funds</code>. You will receive a <code>type: transaction-declined</code> webhook.</td>
+</tr>
+<tr>
+<td style="text-align: left"><code>transaction-status-missing-data</code></td>
+<td style="text-align: left">Extra data required to complete the transaction. For instance, if the beneficiary does not have enough account information for the transaction to be completed.</td>
 </tr>
 </tbody></table>
 <h3 id='rejection-reasons'>Rejection Reasons</h3>
